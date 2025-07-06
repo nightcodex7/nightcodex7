@@ -11,11 +11,11 @@
   <a href="https://www.linkedin.com/in/tuhingarai" target="_blank">
     <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=flat&logo=linkedin&logoColor=white" alt="LinkedIn">
   </a>
-  <a href="https://x.com/nightcode_x" target="_blank">
-    <img src="https://img.shields.io/badge/Twitter-1DA1F2?style=flat&logo=twitter&logoColor=white" alt="Twitter/X">
-  </a>
   <a href="https://medium.com/@nightcode_x" target="_blank">
     <img src="https://img.shields.io/badge/Medium-12100E?style=flat&logo=medium&logoColor=white" alt="Medium">
+  </a>
+  <a href="https://x.com/nightcode_x" target="_blank">
+    <img src="https://img.shields.io/badge/Twitter-1DA1F2?style=flat&logo=twitter&logoColor=white" alt="Twitter/X">
   </a>
   <img src="https://komarev.com/ghpvc/?username=nightcodex7&style=flat&color=blue" alt="GitHub Visitor Counter"/>
 </p>
@@ -27,7 +27,7 @@
 - 🎓 MCA Student at **Jain University** (Major: Cloud Computing, Minor: AI/ML)
 - 💻 Focused on **Cybersecurity**, **Linux**, **Cloud-native Architecture**, and **DevOps**
 - 📚 Published researcher in **Serverless Monitoring Systems**
-- 🛠️ Building tools around WARP, NextDNS, AOSP, AWS, and container tech
+- 🛠️ Building tools around NextDNS, AOSP, AWS, and container tech
 
 ---
 
@@ -79,18 +79,13 @@ _NIELIT Gorakhpur, Nov 2021_
 
 ---
 
-## 📈 GitHub Stats (Dark Mode Compatible)
+## 📈 GitHub Stats
 
 <p align="center">
   <img src="https://github-readme-stats.vercel.app/api?username=nightcodex7&show_icons=true&theme=radical&hide_border=true" />
   <br/>
   <img src="https://github-readme-streak-stats.herokuapp.com/?user=nightcodex7&theme=radical&hide_border=true" />
 </p>
-
----
-
-## 💻 Most Used Languages
-
 <p align="center">
   <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=nightcodex7&layout=compact&theme=radical&hide_border=true" />
 </p>
