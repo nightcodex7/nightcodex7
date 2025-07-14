@@ -39,15 +39,15 @@ _Published in IJIRSET, May 2025_
 
 ---
 
-## 🚀 Featured Projects
+## 🚀 Projects
 
-🔐 **[warp-nextdns-wireguard](https://github.com/nightcodex7/warp-nextdns-wireguard)**  
+🔐 **[warp-nextdns-wireguard](https://github.com/nightcodex7/warp-nextdns-wireguard) <--- (STABLE)**  
 Cloudflare WARP + NextDNS for secure DNS without relying on Cloudflare DNS.
 
-🧹 **[BravePurifier](https://github.com/nightcodex7/BravePurifier)**  
+🧹 **[BravePurifier](https://github.com/nightcodex7/BravePurifier) <--- (WORK IN PROGRESS)**  
 Shell script to fully debloat Brave on Linux.
 
-📱 **[NetworkSwitcher](https://github.com/nightcodex7/NetworkSwitcher)**  
+📱 **[NetworkSwitcher](https://github.com/nightcodex7/NetworkSwitcher) <--- (BETA -- HIGHLY UNSTABLE) **  
 Android app to toggle network modes like 5G Only or 4G Only. Material Design 3 UI.
 
 ---
