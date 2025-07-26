@@ -355,12 +355,16 @@ a:hover {
     max-width: 1200px;
     margin: 0 auto;
     position: relative;
+    overflow-x: hidden;
+    min-height: 60px;
 }
 
 .nav-menu {
     display: flex;
     gap: var(--spacing-xl);
     align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .nav-link {
@@ -369,6 +373,8 @@ a:hover {
     transition: color var(--transition-fast);
     position: relative;
     outline: none;
+    white-space: nowrap;
+    font-size: var(--font-size-base);
 }
 
 .nav-link::after {
