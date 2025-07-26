@@ -10,6 +10,7 @@
     font-size: var(--font-size-lg);
     line-height: 1.8;
     margin-bottom: var(--spacing-2xl);
+    text-align: justify;
 }
 
 .contact-info {
@@ -238,6 +239,7 @@
     word-wrap: break-word;
     overflow-wrap: break-word;
     hyphens: auto;
+    text-align: justify;
 }
 
 .project-links {
@@ -305,6 +307,7 @@
     color: var(--text-secondary);
     margin-bottom: var(--spacing-md);
     line-height: 1.6;
+    text-align: justify;
 }
 
 .research-links {
@@ -426,6 +429,7 @@
     color: var(--text-secondary);
     line-height: 1.7;
     margin-bottom: var(--spacing-lg);
+    text-align: justify;
 }
 
 .timeline-link {
@@ -494,6 +498,7 @@
     color: var(--text-secondary);
     margin-bottom: var(--spacing-md);
     line-height: 1.6;
+    text-align: justify;
 }
 
 .education-link {

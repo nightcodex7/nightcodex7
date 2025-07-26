@@ -79,11 +79,9 @@
 }
 
 html {
-    scroll-behavior: smooth;
     font-size: 16px;
     -webkit-overflow-scrolling: touch;
     overscroll-behavior: contain;
-    scroll-behavior: smooth;
 }
 
 body {
@@ -296,6 +294,7 @@ a:hover {
     line-height: 1.75;
     max-width: 600px;
     opacity: 0.9;
+    text-align: justify;
 }
 
 .hero-actions {
