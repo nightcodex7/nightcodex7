@@ -96,7 +96,7 @@ body {
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 var(--spacing-lg);
+    padding: 0 2rem;
 }
 
 /* Typography */
@@ -133,10 +133,10 @@ a:hover {
     display: inline-flex;
     align-items: center;
     gap: var(--spacing-sm);
-    padding: var(--spacing-md) var(--spacing-xl);
+    padding: 0.75rem 1.5rem;
     border: none;
     border-radius: var(--radius-lg);
-    font-size: var(--font-size-base);
+    font-size: 1rem;
     font-weight: 500;
     text-decoration: none;
     cursor: pointer;
@@ -220,7 +220,9 @@ a:hover {
     background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
     position: relative;
     overflow: hidden;
-    padding-top: 100px;
+    padding-top: 4rem;
+    max-width: 1200px;
+    margin: auto;
 }
 
 .hero::before {
@@ -266,13 +268,14 @@ a:hover {
     font-size: var(--font-size-lg);
     color: var(--text-muted);
     margin-bottom: var(--spacing-2xl);
-    line-height: 1.7;
+    line-height: 1.75;
 }
 
 .hero-actions {
     display: flex;
-    gap: var(--spacing-lg);
+    gap: 1rem;
     flex-wrap: wrap;
+    margin-top: 1.5rem;
 }
 
 .hero-visual {
@@ -379,7 +382,7 @@ a:hover {
 .nav-social {
     display: flex;
     align-items: center;
-    gap: var(--spacing-lg);
+    gap: 0.75rem;
 }
 
 .social-link {
@@ -405,6 +408,9 @@ a:hover {
     padding: var(--spacing-sm);
     border-radius: var(--radius-md);
     transition: all var(--transition-fast);
+    display: flex;
+    align-items: center;
+    vertical-align: middle;
 }
 
 .theme-toggle:hover {
