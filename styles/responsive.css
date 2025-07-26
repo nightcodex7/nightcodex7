@@ -432,7 +432,7 @@
         display: flex;
         margin-right: auto;
         gap: var(--spacing-md);
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
         justify-content: flex-start;
     }
     
@@ -456,7 +456,7 @@
     .nav-container {
         justify-content: space-between;
         padding: var(--spacing-sm) var(--spacing-md);
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
         gap: var(--spacing-sm);
     }
     
@@ -520,7 +520,7 @@
         display: flex;
         margin-right: auto;
         gap: var(--spacing-lg);
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
         justify-content: flex-start;
     }
     
@@ -544,7 +544,7 @@
     .nav-container {
         justify-content: space-between;
         padding: var(--spacing-md) var(--spacing-lg);
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
         gap: var(--spacing-sm);
     }
     
@@ -608,7 +608,7 @@
         display: flex;
         margin-right: auto;
         gap: var(--spacing-xl);
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
         justify-content: flex-start;
     }
     
@@ -632,7 +632,7 @@
     .nav-container {
         justify-content: space-between;
         padding: var(--spacing-md) var(--spacing-lg);
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
         gap: var(--spacing-sm);
     }
 }
@@ -757,7 +757,7 @@
 @media (max-width: 900px) and (min-width: 768px) {
     .nav-menu {
         gap: var(--spacing-sm);
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
         justify-content: center;
     }
     
@@ -776,7 +776,7 @@
     
     .nav-container {
         padding: var(--spacing-sm) var(--spacing-md);
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
         gap: var(--spacing-xs);
     }
     

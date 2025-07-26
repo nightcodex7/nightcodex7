@@ -363,7 +363,7 @@ a:hover {
     display: flex;
     gap: var(--spacing-xl);
     align-items: center;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     justify-content: center;
 }
 
