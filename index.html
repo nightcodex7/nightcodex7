@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tuhin Garai - Cloud Computing & Cybersecurity Enthusiast</title>
+    <meta name="description" content="Tuhin Garai - Cloud Computing & Cybersecurity Enthusiast, Researcher, Linux Enthusiast, and Open Source Contributor. MCA Student specializing in Storage & Cloud Technology.">
+    <meta name="keywords" content="Tuhin Garai, Cloud Computing, Cybersecurity, AWS, Serverless, DevOps, Linux, Open Source, Research">
+    <meta name="author" content="Tuhin Garai">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="English">
+    <meta name="revisit-after" content="7 days">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Tuhin Garai - Cloud Computing & Cybersecurity Enthusiast">
+    <meta property="og:description" content="Cloud Computing & Cybersecurity Enthusiast | Researcher | Linux Enthusiast | Open Source">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nightcode.co.in">
+    <meta property="og:image" content="https://nightcode.co.in/assets/logo.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="Tuhin Garai Portfolio">
+    <meta property="og:locale" content="en_US">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Tuhin Garai - Cloud Computing & Cybersecurity Enthusiast">
+    <meta name="twitter:description" content="Cloud Computing & Cybersecurity Enthusiast | Researcher | Linux Enthusiast | Open Source">
+    <meta name="twitter:image" content="https://nightcode.co.in/assets/logo.png">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#6366f1">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="styles/main.css" as="style">
+    <link rel="preload" href="styles/components.css" as="style">
+    <link rel="preload" href="scripts/main.js" as="script">
+    <link rel="preload" href="assets/logo.svg" as="image">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Critical CSS -->
+    <style>
+      /* Critical CSS for above-the-fold content */
+      :root {
+        --bg-primary: #0a0a0a;
+        --text-primary: #ffffff;
+        --accent-primary: #6366f1;
+        --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      }
+      
+      body {
+        margin: 0;
+        font-family: var(--font-family);
+        background-color: var(--bg-primary);
+        color: var(--text-primary);
+        overflow-x: hidden;
+      }
+      
+      .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: rgba(10, 10, 10, 0.95);
+        backdrop-filter: blur(10px);
+        z-index: 1000;
+        transition: all 0.3s ease;
+      }
+      
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        background: linear-gradient(135deg, var(--bg-primary) 0%, #1a1a1a 100%);
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
+    </style>
+    
+    <!-- Non-critical CSS -->
+    <link rel="stylesheet" href="styles/main.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="styles/components.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="styles/responsive.css" media="print" onload="this.media='all'">
+    
+    <!-- Fallback for browsers that don't support onload -->
+    <noscript>
+      <link rel="stylesheet" href="styles/main.css">
+      <link rel="stylesheet" href="styles/components.css">
+      <link rel="stylesheet" href="styles/responsive.css">
+    </noscript>
+</head>
+<body class="dark-theme">
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="assets/logo.png" alt="Tuhin Garai Logo" class="logo-img" loading="eager">
+                <span class="logo-text">Tuhin Garai</span>
+            </div>
+            
+            <div class="nav-menu" id="nav-menu">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#tech-stack" class="nav-link">Tech Stack</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#research" class="nav-link">Research</a>
+                <a href="#experience" class="nav-link">Experience</a>
+                <a href="#education" class="nav-link">Education</a>
+                <a href="#certifications" class="nav-link">Certifications</a>
+            </div>
+            
+            <div class="nav-social">
+                <a href="https://github.com/nightcodex7" target="_blank" rel="noopener noreferrer" class="social-link">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/tuhingarai" target="_blank" rel="noopener noreferrer" class="social-link">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="https://x.com/nightcode_x" target="_blank" rel="noopener noreferrer" class="social-link">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="https://medium.com/@nightcode_x" target="_blank" rel="noopener noreferrer" class="social-link">
+                    <i class="fab fa-medium"></i>
+                </a>
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+            
+            <div class="nav-toggle" id="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1 class="hero-title">
+                            <span class="highlight">Tuhin Garai</span>
+                        </h1>
+                        <p class="hero-subtitle">Cloud Computing & Cybersecurity Enthusiast | Researcher | Linux Enthusiast | Open Source</p>
+                        <p class="hero-description">
+                            MCA Student at Jain University specializing in Storage & Cloud Technology with a passion for secure, automated cloud infrastructure and serverless monitoring systems.
+                        </p>
+                        <div class="hero-actions">
+                            <a href="#about" class="btn btn-primary">Learn More</a>
+                            <a href="#projects" class="btn btn-secondary">View Projects</a>
+                        </div>
+                    </div>
+                    <div class="hero-visual">
+                        <div class="hero-avatar">
+                            <img src="assets/logo.png" alt="Tuhin Garai" class="avatar-img" loading="eager">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section">
+            <div class="container">
+                <h2 class="section-title">About Me</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p class="about-bio">
+                            I'm a passionate MCA student at Jain University with a major in Storage & Cloud Technology and a minor in AI & ML. 
+                            My research focuses on serverless monitoring systems, and I'm devoted to building secure, automated cloud infrastructure.
+                        </p>
+                        <div class="contact-info">
+                            <div class="contact-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Bengaluru, India</span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-phone"></i>
+                                <span>+91 76984 97645</span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-envelope"></i>
+                                <span>tuhingarai123@gmail.com</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about-links">
+                        <a href="https://github.com/nightcodex7" target="_blank" rel="noopener noreferrer" class="social-card">
+                            <i class="fab fa-github"></i>
+                            <span>GitHub</span>
+                        </a>
+                        <a href="https://medium.com/@nightcode_x" target="_blank" rel="noopener noreferrer" class="social-card">
+                            <i class="fab fa-medium"></i>
+                            <span>Medium</span>
+                        </a>
+                        <a href="https://x.com/nightcode_x" target="_blank" rel="noopener noreferrer" class="social-card">
+                            <i class="fab fa-twitter"></i>
+                            <span>Twitter</span>
+                        </a>
+                        <a href="https://www.linkedin.com/in/tuhingarai" target="_blank" rel="noopener noreferrer" class="social-card">
+                            <i class="fab fa-linkedin"></i>
+                            <span>LinkedIn</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tech Stack Section -->
+        <section id="tech-stack" class="section">
+            <div class="container">
+                <h2 class="section-title">Tech Stack</h2>
+                <div class="tech-grid">
+                    <div class="tech-item">
+                        <i class="fab fa-aws"></i>
+                        <span>AWS</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fab fa-linux"></i>
+                        <span>Linux</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fab fa-docker"></i>
+                        <span>Docker</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fab fa-python"></i>
+                        <span>Python</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fab fa-git-alt"></i>
+                        <span>Git</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fab fa-android"></i>
+                        <span>Android Studio</span>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-code"></i>
+                        <span>VS Code</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="section">
+            <div class="container">
+                <h2 class="section-title">Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3 class="skill-category-title">Languages/Scripting</h3>
+                        <div class="skill-chips">
+                            <span class="skill-chip">Python</span>
+                            <span class="skill-chip">Java</span>
+                            <span class="skill-chip">MySQL</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3 class="skill-category-title">Cloud</h3>
+                        <div class="skill-chips">
+                            <span class="skill-chip">AWS Lambda</span>
+                            <span class="skill-chip">API Gateway</span>
+                            <span class="skill-chip">S3</span>
+                            <span class="skill-chip">DynamoDB</span>
+                            <span class="skill-chip">SES</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3 class="skill-category-title">Systems/Tools</h3>
+                        <div class="skill-chips">
+                            <span class="skill-chip">Linux</span>
+                            <span class="skill-chip">Windows Server</span>
+                            <span class="skill-chip">MS Excel</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3 class="skill-category-title">Concepts</h3>
+                        <div class="skill-chips">
+                            <span class="skill-chip">Serverless Architecture</span>
+                            <span class="skill-chip">Real-Time Monitoring</span>
+                            <span class="skill-chip">REST APIs</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="section">
+            <div class="container">
+                <h2 class="section-title">Projects</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3 class="project-title">Serverless EC2 Monitor & Control Dashboard</h3>
+                            <div class="project-tech">
+                                <span class="tech-tag">AWS Lambda</span>
+                                <span class="tech-tag">API Gateway</span>
+                                <span class="tech-tag">S3</span>
+                                <span class="tech-tag">DynamoDB</span>
+                                <span class="tech-tag">SES</span>
+                            </div>
+                        </div>
+                        <p class="project-description">
+                            A comprehensive serverless solution for real-time EC2 monitoring with email alerts, scalable and cost-effective architecture.
+                        </p>
+                        <div class="project-links">
+                            <a href="https://medium.com/@nightcode_x/build-a-serverless-ec2-monitor-control-dashboard-with-aws-lambda-api-gateway-and-s3-f9dcad97943d" target="_blank" rel="noopener noreferrer" class="project-link">
+                                <i class="fas fa-external-link-alt"></i>
+                                Demo Article
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3 class="project-title">warp-nextdns-manager</h3>
+                            <div class="project-status">WIP</div>
+                            <div class="project-tech">
+                                <span class="tech-tag">Cloudflare WARP</span>
+                                <span class="tech-tag">NextDNS</span>
+                                <span class="tech-tag">WireGuard</span>
+                            </div>
+                        </div>
+                        <p class="project-description">
+                            Integration of Cloudflare WARP with NextDNS without relying on CF DNS for enhanced privacy and performance.
+                        </p>
+                        <div class="project-links">
+                            <a href="https://github.com/nightcodex7/warp-nextdns-wireguard" target="_blank" rel="noopener noreferrer" class="project-link">
+                                <i class="fab fa-github"></i>
+                                GitHub
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3 class="project-title">NetworkSwitcher</h3>
+                            <div class="project-status unstable">Unstable – WIP</div>
+                            <div class="project-tech">
+                                <span class="tech-tag">Android</span>
+                                <span class="tech-tag">Network Management</span>
+                            </div>
+                        </div>
+                        <p class="project-description">
+                            Android app to toggle network modes like 5G only for better control over network connectivity.
+                        </p>
+                        <div class="project-links">
+                            <a href="https://github.com/nightcodex7/NetworkSwitcher" target="_blank" rel="noopener noreferrer" class="project-link">
+                                <i class="fab fa-github"></i>
+                                GitHub
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3 class="project-title">BookDrive (Browser Extension)</h3>
+                            <div class="project-tech">
+                                <span class="tech-tag">Browser Extension</span>
+                                <span class="tech-tag">Bookmark Sync</span>
+                                <span class="tech-tag">Cloud Storage</span>
+                            </div>
+                        </div>
+                        <p class="project-description">
+                            Browser extension for syncing bookmarks via personal or self-hosted cloud storage solutions.
+                        </p>
+                        <div class="project-links">
+                            <a href="https://github.com/nightcodex7/bookdrive-extension" target="_blank" rel="noopener noreferrer" class="project-link">
+                                <i class="fab fa-github"></i>
+                                GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Research Section -->
+        <section id="research" class="section">
+            <div class="container">
+                <h2 class="section-title">Research & Articles</h2>
+                <div class="research-grid">
+                    <div class="research-card">
+                        <div class="research-header">
+                            <h3 class="research-title">IJIRSET Publication</h3>
+                            <span class="research-type">Academic Paper</span>
+                        </div>
+                        <p class="research-description">
+                            <strong>Title:</strong> Build & Deploy a Cloud-Native Serverless Monitoring System
+                        </p>
+                        <div class="research-links">
+                            <a href="https://www.ijirset.com/upload/2025/may/300_Build.pdf" target="_blank" rel="noopener noreferrer" class="research-link">
+                                <i class="fas fa-file-pdf"></i>
+                                View PDF
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="research-card">
+                        <div class="research-header">
+                            <h3 class="research-title">Medium Articles</h3>
+                            <span class="research-type">Technical Writing</span>
+                        </div>
+                        <div class="article-links">
+                            <a href="https://medium.com/@nightcode_x/how-to-disable-firefox-telemetry-data-collection-for-maximum-privacy-and-burp-suite-x-bb879bf1f18a" target="_blank" rel="noopener noreferrer" class="article-link">
+                                <i class="fas fa-shield-alt"></i>
+                                Disable Firefox Telemetry + Burp Suite Integration
+                            </a>
+                            <a href="https://medium.com/@nightcode_x/build-a-serverless-ec2-monitor-control-dashboard-with-aws-lambda-api-gateway-and-s3-f9dcad97943d" target="_blank" rel="noopener noreferrer" class="article-link">
+                                <i class="fas fa-cloud"></i>
+                                Serverless EC2 Dashboard
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="section">
+            <div class="container">
+                <h2 class="section-title">Experience</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <h3 class="timeline-title">Cloud Computing Intern</h3>
+                                <span class="timeline-company">Tamizhan Skills</span>
+                                <span class="timeline-period">June–July 2025</span>
+                            </div>
+                            <p class="timeline-description">
+                                Deployed AWS-based serverless contact form, simulated real-world deployment scenarios.
+                            </p>
+                            <a href="https://github.com/nightcodex7/riseinternprojects" target="_blank" rel="noopener noreferrer" class="timeline-link">
+                                <i class="fab fa-github"></i>
+                                Work Repository
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-header">
+                                <h3 class="timeline-title">AI & Cloud Tech Intern</h3>
+                                <span class="timeline-company">Edunet Foundation (IBM SkillBuild)</span>
+                                <span class="timeline-period">June–July 2025</span>
+                            </div>
+                            <p class="timeline-description">
+                                Worked on AI and cloud technology projects under IBM SkillBuild program.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="section">
+            <div class="container">
+                <h2 class="section-title">Education</h2>
+                <div class="education-grid">
+                    <div class="education-card">
+                        <div class="education-header">
+                            <h3 class="education-degree">Master of Computer Applications (MCA)</h3>
+                            <span class="education-school">Jain University</span>
+                            <span class="education-period">2024–2026</span>
+                        </div>
+                        <p class="education-location">Bengaluru, India</p>
+                        <div class="education-specialization">
+                            <strong>Specialization:</strong> Storage & Cloud Technology (Major), AI/ML (Minor)
+                        </div>
+                    </div>
+
+                    <div class="education-card">
+                        <div class="education-header">
+                            <h3 class="education-degree">Bachelor of Computer Applications (BCA)</h3>
+                            <span class="education-school">Chandigarh University</span>
+                            <span class="education-period">2021–2024</span>
+                        </div>
+                        <p class="education-location">Chandigarh, India</p>
+                        <a href="https://drive.google.com/file/d/1YuhYzd5lm15r62ToEsX9VvBRYRzVg5ob/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="education-link">
+                            <i class="fas fa-certificate"></i>
+                            Degree Proof
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certifications Section -->
+        <section id="certifications" class="section">
+            <div class="container">
+                <h2 class="section-title">Certifications</h2>
+                <div class="certifications-grid">
+                    <div class="certification-card">
+                        <div class="certification-header">
+                            <h3 class="certification-title">Ethical Hacking</h3>
+                            <span class="certification-issuer">NIELIT Gorakhpur</span>
+                        </div>
+                        <p class="certification-id">Credential ID: NIELIT/GKP/339/5080</p>
+                        <a href="https://regn.nielitvte.edu.in/certificate_info.php?c=sZWB0qbf5UVVtZW45QrqNiWqqbFziXjKkE1m6fODlss=" target="_blank" rel="noopener noreferrer" class="certification-link">
+                            <i class="fas fa-certificate"></i>
+                            View Certificate
+                        </a>
+                    </div>
+
+                    <div class="certification-card">
+                        <div class="certification-header">
+                            <h3 class="certification-title">Industry 4.0 & IIoT</h3>
+                            <span class="certification-issuer">NPTEL, IIT Kharagpur</span>
+                        </div>
+                        <a href="https://archive.nptel.ac.in/noc/Ecertificate/?q=NPTEL22CS95S6466111610071562" target="_blank" rel="noopener noreferrer" class="certification-link">
+                            <i class="fas fa-certificate"></i>
+                            View Certificate
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Support Section -->
+        <section id="support" class="section">
+            <div class="container">
+                <h2 class="section-title">Support the Dev</h2>
+                <div class="support-content">
+                    <p class="support-text">If you find my work helpful, consider supporting my development journey!</p>
+                    <div class="support-buttons">
+                        <a href="https://buymeacoffee.com/nightcode" target="_blank" rel="noopener noreferrer" class="support-btn coffee">
+                            <i class="fas fa-coffee"></i>
+                            Buy Me a Coffee
+                        </a>
+                        <a href="https://ko-fi.com/nightcode" target="_blank" rel="noopener noreferrer" class="support-btn kofi">
+                            <i class="fas fa-heart"></i>
+                            Ko-Fi
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">
+                © 2025 Tuhin Garai | Proudly built with <i class="fas fa-code"></i>, <i class="fas fa-cloud"></i>, and <i class="fas fa-coffee"></i>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="scripts/main.js"></script>
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Tuhin Garai",
+      "jobTitle": "Cloud Computing & Cybersecurity Enthusiast",
+      "description": "MCA Student at Jain University specializing in Storage & Cloud Technology with a passion for secure, automated cloud infrastructure and serverless monitoring systems.",
+      "url": "https://nightcode.co.in",
+      "image": "https://nightcode.co.in/assets/logo.png",
+      "sameAs": [
+        "https://github.com/nightcodex7",
+        "https://www.linkedin.com/in/tuhingarai",
+        "https://x.com/nightcode_x",
+        "https://medium.com/@nightcode_x"
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Bengaluru",
+        "addressCountry": "India"
+      },
+      "alumniOf": {
+        "@type": "Organization",
+        "name": "Jain University"
+      },
+      "knowsAbout": [
+        "Cloud Computing",
+        "Cybersecurity",
+        "AWS",
+        "Serverless Architecture",
+        "Linux",
+        "DevOps",
+        "Open Source"
+      ]
+    }
+    </script>
+</body>
+</html> 
