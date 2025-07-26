@@ -711,9 +711,9 @@
 
 /* Container Query Support (Future) */
 @supports (container-type: inline-size) {
-    .container {
-        container-type: inline-size;
-    }
+    /* .container { */
+        /* container-type: inline-size; */
+    /* } */
     
     @container (max-width: 600px) {
         .hero-content {
