@@ -83,6 +83,16 @@
         order: 2;
     }
     
+    .nav-separator {
+        display: none;
+    }
+    
+    .theme-toggle {
+        position: static;
+        transform: none;
+        order: 3;
+    }
+    
     .nav-toggle {
         display: flex;
         order: 1;
@@ -445,6 +455,15 @@
     .nav-container {
         justify-content: space-between;
     }
+    
+    .nav-separator {
+        display: none;
+    }
+    
+    .theme-toggle {
+        position: static;
+        transform: none;
+    }
 }
 
 /* Large Devices (desktops, 992px and up) */
@@ -495,6 +514,15 @@
     
     .nav-container {
         justify-content: space-between;
+    }
+    
+    .nav-separator {
+        display: none;
+    }
+    
+    .theme-toggle {
+        position: static;
+        transform: none;
     }
 }
 
@@ -562,6 +590,17 @@
     .about-content {
         gap: var(--spacing-3xl);
     }
+    
+    .nav-separator {
+        display: block;
+    }
+    
+    .theme-toggle {
+        position: absolute;
+        right: var(--spacing-lg);
+        top: 50%;
+        transform: translateY(-50%);
+    }
 }
 
 /* Ultra-wide monitors (≥1440px) */
@@ -580,6 +619,17 @@
         font-size: 1.125rem;
         line-height: 1.75;
         color: #b0b8d1;
+    }
+    
+    .nav-separator {
+        display: block;
+    }
+    
+    .theme-toggle {
+        position: absolute;
+        right: var(--spacing-lg);
+        top: 50%;
+        transform: translateY(-50%);
     }
 }
 

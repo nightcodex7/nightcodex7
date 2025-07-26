@@ -347,6 +347,7 @@ a:hover {
     padding: var(--spacing-md) var(--spacing-lg);
     max-width: 1200px;
     margin: 0 auto;
+    position: relative;
 }
 
 .nav-menu {
@@ -399,6 +400,14 @@ a:hover {
     gap: 0.75rem;
 }
 
+.nav-separator {
+    width: 1px;
+    height: 24px;
+    background-color: var(--text-muted);
+    margin: 0 var(--spacing-md);
+    opacity: 0.5;
+}
+
 .social-link {
     color: var(--text-secondary);
     font-size: var(--font-size-lg);
@@ -433,8 +442,12 @@ a:hover {
     transition: all var(--transition-fast);
     display: flex;
     align-items: center;
-    vertical-align: middle;
+    justify-content: center;
     outline: none;
+    position: absolute;
+    right: var(--spacing-lg);
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .theme-toggle:hover {
