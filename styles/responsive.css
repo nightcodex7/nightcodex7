@@ -22,7 +22,7 @@
         gap: var(--spacing-2xl);
         text-align: center;
         padding-top: var(--spacing-lg);
-        min-height: calc(100vh - 4rem);
+        min-height: calc(80vh - 4rem);
         justify-content: center;
     }
     
@@ -225,7 +225,7 @@
     }
     
     .hero-content {
-        min-height: calc(100vh - 3rem);
+        min-height: calc(80vh - 3rem);
         padding-top: var(--spacing-md);
     }
     
@@ -279,7 +279,7 @@
         grid-template-columns: 1fr;
         gap: var(--spacing-2xl);
         text-align: center;
-        min-height: calc(100vh - 4rem);
+        min-height: calc(80vh - 4rem);
         justify-content: center;
     }
     

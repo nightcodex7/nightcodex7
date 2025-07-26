@@ -151,6 +151,7 @@ a:hover {
     transition: all var(--transition-fast);
     position: relative;
     overflow: hidden;
+    outline: none;
 }
 
 .btn::before {
@@ -195,6 +196,15 @@ a:hover {
     box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3);
 }
 
+.btn:focus {
+    outline: none;
+}
+
+.btn:focus-visible {
+    outline: 2px solid var(--accent-primary);
+    outline-offset: 2px;
+}
+
 /* Section Styles */
 .section {
     padding: var(--spacing-3xl) 0;
@@ -222,7 +232,7 @@ a:hover {
 
 /* Hero Section */
 .hero {
-    min-height: 100vh;
+    min-height: 80vh;
     display: flex;
     align-items: center;
     background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
@@ -350,6 +360,7 @@ a:hover {
     font-weight: 500;
     transition: color var(--transition-fast);
     position: relative;
+    outline: none;
 }
 
 .nav-link::after {
@@ -373,6 +384,15 @@ a:hover {
     width: 100%;
 }
 
+.nav-link:focus {
+    outline: none;
+}
+
+.nav-link:focus-visible {
+    outline: 2px solid var(--accent-primary);
+    outline-offset: 2px;
+}
+
 .nav-social {
     display: flex;
     align-items: center;
@@ -393,6 +413,15 @@ a:hover {
     transform: translateY(-2px);
 }
 
+.social-link:focus {
+    outline: none;
+}
+
+.social-link:focus-visible {
+    outline: 2px solid var(--accent-primary);
+    outline-offset: 2px;
+}
+
 .theme-toggle {
     background: none;
     border: none;
@@ -405,11 +434,21 @@ a:hover {
     display: flex;
     align-items: center;
     vertical-align: middle;
+    outline: none;
 }
 
 .theme-toggle:hover {
     color: var(--accent-primary);
     background: rgba(99, 102, 241, 0.1);
+}
+
+.theme-toggle:focus {
+    outline: none;
+}
+
+.theme-toggle:focus-visible {
+    outline: 2px solid var(--accent-primary);
+    outline-offset: 2px;
 }
 
 .nav-toggle {
@@ -418,6 +457,9 @@ a:hover {
     gap: 4px;
     cursor: pointer;
     padding: var(--spacing-sm);
+    outline: none;
+    background: none;
+    border: none;
 }
 
 .nav-toggle span {
@@ -426,6 +468,15 @@ a:hover {
     background: var(--text-primary);
     border-radius: 2px;
     transition: all var(--transition-fast);
+}
+
+.nav-toggle:focus {
+    outline: none;
+}
+
+.nav-toggle:focus-visible {
+    outline: 2px solid var(--accent-primary);
+    outline-offset: 2px;
 }
 
 /* Footer */
