@@ -331,20 +331,6 @@ a:hover {
     margin: 0 auto;
 }
 
-.nav-logo {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-sm);
-}
-
-
-
-.logo-text {
-    font-size: var(--font-size-lg);
-    font-weight: 600;
-    color: var(--text-primary);
-}
-
 .nav-menu {
     display: flex;
     gap: var(--spacing-xl);
