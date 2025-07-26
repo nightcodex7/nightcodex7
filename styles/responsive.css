@@ -370,10 +370,15 @@
     
     .nav-menu {
         display: flex;
+        margin-right: auto;
     }
     
     .nav-toggle {
         display: none;
+    }
+    
+    .nav-container {
+        justify-content: space-between;
     }
 }
 
@@ -416,6 +421,7 @@
     
     .nav-menu {
         display: flex;
+        margin-right: auto;
     }
     
     .nav-toggle {
@@ -466,6 +472,7 @@
     
     .nav-menu {
         display: flex;
+        margin-right: auto;
     }
     
     .nav-toggle {
