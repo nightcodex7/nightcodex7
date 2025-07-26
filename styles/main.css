@@ -240,12 +240,13 @@ a:hover {
 
 .hero-content {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--spacing-3xl);
+    grid-template-columns: auto 1fr;
+    gap: 5rem;
     align-items: center;
     position: relative;
     z-index: 1;
     max-width: 100%;
+    text-align: left;
 }
 
 .hero-title {
