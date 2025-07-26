@@ -76,6 +76,41 @@ function initNavigation() {
     const navMenu = document.getElementById('nav-menu');
     const navLinks = document.querySelectorAll('.nav-link');
     
+    // Dynamic overflow detection for tablets and desktops
+    function checkNavigationOverflow() {
+        const isTabletOrDesktop = window.innerWidth >= 768;
+        
+        if (isTabletOrDesktop) {
+            const navMenuWidth = navMenu.scrollWidth;
+            const navContainerWidth = navMenu.parentElement.offsetWidth;
+            const navSocialWidth = document.querySelector('.nav-social').offsetWidth;
+            const separatorWidth = document.querySelector('.nav-separator').offsetWidth;
+            const themeToggleWidth = document.getElementById('theme-toggle').offsetWidth;
+            const navToggleWidth = navToggle.offsetWidth;
+            
+            // Calculate available space for navigation menu
+            const availableWidth = navContainerWidth - navSocialWidth - separatorWidth - themeToggleWidth - navToggleWidth - 40; // 40px for padding/margins
+            
+            if (navMenuWidth > availableWidth) {
+                // Overflow detected - show hamburger menu
+                navMenu.classList.add('overflow-hidden');
+                navToggle.classList.add('overflow-visible');
+            } else {
+                // No overflow - show inline menu
+                navMenu.classList.remove('overflow-hidden');
+                navToggle.classList.remove('overflow-visible');
+            }
+        } else {
+            // Mobile - always show hamburger menu
+            navMenu.classList.add('overflow-hidden');
+            navToggle.classList.add('overflow-visible');
+        }
+    }
+    
+    // Check overflow on load and resize
+    checkNavigationOverflow();
+    window.addEventListener('resize', debounce(checkNavigationOverflow, 250));
+    
     // Mobile menu toggle
     navToggle.addEventListener('click', function() {
         navMenu.classList.toggle('active');

@@ -436,6 +436,10 @@
         justify-content: flex-start;
     }
     
+    .nav-menu.overflow-hidden {
+        display: none;
+    }
+    
     .nav-link {
         font-size: var(--font-size-sm);
         padding: var(--spacing-xs) var(--spacing-sm);
@@ -443,6 +447,10 @@
     
     .nav-toggle {
         display: none;
+    }
+    
+    .nav-toggle.overflow-visible {
+        display: flex;
     }
     
     .nav-container {
@@ -516,6 +524,10 @@
         justify-content: flex-start;
     }
     
+    .nav-menu.overflow-hidden {
+        display: none;
+    }
+    
     .nav-link {
         font-size: var(--font-size-base);
         padding: var(--spacing-xs) var(--spacing-sm);
@@ -523,6 +535,10 @@
     
     .nav-toggle {
         display: none;
+    }
+    
+    .nav-toggle.overflow-visible {
+        display: flex;
     }
     
     .nav-container {
@@ -596,6 +612,10 @@
         justify-content: flex-start;
     }
     
+    .nav-menu.overflow-hidden {
+        display: none;
+    }
+    
     .nav-link {
         font-size: var(--font-size-base);
         padding: var(--spacing-xs) var(--spacing-sm);
@@ -603,6 +623,10 @@
     
     .nav-toggle {
         display: none;
+    }
+    
+    .nav-toggle.overflow-visible {
+        display: flex;
     }
     
     .nav-container {
@@ -737,9 +761,17 @@
         justify-content: center;
     }
     
+    .nav-menu.overflow-hidden {
+        display: none;
+    }
+    
     .nav-link {
         font-size: var(--font-size-sm);
         padding: var(--spacing-xs);
+    }
+    
+    .nav-toggle.overflow-visible {
+        display: flex;
     }
     
     .nav-container {

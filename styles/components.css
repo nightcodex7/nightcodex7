@@ -406,12 +406,19 @@
 
 .timeline-header {
     margin-bottom: var(--spacing-lg);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
 }
 
 .timeline-title {
     color: var(--text-primary);
     margin-bottom: var(--spacing-sm);
     font-size: var(--font-size-xl);
+    flex: 1;
+    min-width: 0;
 }
 
 .timeline-company {
@@ -423,6 +430,8 @@
 .timeline-period {
     color: var(--text-muted);
     font-size: var(--font-size-sm);
+    text-align: right;
+    white-space: nowrap;
 }
 
 .timeline-description {
@@ -470,12 +479,19 @@
 
 .education-header {
     margin-bottom: var(--spacing-md);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
 }
 
 .education-degree {
     color: var(--text-primary);
     margin-bottom: var(--spacing-sm);
     font-size: var(--font-size-xl);
+    flex: 1;
+    min-width: 0;
 }
 
 .education-school {
@@ -487,6 +503,8 @@
 .education-period {
     color: var(--text-muted);
     font-size: var(--font-size-sm);
+    text-align: right;
+    white-space: nowrap;
 }
 
 .education-location {

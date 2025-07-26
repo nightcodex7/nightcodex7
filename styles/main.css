@@ -503,6 +503,10 @@ a:hover {
     border: none;
 }
 
+.nav-toggle.overflow-visible {
+    display: flex;
+}
+
 .nav-toggle span {
     width: 25px;
     height: 3px;
