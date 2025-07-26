@@ -84,7 +84,19 @@ function initNavigation() {
     
     // Close mobile menu when clicking on a link
     navLinks.forEach(link => {
-        link.addEventListener('click', function() {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = link.getAttribute('href').substring(1);
+            const targetElement = document.getElementById(targetId);
+            
+            if (targetElement) {
+                // Custom smooth scroll for mobile devices
+                const isMobile = window.innerWidth <= 768;
+                const scrollDuration = isMobile ? 1500 : 800; // Slower on mobile
+                
+                smoothScrollTo(targetElement, scrollDuration);
+            }
+            
             navMenu.classList.remove('active');
             navToggle.classList.remove('active');
         });
@@ -97,6 +109,32 @@ function initNavigation() {
             navToggle.classList.remove('active');
         }
     });
+    
+    // Custom smooth scroll function
+    function smoothScrollTo(targetElement, duration) {
+        const targetPosition = targetElement.offsetTop - 80; // Account for fixed navbar
+        const startPosition = window.pageYOffset;
+        const distance = targetPosition - startPosition;
+        let startTime = null;
+        
+        function animation(currentTime) {
+            if (startTime === null) startTime = currentTime;
+            const timeElapsed = currentTime - startTime;
+            const run = ease(timeElapsed, startPosition, distance, duration);
+            window.scrollTo(0, run);
+            if (timeElapsed < duration) requestAnimationFrame(animation);
+        }
+        
+        // Easing function for smooth animation
+        function ease(t, b, c, d) {
+            t /= d / 2;
+            if (t < 1) return c / 2 * t * t + b;
+            t--;
+            return -c / 2 * (t * (t - 2) - 1) + b;
+        }
+        
+        requestAnimationFrame(animation);
+    }
     
     // Smooth scrolling for navigation links
     navLinks.forEach(link => {
@@ -216,11 +254,35 @@ function initBackToTop() {
     });
     
     backToTop.addEventListener('click', function() {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
+        const isMobile = window.innerWidth <= 768;
+        const scrollDuration = isMobile ? 1500 : 800; // Slower on mobile
+        
+        smoothScrollToTop(scrollDuration);
     });
+    
+    // Custom smooth scroll to top function
+    function smoothScrollToTop(duration) {
+        const startPosition = window.pageYOffset;
+        let startTime = null;
+        
+        function animation(currentTime) {
+            if (startTime === null) startTime = currentTime;
+            const timeElapsed = currentTime - startTime;
+            const run = ease(timeElapsed, startPosition, -startPosition, duration);
+            window.scrollTo(0, run);
+            if (timeElapsed < duration) requestAnimationFrame(animation);
+        }
+        
+        // Easing function for smooth animation
+        function ease(t, b, c, d) {
+            t /= d / 2;
+            if (t < 1) return c / 2 * t * t + b;
+            t--;
+            return -c / 2 * (t * (t - 2) - 1) + b;
+        }
+        
+        requestAnimationFrame(animation);
+    }
 }
 
 // Progress Bar
