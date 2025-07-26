@@ -415,17 +415,10 @@ a:hover {
     display: flex;
     align-items: center;
     gap: 0.75rem;
+    margin-right: var(--spacing-xl);
 }
 
-.nav-separator {
-    width: 1px;
-    height: 24px;
-    background-color: var(--text-muted);
-    margin: 0 var(--spacing-md);
-    opacity: 0.5;
-    position: relative;
-    z-index: 1;
-}
+
 
 .social-link {
     color: var(--text-secondary);
