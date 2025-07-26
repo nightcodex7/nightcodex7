@@ -78,6 +78,8 @@
 html {
     scroll-behavior: smooth;
     font-size: 16px;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
 }
 
 body {
@@ -91,6 +93,8 @@ body {
     min-height: 100vh;
     word-wrap: break-word;
     overflow-wrap: break-word;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
 }
 
 /* Container */
@@ -98,6 +102,7 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 2rem;
+    will-change: transform;
 }
 
 /* Typography */
@@ -222,8 +227,7 @@ a:hover {
     position: relative;
     overflow: hidden;
     padding-top: 4rem;
-    max-width: 1200px;
-    margin: auto;
+    width: 100%;
 }
 
 .hero::before {
@@ -247,6 +251,7 @@ a:hover {
     z-index: 1;
     max-width: 100%;
     text-align: left;
+    will-change: transform;
 }
 
 .hero-title {

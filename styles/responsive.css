@@ -13,6 +13,8 @@
         gap: var(--spacing-2xl);
         text-align: center;
         padding-top: var(--spacing-lg);
+        min-height: calc(100vh - 4rem);
+        justify-content: center;
     }
     
     .hero-visual {
@@ -22,23 +24,28 @@
     .hero-title {
         font-size: var(--font-size-3xl);
         line-height: 1.1;
+        animation: fadeInUp 0.8s ease-out;
     }
     
     .hero-subtitle {
         font-size: var(--font-size-lg);
+        animation: fadeInUp 0.8s ease-out 0.2s both;
     }
     
     .hero-description {
         font-size: var(--font-size-base);
+        animation: fadeInUp 0.8s ease-out 0.4s both;
     }
     
     .hero-actions {
         justify-content: center;
+        animation: fadeInUp 0.8s ease-out 0.6s both;
     }
     
     .hero-avatar {
         width: 200px;
         height: 200px;
+        animation: fadeInUp 0.8s ease-out 0.1s both, float 6s ease-in-out infinite 1s;
     }
     
     /* Mobile navigation menu fixes */
@@ -55,6 +62,8 @@
         padding-top: var(--spacing-2xl);
         transition: left var(--transition-normal);
         backdrop-filter: blur(10px);
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior: contain;
     }
     
     .nav-container {
@@ -165,11 +174,13 @@
     
     .section {
         padding: var(--spacing-2xl) 0;
+        will-change: transform;
     }
     
     .section-title {
         font-size: var(--font-size-3xl);
         margin-bottom: var(--spacing-2xl);
+        animation: fadeInUp 0.6s ease-out;
     }
     
     /* Additional mobile navigation fixes */
@@ -204,25 +215,35 @@
         padding: 0 var(--spacing-xs);
     }
     
+    .hero-content {
+        min-height: calc(100vh - 3rem);
+        padding-top: var(--spacing-md);
+    }
+    
     .hero-title {
         font-size: var(--font-size-2xl);
+        animation: fadeInUp 0.6s ease-out;
     }
     
     .hero-subtitle {
         font-size: var(--font-size-base);
+        animation: fadeInUp 0.6s ease-out 0.1s both;
     }
     
     .hero-description {
         font-size: var(--font-size-sm);
+        animation: fadeInUp 0.6s ease-out 0.2s both;
     }
     
     .hero-avatar {
         width: 150px;
         height: 150px;
+        animation: fadeInUp 0.6s ease-out 0.05s both, float 6s ease-in-out infinite 0.8s;
     }
     
     .section {
         padding: var(--spacing-xl) 0;
+        will-change: transform;
     }
     
     .project-card,
@@ -230,6 +251,7 @@
     .education-card,
     .certification-card {
         padding: var(--spacing-lg);
+        will-change: transform;
     }
 }
 
@@ -239,14 +261,30 @@
         grid-template-columns: 1fr;
         gap: var(--spacing-2xl);
         text-align: center;
+        min-height: calc(100vh - 4rem);
+        justify-content: center;
     }
     
     .hero-visual {
         order: -1;
+        animation: fadeInUp 0.8s ease-out 0.1s both;
     }
     
     .hero-title {
         font-size: var(--font-size-4xl);
+        animation: fadeInUp 0.8s ease-out;
+    }
+    
+    .hero-subtitle {
+        animation: fadeInUp 0.8s ease-out 0.2s both;
+    }
+    
+    .hero-description {
+        animation: fadeInUp 0.8s ease-out 0.4s both;
+    }
+    
+    .hero-actions {
+        animation: fadeInUp 0.8s ease-out 0.6s both;
     }
     
     .about-content {
@@ -566,6 +604,15 @@
     .support-btn::before {
         display: none;
     }
+    
+    /* Disable scroll animations for accessibility */
+    .hero-title,
+    .hero-subtitle,
+    .hero-description,
+    .hero-actions,
+    .section-title {
+        animation: none !important;
+    }
 }
 
 /* Dark Mode System Preference */
@@ -706,6 +753,24 @@
     .tech-item:active,
     .timeline-content:active {
         transform: scale(0.98);
+    }
+    
+    /* Improved mobile scroll performance */
+    .hero-content,
+    .section,
+    .container {
+        will-change: auto;
+    }
+    
+    /* Better touch scrolling */
+    .nav-menu {
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior: contain;
+    }
+    
+    /* Optimize animations for mobile */
+    .hero-avatar {
+        animation: fadeInUp 0.6s ease-out 0.1s both, float 4s ease-in-out infinite 1s;
     }
 }
 
