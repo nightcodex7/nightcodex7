@@ -64,17 +64,17 @@
 /* Tech Stack Section */
 .tech-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: var(--spacing-lg);
-    margin-top: var(--spacing-2xl);
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-xl);
 }
 
 .tech-item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: var(--spacing-md);
-    padding: var(--spacing-xl);
+    gap: var(--spacing-sm);
+    padding: var(--spacing-lg);
     background: var(--card-bg);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-lg);
@@ -89,7 +89,7 @@
 }
 
 .tech-item i {
-    font-size: 2.5rem;
+    font-size: 2rem;
     color: var(--accent-primary);
 }
 
@@ -101,16 +101,16 @@
 /* Skills Section */
 .skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: var(--spacing-2xl);
-    margin-top: var(--spacing-2xl);
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-xl);
+    margin-top: var(--spacing-xl);
 }
 
 .skill-category {
     background: var(--card-bg);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-lg);
-    padding: var(--spacing-2xl);
+    padding: var(--spacing-lg);
     transition: all var(--transition-fast);
 }
 
@@ -122,7 +122,7 @@
 
 .skill-category-title {
     color: var(--accent-primary);
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
     font-size: var(--font-size-xl);
 }
 
@@ -150,16 +150,16 @@
 /* Projects Section */
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: var(--spacing-2xl);
-    margin-top: var(--spacing-2xl);
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-xl);
+    margin-top: var(--spacing-xl);
 }
 
 .project-card {
     background: var(--card-bg);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-lg);
-    padding: var(--spacing-2xl);
+    padding: var(--spacing-xl);
     transition: all var(--transition-fast);
     position: relative;
     overflow: hidden;
@@ -190,7 +190,7 @@
 }
 
 .project-header {
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
 }
 
 .project-title {
@@ -233,8 +233,8 @@
 
 .project-description {
     color: var(--text-secondary);
-    line-height: 1.7;
-    margin-bottom: var(--spacing-lg);
+    line-height: 1.6;
+    margin-bottom: var(--spacing-md);
     word-wrap: break-word;
     overflow-wrap: break-word;
     hyphens: auto;
@@ -262,16 +262,16 @@
 /* Research Section */
 .research-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    gap: var(--spacing-2xl);
-    margin-top: var(--spacing-2xl);
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: var(--spacing-xl);
+    margin-top: var(--spacing-xl);
 }
 
 .research-card {
     background: var(--card-bg);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-lg);
-    padding: var(--spacing-2xl);
+    padding: var(--spacing-xl);
     transition: all var(--transition-fast);
 }
 
@@ -282,7 +282,7 @@
 }
 
 .research-header {
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
 }
 
 .research-title {
@@ -303,8 +303,8 @@
 
 .research-description {
     color: var(--text-secondary);
-    margin-bottom: var(--spacing-lg);
-    line-height: 1.7;
+    margin-bottom: var(--spacing-md);
+    line-height: 1.6;
 }
 
 .research-links {
@@ -445,16 +445,16 @@
 /* Education Section */
 .education-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    gap: var(--spacing-2xl);
-    margin-top: var(--spacing-2xl);
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: var(--spacing-xl);
+    margin-top: var(--spacing-xl);
 }
 
 .education-card {
     background: var(--card-bg);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-lg);
-    padding: var(--spacing-2xl);
+    padding: var(--spacing-xl);
     transition: all var(--transition-fast);
 }
 
@@ -465,7 +465,7 @@
 }
 
 .education-header {
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
 }
 
 .education-degree {
@@ -492,8 +492,8 @@
 
 .education-specialization {
     color: var(--text-secondary);
-    margin-bottom: var(--spacing-lg);
-    line-height: 1.7;
+    margin-bottom: var(--spacing-md);
+    line-height: 1.6;
 }
 
 .education-link {
@@ -513,16 +513,16 @@
 /* Certifications Section */
 .certifications-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: var(--spacing-2xl);
-    margin-top: var(--spacing-2xl);
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-xl);
+    margin-top: var(--spacing-xl);
 }
 
 .certification-card {
     background: var(--card-bg);
     border: 1px solid var(--border-color);
     border-radius: var(--radius-lg);
-    padding: var(--spacing-2xl);
+    padding: var(--spacing-xl);
     transition: all var(--transition-fast);
 }
 
@@ -533,7 +533,7 @@
 }
 
 .certification-header {
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
 }
 
 .certification-title {
@@ -550,7 +550,7 @@
 .certification-id {
     color: var(--text-muted);
     font-size: var(--font-size-sm);
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
 }
 
 .certification-link {
