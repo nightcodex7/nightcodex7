@@ -3,7 +3,9 @@
 /* Extra Small Devices (phones, 576px and down) */
 @media (max-width: 575.98px) {
     .container {
-        padding: 0 var(--spacing-md);
+        padding: 0 var(--spacing-sm);
+        max-width: 100%;
+        overflow-x: hidden;
     }
     
     .hero-content {
@@ -13,7 +15,8 @@
     }
     
     .hero-title {
-        font-size: var(--font-size-4xl);
+        font-size: var(--font-size-3xl);
+        line-height: 1.1;
     }
     
     .hero-subtitle {
@@ -33,6 +36,7 @@
         height: 200px;
     }
     
+    /* Mobile navigation menu fixes */
     .nav-menu {
         position: fixed;
         top: 70px;
@@ -117,12 +121,17 @@
     
     .timeline-item {
         padding-left: 40px;
+        margin-bottom: var(--spacing-xl);
     }
     
     .timeline-marker {
         left: 6px;
         width: 16px;
         height: 16px;
+    }
+    
+    .timeline-content {
+        padding: var(--spacing-lg);
     }
     
     .support-buttons {
@@ -143,6 +152,66 @@
     .section-title {
         font-size: var(--font-size-3xl);
         margin-bottom: var(--spacing-2xl);
+    }
+    
+    /* Additional mobile navigation fixes */
+    .nav-menu .nav-link {
+        padding: var(--spacing-md) var(--spacing-lg);
+        width: 100%;
+        text-align: center;
+        border-bottom: 1px solid var(--border-color);
+    }
+    
+    .nav-menu .nav-link:last-child {
+        border-bottom: none;
+    }
+    
+    /* Fix potential overflow issues */
+    .hero-actions .btn {
+        width: 100%;
+        max-width: 200px;
+        justify-content: center;
+    }
+    
+    .support-buttons .support-btn {
+        width: 100%;
+        max-width: 300px;
+        justify-content: center;
+    }
+}
+
+/* Very Small Devices (under 400px) */
+@media (max-width: 399.98px) {
+    .container {
+        padding: 0 var(--spacing-xs);
+    }
+    
+    .hero-title {
+        font-size: var(--font-size-2xl);
+    }
+    
+    .hero-subtitle {
+        font-size: var(--font-size-base);
+    }
+    
+    .hero-description {
+        font-size: var(--font-size-sm);
+    }
+    
+    .hero-avatar {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .section {
+        padding: var(--spacing-xl) 0;
+    }
+    
+    .project-card,
+    .research-card,
+    .education-card,
+    .certification-card {
+        padding: var(--spacing-lg);
     }
 }
 

@@ -163,6 +163,8 @@
     transition: all var(--transition-fast);
     position: relative;
     overflow: hidden;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .project-card::before {
@@ -233,6 +235,9 @@
     color: var(--text-secondary);
     line-height: 1.7;
     margin-bottom: var(--spacing-lg);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
 }
 
 .project-links {
@@ -386,6 +391,8 @@
     border-radius: var(--radius-lg);
     padding: var(--spacing-2xl);
     transition: all var(--transition-fast);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .timeline-content:hover {
