@@ -411,12 +411,12 @@ a:hover {
     outline: none;
 }
 
-.nav-social {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    margin-right: var(--spacing-lg);
-}
+    .nav-social {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-right: var(--spacing-2xl);
+    }
 
 
 
