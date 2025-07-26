@@ -57,10 +57,19 @@
     <style>
       /* Critical CSS for above-the-fold content */
       :root {
+        --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      }
+      
+      [data-theme="dark"] {
         --bg-primary: #0a0a0a;
         --text-primary: #ffffff;
         --accent-primary: #6366f1;
-        --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      }
+      
+      [data-theme="light"] {
+        --bg-primary: #ffffff;
+        --text-primary: #0f172a;
+        --accent-primary: #6366f1;
       }
       
       body {
@@ -110,7 +119,7 @@
       <link rel="stylesheet" href="styles/responsive.css">
     </noscript>
 </head>
-<body class="dark-theme">
+<body data-theme="dark">
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
