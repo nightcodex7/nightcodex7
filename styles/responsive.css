@@ -427,7 +427,7 @@
     .nav-menu {
         display: flex;
         margin-right: auto;
-        gap: var(--spacing-md);
+        gap: var(--spacing-sm);
         flex-wrap: nowrap;
         justify-content: flex-start;
     }
@@ -463,10 +463,12 @@
     .theme-toggle {
         position: static;
         transform: none;
+        margin-left: var(--spacing-sm);
     }
     
     .nav-social {
-        gap: 0.5rem;
+        gap: 0.25rem;
+        margin-right: var(--spacing-sm);
     }
     
     .social-link {
@@ -720,12 +722,17 @@
     }
     
     .nav-social {
-        gap: 0.5rem;
+        gap: 0.25rem;
+        margin-right: var(--spacing-sm);
     }
     
     .social-link {
         font-size: var(--font-size-base);
         padding: var(--spacing-xs);
+    }
+    
+    .theme-toggle {
+        margin-left: var(--spacing-sm);
     }
 }
 
@@ -764,8 +771,13 @@
         gap: var(--spacing-xs);
     }
     
+    .theme-toggle {
+        margin-left: var(--spacing-sm);
+    }
+    
     .nav-social {
-        gap: 0.5rem;
+        gap: 0.25rem;
+        margin-right: var(--spacing-sm);
     }
     
     .social-link {

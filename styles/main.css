@@ -415,7 +415,7 @@ a:hover {
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    margin-right: var(--spacing-xl);
+    margin-right: var(--spacing-lg);
 }
 
 
