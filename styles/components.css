@@ -568,7 +568,7 @@
 }
 
 /* Support Section */
-.support-content {
+/* .support-content {
     text-align: center;
     max-width: 600px;
     margin: 0 auto;
@@ -635,7 +635,7 @@
 .support-btn.kofi:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(41, 171, 224, 0.4);
-}
+} */
 
 /* Loading Animation */
 .loading {
