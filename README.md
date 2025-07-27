@@ -17,6 +17,9 @@
   <a href="https://x.com/nightcode_x" target="_blank">
     <img src="https://img.shields.io/badge/Twitter-1DA1F2?style=flat&logo=twitter&logoColor=white" alt="Twitter/X">
   </a>
+  <a href="https://nightcode.co.in" target="_blank">
+    <img src="https://img.shields.io/badge/Website-000000?style=flat&logo=google-chrome&logoColor=white" alt="Website">
+  </a>
   <img src="https://komarev.com/ghpvc/?username=nightcodex7&style=flat&color=blue" alt="GitHub Visitor Counter"/>
 </p>
 
