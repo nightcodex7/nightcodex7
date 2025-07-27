@@ -79,6 +79,13 @@ function initNavigation() {
     // Dynamic overflow detection for tablets and desktops
     function checkNavigationOverflow() {
         const isTabletOrDesktop = window.innerWidth >= 768;
+        const isLaptopOrDesktop = window.innerWidth >= 992; // Laptop and above should always show inline
+        
+        console.log('Screen size check:', {
+            windowWidth: window.innerWidth,
+            isTabletOrDesktop,
+            isLaptopOrDesktop
+        });
         
         // Get all required elements with null checks - re-query to ensure they exist
         const navMenu = document.getElementById('nav-menu');
@@ -96,12 +103,17 @@ function initNavigation() {
             return;
         }
         
-        if (isTabletOrDesktop) {
-            // Get container width more reliably
+        if (isLaptopOrDesktop) {
+            // Laptop and desktop (992px+) should always show inline navigation
+            console.log('Laptop/Desktop detected - forcing inline navigation');
+            navMenu.classList.remove('overflow-hidden');
+            navToggle.classList.remove('overflow-visible');
+        } else if (isTabletOrDesktop) {
+            // Tablet (768px-991px) - check for overflow
             const navContainer = navMenu.parentElement;
             if (!navContainer) {
-                console.warn('Navigation container not found, skipping desktop overflow check.');
-                // Fallback for desktop if container is missing
+                console.warn('Navigation container not found, skipping tablet overflow check.');
+                // Fallback for tablet if container is missing
                 navMenu.classList.add('overflow-hidden');
                 navToggle.classList.add('overflow-visible');
                 return;
@@ -114,24 +126,40 @@ function initNavigation() {
             const themeToggleWidth = themeToggle.offsetWidth;
             const navToggleWidth = navToggle.offsetWidth;
             
-            // Calculate available space for navigation menu with more conservative margins
-            const paddingMargin = 60; // Increased from 40px for better safety margin
+            // Calculate available space for navigation menu with reasonable margins
+            const paddingMargin = 20; // Reduced from 60px for more accurate detection
             const availableWidth = navContainerWidth - navSocialWidth - separatorWidth - themeToggleWidth - navToggleWidth - paddingMargin;
             
             // Add a small buffer to prevent edge cases
-            const buffer = 10; // Added buffer
+            const buffer = 5; // Reduced buffer
+            
+            console.log('Navigation overflow check:', {
+                navMenuWidth,
+                navContainerWidth,
+                navSocialWidth,
+                separatorWidth,
+                themeToggleWidth,
+                navToggleWidth,
+                paddingMargin,
+                availableWidth,
+                buffer,
+                isOverflowing: navMenuWidth > (availableWidth - buffer)
+            });
             
             if (navMenuWidth > (availableWidth - buffer)) { // Used buffer
                 // Overflow detected - show hamburger menu
+                console.log('Overflow detected - showing hamburger menu');
                 navMenu.classList.add('overflow-hidden');
                 navToggle.classList.add('overflow-visible');
             } else {
                 // No overflow - show inline menu
+                console.log('No overflow - showing inline menu');
                 navMenu.classList.remove('overflow-hidden');
                 navToggle.classList.remove('overflow-visible');
             }
         } else {
             // Mobile - always show hamburger menu
+            console.log('Mobile detected - forcing hamburger menu');
             navMenu.classList.add('overflow-hidden');
             navToggle.classList.add('overflow-visible');
         }
