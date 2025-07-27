@@ -345,6 +345,8 @@ a:hover {
     border-bottom: 1px solid var(--nav-border);
     z-index: 1000;
     transition: all var(--transition-normal);
+    /* Ensure navbar stays above all content */
+    isolation: isolate;
 }
 
 .nav-container {
@@ -357,6 +359,8 @@ a:hover {
     position: relative;
     overflow-x: hidden;
     min-height: 60px;
+    /* Prevent flex items from shrinking too much */
+    flex-wrap: nowrap;
 }
 
 .nav-menu {
@@ -365,6 +369,9 @@ a:hover {
     align-items: center;
     flex-wrap: nowrap;
     justify-content: center;
+    /* Ensure consistent positioning and prevent layout shifts */
+    position: relative;
+    z-index: 1;
 }
 
 .nav-link {
@@ -464,7 +471,10 @@ a:hover {
     right: var(--spacing-lg);
     top: 50%;
     transform: translateY(-50%);
-    z-index: 10;
+    z-index: 1001;
+    /* Ensure it doesn't get cut off */
+    min-width: 44px;
+    min-height: 44px;
 }
 
 .theme-toggle:hover {
@@ -506,6 +516,11 @@ a:hover {
     background: var(--text-primary);
     border-radius: 2px;
     transition: all var(--transition-fast);
+}
+
+/* Ensure hamburger menu is visible in dark mode */
+[data-theme="dark"] .nav-toggle span {
+    background: #ffffff;
 }
 
 .nav-toggle:focus {

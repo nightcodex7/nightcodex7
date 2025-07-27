@@ -12,6 +12,30 @@
         overflow-x: hidden;
     }
     
+    /* Ensure navigation elements don't overflow on very small screens */
+    .nav-container {
+        padding: var(--spacing-sm);
+        gap: var(--spacing-xs);
+    }
+    
+    .nav-social {
+        gap: 0.25rem;
+    }
+    
+    .social-link {
+        padding: var(--spacing-xs);
+        font-size: var(--font-size-base);
+    }
+    
+    /* Mobile back-to-top button positioning */
+    .back-to-top {
+        bottom: 20px;
+        right: 20px;
+        width: 45px;
+        height: 45px;
+        font-size: var(--font-size-base);
+    }
+    
     .hero-content {
         grid-template-columns: 1fr;
         gap: var(--spacing-2xl);
@@ -68,10 +92,12 @@
         backdrop-filter: blur(10px);
         -webkit-overflow-scrolling: touch;
         overscroll-behavior: contain;
+        z-index: 1002; /* Ensure proper stacking above navbar */
     }
     
     .nav-container {
         justify-content: space-between;
+        align-items: center;
     }
     
     .nav-social {
@@ -82,6 +108,7 @@
         position: static;
         transform: none;
         order: 3;
+        margin-left: auto;
     }
     
     .nav-toggle {
@@ -262,6 +289,50 @@
     .certification-card {
         padding: var(--spacing-lg);
         will-change: transform;
+    }
+    
+    /* Very small screen navigation optimizations */
+    .nav-menu {
+        top: 55px; /* Further reduced for very small screens */
+        height: calc(100vh - 55px);
+    }
+    
+    .nav-container {
+        padding: var(--spacing-xs);
+        gap: var(--spacing-xs);
+        min-height: 55px; /* Match the mobile menu top position */
+    }
+    
+    .navbar {
+        min-height: 55px; /* Ensure navbar height matches mobile menu */
+    }
+    
+    .nav-toggle {
+        min-width: 40px;
+        min-height: 40px;
+    }
+    
+    .nav-social {
+        gap: 0.25rem;
+    }
+    
+    .social-link {
+        padding: var(--spacing-xs);
+        font-size: var(--font-size-sm);
+    }
+    
+    .theme-toggle {
+        min-width: 40px;
+        min-height: 40px;
+        font-size: var(--font-size-base);
+    }
+    
+    .back-to-top {
+        bottom: 15px;
+        right: 15px;
+        width: 40px;
+        height: 40px;
+        font-size: var(--font-size-sm);
     }
 }
 
@@ -454,6 +525,7 @@
         padding: var(--spacing-sm) var(--spacing-md);
         flex-wrap: nowrap;
         gap: var(--spacing-sm);
+        align-items: center;
     }
     
     .nav-separator {
@@ -464,11 +536,18 @@
         position: static;
         transform: none;
         margin-left: var(--spacing-sm);
+        align-self: center;
+        order: 3;
     }
     
     .nav-social {
         gap: 0.5rem;
         margin-right: var(--spacing-2xl);
+        order: 2;
+    }
+    
+    .nav-toggle {
+        order: 1;
     }
     
     .social-link {
@@ -755,6 +834,26 @@
     .theme-toggle {
         margin-left: var(--spacing-sm);
     }
+    
+    /* Landscape mobile menu optimizations */
+    .nav-menu {
+        top: 60px; /* Reduced for landscape */
+        height: calc(100vh - 60px);
+        padding-top: var(--spacing-lg);
+    }
+    
+    .nav-menu .nav-link {
+        font-size: var(--font-size-sm);
+        padding: var(--spacing-xs) var(--spacing-sm);
+    }
+    
+    .back-to-top {
+        bottom: 15px;
+        right: 15px;
+        width: 40px;
+        height: 40px;
+        font-size: var(--font-size-sm);
+    }
 }
 
 /* High DPI Displays */
@@ -790,15 +889,26 @@
         padding: var(--spacing-sm) var(--spacing-md);
         flex-wrap: nowrap;
         gap: var(--spacing-xs);
+        align-items: center;
+        justify-content: space-between;
     }
     
     .theme-toggle {
+        position: static;
+        transform: none;
         margin-left: var(--spacing-sm);
+        align-self: center;
+        order: 3;
     }
     
     .nav-social {
         gap: 0.5rem;
         margin-right: var(--spacing-2xl);
+        order: 2;
+    }
+    
+    .nav-toggle {
+        order: 1;
     }
     
     .social-link {
@@ -1008,9 +1118,36 @@
         transition: transform 0.3s ease-out;
     }
     
+    /* Disable transform animations on project cards for better mobile performance */
+    .project-card {
+        transform: none !important;
+        will-change: auto;
+    }
+    
+    .project-card:hover {
+        transform: none !important;
+    }
+    
+    .project-card:active {
+        transform: scale(0.98) !important;
+    }
+    
     /* Slower scroll momentum */
     body {
         -webkit-overflow-scrolling: touch;
+    }
+    
+    /* Prevent scroll issues with project cards */
+    .projects-grid {
+        transform: translateZ(0);
+        backface-visibility: hidden;
+    }
+    
+    .project-card {
+        transform: translateZ(0);
+        backface-visibility: hidden;
+        -webkit-transform: translateZ(0);
+        -webkit-backface-visibility: hidden;
     }
 }
 

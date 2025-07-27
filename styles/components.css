@@ -11,6 +11,15 @@
     line-height: 1.8;
     margin-bottom: var(--spacing-2xl);
     text-align: justify;
+    text-align-last: left;
+}
+
+/* Mobile-specific about bio alignment */
+@media (max-width: 767.98px) {
+    .about-bio {
+        text-align: justify;
+        text-align-last: justify;
+    }
 }
 
 .contact-info {
@@ -736,6 +745,8 @@
     transition: all var(--transition-fast);
     z-index: 1000;
     box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+    /* Ensure it doesn't overlap with footer */
+    margin-bottom: 0;
 }
 
 .back-to-top:hover {
@@ -756,6 +767,7 @@
     width: 0%;
     height: 3px;
     background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
-    z-index: 1001;
+    z-index: 999; /* Reduced to avoid conflict with theme toggle */
     transition: width 0.1s ease;
+    pointer-events: none; /* Ensure it doesn't interfere with interactions */
 } 

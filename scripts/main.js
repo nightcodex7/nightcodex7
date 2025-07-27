@@ -80,18 +80,48 @@ function initNavigation() {
     function checkNavigationOverflow() {
         const isTabletOrDesktop = window.innerWidth >= 768;
         
+        // Get all required elements with null checks - re-query to ensure they exist
+        const navMenu = document.getElementById('nav-menu');
+        const navSocial = document.querySelector('.nav-social');
+        const navSeparator = document.querySelector('.nav-separator');
+        const themeToggle = document.getElementById('theme-toggle');
+        const navToggle = document.getElementById('nav-toggle');
+        
+        // Ensure all critical elements are present before proceeding
+        if (!navMenu || !navSocial || !themeToggle || !navToggle) {
+            console.warn('Navigation elements not found, skipping overflow check and ensuring hamburger menu is visible.');
+            // Fallback: if elements are missing, ensure hamburger is visible to prevent broken UI
+            if (navMenu) navMenu.classList.add('overflow-hidden');
+            if (navToggle) navToggle.classList.add('overflow-visible');
+            return;
+        }
+        
         if (isTabletOrDesktop) {
+            // Get container width more reliably
+            const navContainer = navMenu.parentElement;
+            if (!navContainer) {
+                console.warn('Navigation container not found, skipping desktop overflow check.');
+                // Fallback for desktop if container is missing
+                navMenu.classList.add('overflow-hidden');
+                navToggle.classList.add('overflow-visible');
+                return;
+            }
+            
             const navMenuWidth = navMenu.scrollWidth;
-            const navContainerWidth = navMenu.parentElement.offsetWidth;
-            const navSocialWidth = document.querySelector('.nav-social').offsetWidth;
-            const separatorWidth = document.querySelector('.nav-separator').offsetWidth;
-            const themeToggleWidth = document.getElementById('theme-toggle').offsetWidth;
+            const navContainerWidth = navContainer.offsetWidth;
+            const navSocialWidth = navSocial.offsetWidth;
+            const separatorWidth = navSeparator ? navSeparator.offsetWidth : 0; // Handle missing separator
+            const themeToggleWidth = themeToggle.offsetWidth;
             const navToggleWidth = navToggle.offsetWidth;
             
-            // Calculate available space for navigation menu
-            const availableWidth = navContainerWidth - navSocialWidth - separatorWidth - themeToggleWidth - navToggleWidth - 40; // 40px for padding/margins
+            // Calculate available space for navigation menu with more conservative margins
+            const paddingMargin = 60; // Increased from 40px for better safety margin
+            const availableWidth = navContainerWidth - navSocialWidth - separatorWidth - themeToggleWidth - navToggleWidth - paddingMargin;
             
-            if (navMenuWidth > availableWidth) {
+            // Add a small buffer to prevent edge cases
+            const buffer = 10; // Added buffer
+            
+            if (navMenuWidth > (availableWidth - buffer)) { // Used buffer
                 // Overflow detected - show hamburger menu
                 navMenu.classList.add('overflow-hidden');
                 navToggle.classList.add('overflow-visible');
@@ -107,9 +137,38 @@ function initNavigation() {
         }
     }
     
-    // Check overflow on load and resize
-    checkNavigationOverflow();
-    window.addEventListener('resize', debounce(checkNavigationOverflow, 250));
+    // Check overflow on load and resize with a more robust approach
+    function initializeOverflowCheck() {
+        // Check if all required elements exist before proceeding
+        const navMenu = document.getElementById('nav-menu');
+        const navSocial = document.querySelector('.nav-social');
+        const themeToggle = document.getElementById('theme-toggle');
+        const navToggle = document.getElementById('nav-toggle');
+        
+        if (navMenu && navSocial && themeToggle && navToggle) {
+            try {
+                checkNavigationOverflow();
+            } catch (error) {
+                console.warn('Error during overflow check:', error);
+                // Fallback to hamburger menu if overflow check fails
+                navMenu.classList.add('overflow-hidden');
+                navToggle.classList.add('overflow-visible');
+            }
+        } else {
+            // If elements aren't ready, try again after a short delay
+            setTimeout(initializeOverflowCheck, 50);
+        }
+    }
+    
+    // Initialize overflow check with retry mechanism and error handling
+    initializeOverflowCheck();
+    window.addEventListener('resize', debounce(function() {
+        try {
+            checkNavigationOverflow();
+        } catch (error) {
+            console.warn('Error during resize overflow check:', error);
+        }
+    }, 250));
     
     // Mobile menu toggle
     navToggle.addEventListener('click', function() {
@@ -264,10 +323,31 @@ function initBackToTop() {
     document.body.appendChild(backToTop);
     
     window.addEventListener('scroll', function() {
-        if (window.pageYOffset > 300) {
+        const scrollTop = window.pageYOffset;
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight;
+        const footerHeight = 120; // Increased to account for footer padding and button height
+        
+        // Show button when scrolled down more than 300px
+        if (scrollTop > 300) {
             backToTop.classList.add('show');
+            
+            // Check if we're near the footer
+            const distanceFromBottom = documentHeight - (scrollTop + windowHeight);
+            
+            if (distanceFromBottom < footerHeight) {
+                // Near footer - adjust position to stay above footer
+                const buttonHeight = 50; // Height of the button
+                const buttonMargin = 30; // Bottom margin of the button
+                const newBottom = Math.max(buttonMargin, footerHeight - distanceFromBottom + buttonHeight + buttonMargin);
+                backToTop.style.bottom = newBottom + 'px';
+            } else {
+                // Not near footer - reset to normal position
+                backToTop.style.bottom = '30px';
+            }
         } else {
             backToTop.classList.remove('show');
+            backToTop.style.bottom = '30px'; // Reset position when hidden
         }
     });
     
