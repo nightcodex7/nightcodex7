@@ -88,6 +88,18 @@ function initThemeToggle() {
 
     function updateThemeIcon(theme) {
         if (themeToggle) themeToggle.innerHTML = theme === 'dark' ? moonIcon : sunIcon;
+        updateProfileAvatar(theme);
+    }
+
+    function updateProfileAvatar(theme) {
+        const avatarImg = document.querySelector('.avatar-img');
+        if (avatarImg) {
+            if (theme === 'light') {
+                avatarImg.src = 'assets/tuhin_portfolio_pic_light.jpg';
+            } else {
+                avatarImg.src = 'assets/tuhin_portfolio_pic_dark.png';
+            }
+        }
     }
 }
 
@@ -97,103 +109,28 @@ function initNavigation() {
     const navMenu = document.getElementById('nav-menu');
     const navLinks = document.querySelectorAll('.nav-link');
 
-    // Dynamic overflow detection for tablets and desktops
-    function checkNavigationOverflow() {
-        // We check overflow for anything tablet and above (>= 768px)
-        // With the split sidebar design, desktop space might be constrained, so we always check.
-        const isTabletOrDesktop = window.innerWidth >= 768;
+    // Navigation handling
+    function handleNavigation() {
+        const isMobile = window.innerWidth < 992; // Match CSS media query breakpoint
 
-        // Get all required elements with null checks - re-query to ensure they exist
-        const navMenu = document.getElementById('nav-menu');
-        const navSocial = document.querySelector('.nav-social');
-        const navSeparator = document.querySelector('.nav-separator');
-        const themeToggle = document.getElementById('theme-toggle');
-        const navToggle = document.getElementById('nav-toggle');
-
-        // Ensure all critical elements are present before proceeding
-        if (!navMenu || !navSocial || !themeToggle || !navToggle) {
-            // Fallback: if elements are missing, ensure hamburger is visible to prevent broken UI
-            if (navMenu) navMenu.classList.add('overflow-hidden');
-            if (navToggle) navToggle.classList.add('overflow-visible');
-            return;
-        }
-
-        if (isTabletOrDesktop) {
-            // Check for overflow
-            const navContainer = navMenu.parentElement;
-            if (!navContainer) {
-                navMenu.classList.add('overflow-hidden');
-                navToggle.classList.add('overflow-visible');
-                return;
-            }
-
-            // Measure widths
-            const navMenuWidth = navMenu.scrollWidth;
-            // navContainer.offsetWidth will reflect the reduced width on desktop due to sidebar offset
-            const navContainerWidth = navContainer.offsetWidth;
-            const navSocialWidth = navSocial.offsetWidth;
-            const separatorWidth = navSeparator ? navSeparator.offsetWidth : 0;
-            const themeToggleWidth = themeToggle.offsetWidth;
-            // The toggle itself takes space if visible, but we are checking if we CAN hide it.
-            // Actually, we subtract the toggle width only if we are considering valid space for menu.
-            // But if inline, toggle is hidden.
-            // Let's assume toggle is hidden (0 width) for calculation if we want inline.
-            // Be conservative: assume we need space for social + theme.
-
-            const paddingMargin = 40;
-            const availableWidth = navContainerWidth - navSocialWidth - separatorWidth - themeToggleWidth - paddingMargin;
-
-            // Add a buffer
-            const buffer = 10;
-
-            if (navMenuWidth > (availableWidth - buffer)) {
-                // Overflow detected - show hamburger menu
-                navMenu.classList.add('overflow-hidden');
-                navToggle.classList.add('overflow-visible');
-            } else {
-                // No overflow - show inline menu
-                navMenu.classList.remove('overflow-hidden');
-                navToggle.classList.remove('overflow-visible');
-            }
-        } else {
-            // Mobile - always show hamburger menu
+        if (isMobile) {
             navMenu.classList.add('overflow-hidden');
             navToggle.classList.add('overflow-visible');
-        }
-    }
-
-    // Check overflow on load and resize with a more robust approach
-    function initializeOverflowCheck() {
-        // Check if all required elements exist before proceeding
-        const navMenu = document.getElementById('nav-menu');
-        const navSocial = document.querySelector('.nav-social');
-        const themeToggle = document.getElementById('theme-toggle');
-        const navToggle = document.getElementById('nav-toggle');
-
-        if (navMenu && navSocial && themeToggle && navToggle) {
-            try {
-                checkNavigationOverflow();
-            } catch (error) {
-                console.warn('Error during overflow check:', error);
-                // Fallback to hamburger menu if overflow check fails
-                navMenu.classList.add('overflow-hidden');
-                navToggle.classList.add('overflow-visible');
-            }
         } else {
-            // If elements aren't ready, try again after a short delay
-            setTimeout(initializeOverflowCheck, 50);
+            navMenu.classList.remove('overflow-hidden');
+            navToggle.classList.remove('overflow-visible');
+
+            // Ensure menu is closed when switching to desktop
+            navMenu.classList.remove('active');
+            navToggle.classList.remove('active');
         }
     }
 
-    // Initialize overflow check with retry mechanism and error handling
-    initializeOverflowCheck();
-    window.addEventListener('resize', debounce(function () {
-        try {
-            checkNavigationOverflow();
-        } catch (error) {
-            console.warn('Error during resize overflow check:', error);
-        }
-    }, 250));
+    // Initial check
+    handleNavigation();
+
+    // Resize listener
+    window.addEventListener('resize', debounce(handleNavigation, 250));
 
     // Mobile menu toggle
     navToggle.addEventListener('click', function () {

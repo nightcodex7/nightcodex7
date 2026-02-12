@@ -418,6 +418,16 @@
         padding-top: var(--spacing-2xl);
         transition: left var(--transition-normal);
         backdrop-filter: blur(10px);
+        display: flex;
+        /* Ensure it's flex so it can be shown when active */
+    }
+
+    .nav-menu.overflow-hidden {
+        /* On mobile, we handle visibility via 'active' class on .nav-menu, 
+           but the JS adds overflow-hidden to indicate mobile mode. 
+           We shouldn't hide it with display:none here because it needs to slide in.
+        */
+        display: flex;
     }
 
     .nav-menu.active {
@@ -516,12 +526,28 @@
         padding: var(--spacing-xs) var(--spacing-sm);
     }
 
-    .nav-toggle {
-        display: none;
+    .nav-toggle.overflow-visible {
+        display: none !important;
     }
 
-    .nav-toggle.overflow-visible {
-        display: flex;
+    .nav-toggle {
+        display: none !important;
+    }
+
+    .nav-menu.overflow-hidden {
+        display: flex !important;
+    }
+
+    .nav-menu {
+        display: flex !important;
+        flex-direction: row;
+        position: static;
+        width: auto;
+        height: auto;
+        background: transparent;
+        padding-top: 0;
+        top: 0;
+        backdrop-filter: none;
     }
 
     .nav-container {
@@ -614,12 +640,28 @@
         padding: var(--spacing-xs) var(--spacing-sm);
     }
 
-    .nav-toggle {
-        display: none;
+    .nav-toggle.overflow-visible {
+        display: none !important;
     }
 
-    .nav-toggle.overflow-visible {
-        display: flex;
+    .nav-toggle {
+        display: none !important;
+    }
+
+    .nav-menu.overflow-hidden {
+        display: flex !important;
+    }
+
+    .nav-menu {
+        display: flex !important;
+        flex-direction: row;
+        position: static;
+        width: auto;
+        height: auto;
+        background: transparent;
+        padding-top: 0;
+        top: 0;
+        backdrop-filter: none;
     }
 
     .nav-container {
@@ -689,12 +731,28 @@
         padding: var(--spacing-xs) var(--spacing-sm);
     }
 
-    .nav-toggle {
-        display: none;
+    .nav-toggle.overflow-visible {
+        display: none !important;
     }
 
-    .nav-toggle.overflow-visible {
-        display: flex;
+    .nav-toggle {
+        display: none !important;
+    }
+
+    .nav-menu.overflow-hidden {
+        display: flex !important;
+    }
+
+    .nav-menu {
+        display: flex !important;
+        flex-direction: row;
+        position: static;
+        width: auto;
+        height: auto;
+        background: transparent;
+        padding-top: 0;
+        top: 0;
+        backdrop-filter: none;
     }
 
     .nav-container {
@@ -1000,7 +1058,7 @@
 /* Focus Styles for Accessibility */
 @media (prefers-reduced-motion: no-preference) {
 
-    .nav-link:focus,
+
     .btn:focus,
     .social-link:focus,
     .theme-toggle:focus,
