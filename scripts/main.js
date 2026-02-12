@@ -10,7 +10,7 @@ function safeExecute(fn, name) {
     }
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Initialize all functionality with error handling
     safeExecute(initThemeToggle, 'Theme Toggle');
     safeExecute(initNavigation, 'Navigation');
@@ -20,11 +20,12 @@ document.addEventListener('DOMContentLoaded', function() {
     safeExecute(initProgressBar, 'Progress Bar');
     safeExecute(initLazyLoading, 'Lazy Loading');
     safeExecute(initAccessibility, 'Accessibility');
-    
+    safeExecute(initVisitorCounter, 'Visitor Counter');
+
     // Performance monitoring
     if ('performance' in window) {
-        window.addEventListener('load', function() {
-            setTimeout(function() {
+        window.addEventListener('load', function () {
+            setTimeout(function () {
                 const perfData = performance.getEntriesByType('navigation')[0];
                 if (perfData) {
                     console.log('Page Load Performance:', {
@@ -38,35 +39,55 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+// Visitor Counter Functionality
+function initVisitorCounter() {
+    const pageId = window.location.hostname + window.location.pathname;
+    const countElement = document.getElementById('visitor-count');
+
+    if (!countElement) return;
+
+    fetch(`https://backend.nightcode.co.in/api/v1/visitor/count?pageId=${encodeURIComponent(pageId)}`)
+        .then(response => response.json())
+        .then(data => {
+            countElement.textContent = `${data.count} Views`;
+        })
+        .catch(error => {
+            console.error('Error fetching visitor count:', error);
+            countElement.textContent = 'Error';
+        });
+}
+
 // Theme Toggle Functionality
 function initThemeToggle() {
     const themeToggle = document.getElementById('theme-toggle');
     const body = document.body;
     const moonIcon = '<i class="fas fa-moon"></i>';
     const sunIcon = '<i class="fas fa-sun"></i>';
-    
+
     // Check for saved theme preference or default to dark
     const savedTheme = localStorage.getItem('theme') || 'dark';
     body.setAttribute('data-theme', savedTheme);
     updateThemeIcon(savedTheme);
-    
-    themeToggle.addEventListener('click', function() {
-        const currentTheme = body.getAttribute('data-theme');
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        
-        body.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
-        updateThemeIcon(newTheme);
-        
-        // Add transition effect
-        body.style.transition = 'background-color 0.3s ease, color 0.3s ease';
-        setTimeout(() => {
-            body.style.transition = '';
-        }, 300);
-    });
-    
+
+    if (themeToggle) {
+        themeToggle.addEventListener('click', function () {
+            const currentTheme = body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+            body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+
+            // Add transition effect
+            body.style.transition = 'background-color 0.3s ease, color 0.3s ease';
+            setTimeout(() => {
+                body.style.transition = '';
+            }, 300);
+        });
+    }
+
     function updateThemeIcon(theme) {
-        themeToggle.innerHTML = theme === 'dark' ? moonIcon : sunIcon;
+        if (themeToggle) themeToggle.innerHTML = theme === 'dark' ? moonIcon : sunIcon;
     }
 }
 
@@ -75,96 +96,72 @@ function initNavigation() {
     const navToggle = document.getElementById('nav-toggle');
     const navMenu = document.getElementById('nav-menu');
     const navLinks = document.querySelectorAll('.nav-link');
-    
+
     // Dynamic overflow detection for tablets and desktops
     function checkNavigationOverflow() {
+        // We check overflow for anything tablet and above (>= 768px)
+        // With the split sidebar design, desktop space might be constrained, so we always check.
         const isTabletOrDesktop = window.innerWidth >= 768;
-        const isLaptopOrDesktop = window.innerWidth >= 992; // Laptop and above should always show inline
-        
-        console.log('Screen size check:', {
-            windowWidth: window.innerWidth,
-            isTabletOrDesktop,
-            isLaptopOrDesktop
-        });
-        
+
         // Get all required elements with null checks - re-query to ensure they exist
         const navMenu = document.getElementById('nav-menu');
         const navSocial = document.querySelector('.nav-social');
         const navSeparator = document.querySelector('.nav-separator');
         const themeToggle = document.getElementById('theme-toggle');
         const navToggle = document.getElementById('nav-toggle');
-        
+
         // Ensure all critical elements are present before proceeding
         if (!navMenu || !navSocial || !themeToggle || !navToggle) {
-            console.warn('Navigation elements not found, skipping overflow check and ensuring hamburger menu is visible.');
             // Fallback: if elements are missing, ensure hamburger is visible to prevent broken UI
             if (navMenu) navMenu.classList.add('overflow-hidden');
             if (navToggle) navToggle.classList.add('overflow-visible');
             return;
         }
-        
-        if (isLaptopOrDesktop) {
-            // Laptop and desktop (992px+) should always show inline navigation
-            console.log('Laptop/Desktop detected - forcing inline navigation');
-            navMenu.classList.remove('overflow-hidden');
-            navToggle.classList.remove('overflow-visible');
-        } else if (isTabletOrDesktop) {
-            // Tablet (768px-991px) - check for overflow
+
+        if (isTabletOrDesktop) {
+            // Check for overflow
             const navContainer = navMenu.parentElement;
             if (!navContainer) {
-                console.warn('Navigation container not found, skipping tablet overflow check.');
-                // Fallback for tablet if container is missing
                 navMenu.classList.add('overflow-hidden');
                 navToggle.classList.add('overflow-visible');
                 return;
             }
-            
+
+            // Measure widths
             const navMenuWidth = navMenu.scrollWidth;
+            // navContainer.offsetWidth will reflect the reduced width on desktop due to sidebar offset
             const navContainerWidth = navContainer.offsetWidth;
             const navSocialWidth = navSocial.offsetWidth;
-            const separatorWidth = navSeparator ? navSeparator.offsetWidth : 0; // Handle missing separator
+            const separatorWidth = navSeparator ? navSeparator.offsetWidth : 0;
             const themeToggleWidth = themeToggle.offsetWidth;
-            const navToggleWidth = navToggle.offsetWidth;
-            
-            // Calculate available space for navigation menu with reasonable margins
-            const paddingMargin = 20; // Reduced from 60px for more accurate detection
-            const availableWidth = navContainerWidth - navSocialWidth - separatorWidth - themeToggleWidth - navToggleWidth - paddingMargin;
-            
-            // Add a small buffer to prevent edge cases
-            const buffer = 5; // Reduced buffer
-            
-            console.log('Navigation overflow check:', {
-                navMenuWidth,
-                navContainerWidth,
-                navSocialWidth,
-                separatorWidth,
-                themeToggleWidth,
-                navToggleWidth,
-                paddingMargin,
-                availableWidth,
-                buffer,
-                isOverflowing: navMenuWidth > (availableWidth - buffer)
-            });
-            
-            if (navMenuWidth > (availableWidth - buffer)) { // Used buffer
+            // The toggle itself takes space if visible, but we are checking if we CAN hide it.
+            // Actually, we subtract the toggle width only if we are considering valid space for menu.
+            // But if inline, toggle is hidden.
+            // Let's assume toggle is hidden (0 width) for calculation if we want inline.
+            // Be conservative: assume we need space for social + theme.
+
+            const paddingMargin = 40;
+            const availableWidth = navContainerWidth - navSocialWidth - separatorWidth - themeToggleWidth - paddingMargin;
+
+            // Add a buffer
+            const buffer = 10;
+
+            if (navMenuWidth > (availableWidth - buffer)) {
                 // Overflow detected - show hamburger menu
-                console.log('Overflow detected - showing hamburger menu');
                 navMenu.classList.add('overflow-hidden');
                 navToggle.classList.add('overflow-visible');
             } else {
                 // No overflow - show inline menu
-                console.log('No overflow - showing inline menu');
                 navMenu.classList.remove('overflow-hidden');
                 navToggle.classList.remove('overflow-visible');
             }
         } else {
             // Mobile - always show hamburger menu
-            console.log('Mobile detected - forcing hamburger menu');
             navMenu.classList.add('overflow-hidden');
             navToggle.classList.add('overflow-visible');
         }
     }
-    
+
     // Check overflow on load and resize with a more robust approach
     function initializeOverflowCheck() {
         // Check if all required elements exist before proceeding
@@ -172,7 +169,7 @@ function initNavigation() {
         const navSocial = document.querySelector('.nav-social');
         const themeToggle = document.getElementById('theme-toggle');
         const navToggle = document.getElementById('nav-toggle');
-        
+
         if (navMenu && navSocial && themeToggle && navToggle) {
             try {
                 checkNavigationOverflow();
@@ -187,58 +184,58 @@ function initNavigation() {
             setTimeout(initializeOverflowCheck, 50);
         }
     }
-    
+
     // Initialize overflow check with retry mechanism and error handling
     initializeOverflowCheck();
-    window.addEventListener('resize', debounce(function() {
+    window.addEventListener('resize', debounce(function () {
         try {
             checkNavigationOverflow();
         } catch (error) {
             console.warn('Error during resize overflow check:', error);
         }
     }, 250));
-    
+
     // Mobile menu toggle
-    navToggle.addEventListener('click', function() {
+    navToggle.addEventListener('click', function () {
         navMenu.classList.toggle('active');
         navToggle.classList.toggle('active');
     });
-    
+
     // Close mobile menu when clicking on a link
     navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
+        link.addEventListener('click', function (e) {
             e.preventDefault();
             const targetId = link.getAttribute('href').substring(1);
             const targetElement = document.getElementById(targetId);
-            
+
             if (targetElement) {
                 // Custom smooth scroll for mobile devices
                 const isMobile = window.innerWidth <= 768;
                 const scrollDuration = isMobile ? 1500 : 800; // Slower on mobile
-                
+
                 smoothScrollTo(targetElement, scrollDuration);
             }
-            
+
             navMenu.classList.remove('active');
             navToggle.classList.remove('active');
         });
     });
-    
+
     // Close mobile menu when clicking outside
-    document.addEventListener('click', function(event) {
+    document.addEventListener('click', function (event) {
         if (!navToggle.contains(event.target) && !navMenu.contains(event.target)) {
             navMenu.classList.remove('active');
             navToggle.classList.remove('active');
         }
     });
-    
+
     // Custom smooth scroll function
     function smoothScrollTo(targetElement, duration) {
         const targetPosition = targetElement.offsetTop - 80; // Account for fixed navbar
         const startPosition = window.pageYOffset;
         const distance = targetPosition - startPosition;
         let startTime = null;
-        
+
         function animation(currentTime) {
             if (startTime === null) startTime = currentTime;
             const timeElapsed = currentTime - startTime;
@@ -246,7 +243,7 @@ function initNavigation() {
             window.scrollTo(0, run);
             if (timeElapsed < duration) requestAnimationFrame(animation);
         }
-        
+
         // Easing function for smooth animation
         function ease(t, b, c, d) {
             t /= d / 2;
@@ -254,22 +251,22 @@ function initNavigation() {
             t--;
             return -c / 2 * (t * (t - 2) - 1) + b;
         }
-        
+
         requestAnimationFrame(animation);
     }
-    
+
     // Active navigation highlighting
-    window.addEventListener('scroll', function() {
+    window.addEventListener('scroll', function () {
         const scrollPos = window.scrollY + 100;
-        
+
         navLinks.forEach(link => {
             const targetId = link.getAttribute('href');
             const targetSection = document.querySelector(targetId);
-            
+
             if (targetSection) {
                 const sectionTop = targetSection.offsetTop;
                 const sectionBottom = sectionTop + targetSection.offsetHeight;
-                
+
                 if (scrollPos >= sectionTop && scrollPos < sectionBottom) {
                     navLinks.forEach(l => l.classList.remove('active'));
                     link.classList.add('active');
@@ -283,10 +280,10 @@ function initNavigation() {
 function initScrollEffects() {
     const navbar = document.getElementById('navbar');
     let lastScrollTop = 0;
-    
-    window.addEventListener('scroll', function() {
+
+    window.addEventListener('scroll', function () {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        
+
         // Navbar background on scroll
         if (scrollTop > 50) {
             navbar.style.background = 'var(--nav-bg)';
@@ -295,14 +292,14 @@ function initScrollEffects() {
             navbar.style.background = 'transparent';
             navbar.style.backdropFilter = 'none';
         }
-        
+
         // Hide/show navbar on scroll (optional)
         if (scrollTop > lastScrollTop && scrollTop > 100) {
             navbar.style.transform = 'translateY(-100%)';
         } else {
             navbar.style.transform = 'translateY(0)';
         }
-        
+
         lastScrollTop = scrollTop;
     });
 }
@@ -313,8 +310,8 @@ function initAnimations() {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
     };
-    
-    const observer = new IntersectionObserver(function(entries) {
+
+    const observer = new IntersectionObserver(function (entries) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('fade-in-up');
@@ -322,19 +319,19 @@ function initAnimations() {
             }
         });
     }, observerOptions);
-    
+
     // Observe all sections and cards
     const animatedElements = document.querySelectorAll('.section, .project-card, .research-card, .education-card, .certification-card, .skill-category, .tech-item');
     animatedElements.forEach(el => {
         observer.observe(el);
     });
-    
+
     // Parallax effect for hero section
-    window.addEventListener('scroll', function() {
+    window.addEventListener('scroll', function () {
         const scrolled = window.pageYOffset;
         const hero = document.querySelector('.hero');
         const heroContent = document.querySelector('.hero-content');
-        
+
         if (hero && heroContent) {
             const rate = scrolled * -0.5;
             heroContent.style.transform = `translateY(${rate}px)`;
@@ -349,20 +346,20 @@ function initBackToTop() {
     backToTop.innerHTML = '<i class="fas fa-arrow-up"></i>';
     backToTop.setAttribute('aria-label', 'Back to top');
     document.body.appendChild(backToTop);
-    
-    window.addEventListener('scroll', function() {
+
+    window.addEventListener('scroll', function () {
         const scrollTop = window.pageYOffset;
         const windowHeight = window.innerHeight;
         const documentHeight = document.documentElement.scrollHeight;
         const footerHeight = 120; // Increased to account for footer padding and button height
-        
+
         // Show button when scrolled down more than 300px
         if (scrollTop > 300) {
             backToTop.classList.add('show');
-            
+
             // Check if we're near the footer
             const distanceFromBottom = documentHeight - (scrollTop + windowHeight);
-            
+
             if (distanceFromBottom < footerHeight) {
                 // Near footer - adjust position to stay above footer
                 const buttonHeight = 50; // Height of the button
@@ -378,19 +375,19 @@ function initBackToTop() {
             backToTop.style.bottom = '30px'; // Reset position when hidden
         }
     });
-    
-    backToTop.addEventListener('click', function() {
+
+    backToTop.addEventListener('click', function () {
         const isMobile = window.innerWidth <= 768;
         const scrollDuration = isMobile ? 1500 : 800; // Slower on mobile
-        
+
         smoothScrollToTop(scrollDuration);
     });
-    
+
     // Custom smooth scroll to top function
     function smoothScrollToTop(duration) {
         const startPosition = window.pageYOffset;
         let startTime = null;
-        
+
         function animation(currentTime) {
             if (startTime === null) startTime = currentTime;
             const timeElapsed = currentTime - startTime;
@@ -398,7 +395,7 @@ function initBackToTop() {
             window.scrollTo(0, run);
             if (timeElapsed < duration) requestAnimationFrame(animation);
         }
-        
+
         // Easing function for smooth animation
         function ease(t, b, c, d) {
             t /= d / 2;
@@ -406,7 +403,7 @@ function initBackToTop() {
             t--;
             return -c / 2 * (t * (t - 2) - 1) + b;
         }
-        
+
         requestAnimationFrame(animation);
     }
 }
@@ -416,8 +413,8 @@ function initProgressBar() {
     const progressBar = document.createElement('div');
     progressBar.className = 'progress-bar';
     document.body.appendChild(progressBar);
-    
-    window.addEventListener('scroll', function() {
+
+    window.addEventListener('scroll', function () {
         const scrollTop = window.pageYOffset;
         const docHeight = document.documentElement.scrollHeight - window.innerHeight;
         const scrollPercent = (scrollTop / docHeight) * 100;
@@ -428,8 +425,8 @@ function initProgressBar() {
 // Lazy Loading
 function initLazyLoading() {
     const images = document.querySelectorAll('img[data-src]');
-    
-    const imageObserver = new IntersectionObserver(function(entries) {
+
+    const imageObserver = new IntersectionObserver(function (entries) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const img = entry.target;
@@ -439,14 +436,14 @@ function initLazyLoading() {
             }
         });
     });
-    
+
     images.forEach(img => imageObserver.observe(img));
 }
 
 // Accessibility Features
 function initAccessibility() {
     // Keyboard navigation
-    document.addEventListener('keydown', function(e) {
+    document.addEventListener('keydown', function (e) {
         // Escape key to close mobile menu
         if (e.key === 'Escape') {
             const navMenu = document.getElementById('nav-menu');
@@ -454,7 +451,7 @@ function initAccessibility() {
             navMenu.classList.remove('active');
             navToggle.classList.remove('active');
         }
-        
+
         // Space/Enter key for buttons
         if (e.key === ' ' || e.key === 'Enter') {
             if (e.target.classList.contains('btn') || e.target.classList.contains('theme-toggle')) {
@@ -463,12 +460,12 @@ function initAccessibility() {
             }
         }
     });
-    
+
     // Focus management for mobile menu
     const navToggle = document.getElementById('nav-toggle');
     const navMenu = document.getElementById('nav-menu');
-    
-    navToggle.addEventListener('click', function() {
+
+    navToggle.addEventListener('click', function () {
         if (navMenu.classList.contains('active')) {
             // Focus first nav link when menu opens
             const firstNavLink = navMenu.querySelector('.nav-link');
@@ -477,14 +474,14 @@ function initAccessibility() {
             }
         }
     });
-    
+
     // Trap focus in mobile menu
-    navMenu.addEventListener('keydown', function(e) {
+    navMenu.addEventListener('keydown', function (e) {
         if (e.key === 'Tab') {
             const navLinks = navMenu.querySelectorAll('.nav-link');
             const firstLink = navLinks[0];
             const lastLink = navLinks[navLinks.length - 1];
-            
+
             if (e.shiftKey) {
                 if (document.activeElement === firstLink) {
                     e.preventDefault();
@@ -515,7 +512,7 @@ function debounce(func, wait) {
 
 function throttle(func, limit) {
     let inThrottle;
-    return function() {
+    return function () {
         const args = arguments;
         const context = this;
         if (!inThrottle) {
@@ -527,26 +524,26 @@ function throttle(func, limit) {
 }
 
 // Error Handling
-window.addEventListener('error', function(e) {
+window.addEventListener('error', function (e) {
     console.error('JavaScript Error:', e.error);
     // You can add error reporting here
 });
 
 // Performance Monitoring
-window.addEventListener('load', function() {
+window.addEventListener('load', function () {
     // Log page load time
     const loadTime = performance.now();
     console.log(`Page loaded in ${loadTime.toFixed(2)}ms`);
-    
+
     // Check if images are loaded
     const images = document.querySelectorAll('img');
     let loadedImages = 0;
-    
+
     images.forEach(img => {
         if (img.complete) {
             loadedImages++;
         } else {
-            img.addEventListener('load', function() {
+            img.addEventListener('load', function () {
                 loadedImages++;
                 if (loadedImages === images.length) {
                     console.log('All images loaded');
@@ -558,12 +555,12 @@ window.addEventListener('load', function() {
 
 // Service Worker Registration (for PWA support)
 if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function() {
+    window.addEventListener('load', function () {
         navigator.serviceWorker.register('/sw.js')
-            .then(function(registration) {
+            .then(function (registration) {
                 console.log('SW registered: ', registration);
             })
-            .catch(function(registrationError) {
+            .catch(function (registrationError) {
                 console.log('SW registration failed: ', registrationError);
             });
     });
@@ -572,9 +569,9 @@ if ('serviceWorker' in navigator) {
 // Copy to Clipboard Functionality
 function copyToClipboard(text) {
     if (navigator.clipboard) {
-        navigator.clipboard.writeText(text).then(function() {
+        navigator.clipboard.writeText(text).then(function () {
             showNotification('Copied to clipboard!', 'success');
-        }).catch(function() {
+        }).catch(function () {
             showNotification('Failed to copy to clipboard', 'error');
         });
     } else {
@@ -598,7 +595,7 @@ function showNotification(message, type = 'info') {
     const notification = document.createElement('div');
     notification.className = `notification notification-${type}`;
     notification.textContent = message;
-    
+
     // Add styles
     notification.style.cssText = `
         position: fixed;
@@ -613,14 +610,14 @@ function showNotification(message, type = 'info') {
         transition: transform 0.3s ease;
         background: ${type === 'success' ? '#10b981' : type === 'error' ? '#ef4444' : '#6366f1'};
     `;
-    
+
     document.body.appendChild(notification);
-    
+
     // Animate in
     setTimeout(() => {
         notification.style.transform = 'translateX(0)';
     }, 100);
-    
+
     // Remove after 3 seconds
     setTimeout(() => {
         notification.style.transform = 'translateX(100%)';
@@ -638,9 +635,9 @@ function optimizeImages() {
         if (!img.hasAttribute('loading')) {
             img.setAttribute('loading', 'lazy');
         }
-        
+
         // Add error handling
-        img.addEventListener('error', function() {
+        img.addEventListener('error', function () {
             this.style.display = 'none';
             console.warn('Failed to load image:', this.src);
         });
@@ -650,7 +647,7 @@ function optimizeImages() {
 function optimizeFonts() {
     // Preload critical fonts
     if ('fonts' in document) {
-        document.fonts.ready.then(function() {
+        document.fonts.ready.then(function () {
             console.log('Fonts loaded successfully');
         });
     }
@@ -659,27 +656,27 @@ function optimizeFonts() {
 function optimizeAnimations() {
     // Use requestAnimationFrame for smooth animations
     let ticking = false;
-    
+
     function updateAnimations() {
         // Update any animations here
         ticking = false;
     }
-    
+
     function requestTick() {
         if (!ticking) {
             requestAnimationFrame(updateAnimations);
             ticking = true;
         }
     }
-    
+
     // Throttle scroll events
-    window.addEventListener('scroll', function() {
+    window.addEventListener('scroll', function () {
         requestTick();
     }, { passive: true });
 }
 
 // Initialize optimizations
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     safeExecute(optimizeImages, 'Image Optimization');
     safeExecute(optimizeFonts, 'Font Optimization');
     safeExecute(optimizeAnimations, 'Animation Optimization');
