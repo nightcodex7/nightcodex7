@@ -97,7 +97,7 @@ function initThemeToggle() {
             if (theme === 'light') {
                 avatarImg.src = 'assets/tuhin_portfolio_pic_light.jpg';
             } else {
-                avatarImg.src = 'assets/tuhin_portfolio_pic_dark.png';
+                avatarImg.src = 'assets/tuhin_portfolio_pic_dark.jpg';
             }
         }
     }
