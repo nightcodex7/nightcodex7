@@ -35,6 +35,13 @@ DevOps and Cloud Engineering enthusiast with hands-on experience building server
 
 ---
 
+## Projects
+
+- **[Securing CI/CD with Jenkins & Docker Scout](https://medium.com/@nightcode_x/from-insecure-docker-pipelines-to-devsecops-securing-ci-cd-with-jenkins-docker-scout-c179e8e754bf)**
+- **[Serverless EC2 Monitor & Control Dashboard](https://medium.com/@nightcode_x/build-a-serverless-ec2-monitor-control-dashboard-with-aws-lambda-api-gateway-and-s3-f9dcad97943d)**
+
+---
+
 ## Research Publication
 
 **Build & Deploy a Cloud-Native Serverless Monitoring System**  
@@ -43,18 +50,11 @@ _Published in IJIRSET, May 2025_
 
 ---
 
-## Projects
-
-- **[Securing CI/CD with Jenkins & Docker Scout](https://medium.com/@nightcode_x/from-insecure-docker-pipelines-to-devsecops-securing-ci-cd-with-jenkins-docker-scout-c179e8e754bf)**
-- **[Serverless EC2 Monitor & Control Dashboard](https://medium.com/@nightcode_x/build-a-serverless-ec2-monitor-control-dashboard-with-aws-lambda-api-gateway-and-s3-f9dcad97943d)**
-
----
-
 ## Android Systems Engineering & Custom ROM Contributions 
 
 **Platforms:** XDA Developers, Telegram
 
-- 🛠️ **Community Participation:** Contributed to Android custom ROM ecosystems through active participation in **XDA Developers forums and Telegram-based development communities**.
+- **Community Participation:** Contributed to Android custom ROM ecosystems through active participation in **XDA Developers forums and Telegram-based development communities**.
 - **ROM Testing:** Tested and validated multiple custom ROMs including: **crDroid, LineageOS, AOSPA, Resurrection Remix, Pixel Experience, Bliss ROM, HydrogenOS, VoltageOS, AxionOS, HalogenOS, MistOS**.
 - 📱 **Device Coverage:** Performed cross-device ROM testing on:
   - Redmi 3S *(land)*
