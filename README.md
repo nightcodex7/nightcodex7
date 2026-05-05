@@ -1,6 +1,6 @@
 <h1 align="center">Hi 👋, I'm Tuhin Garai</h1>
 <p align="center">
-  <em><strong>Cloud • Security • Research • Open Source Enthusiast</strong></em>
+  <em><strong>DevOps • Cloud • DevSecOps • Linux • Security Enthusiast</strong></em>
 </p>
 
 <p align="center">
