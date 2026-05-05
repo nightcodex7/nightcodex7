@@ -23,7 +23,7 @@
 
 ## About Me
 
-DevOps and Cloud Engineering enthusiast with hands-on experience building serverless and containerized systems on AWS. Skilled in CI/CD automation, infrastructure design, and system-level debugging, with practical exposure to Kubernetes, Linux internals, and large-scale testing across distributed environments.
+DevOps and Cloud Engineer with hands-on experience building serverless and containerized systems on AWS. Skilled in CI/CD automation, infrastructure design, and system-level debugging, with practical exposure to Kubernetes, Linux, and large-scale testing across distributed environments.
 
 ---
 
