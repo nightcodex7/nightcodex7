@@ -154,7 +154,7 @@
 
 .skill-chip:hover {
     transform: scale(1.05);
-    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+    box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);
 }
 
 /* Projects Section */
@@ -232,13 +232,13 @@
 }
 
 .tech-tag {
-    background: rgba(99, 102, 241, 0.1);
+    background: rgba(249, 115, 22, 0.1);
     color: var(--accent-primary);
     padding: var(--spacing-xs) var(--spacing-sm);
     border-radius: var(--radius-md);
     font-size: var(--font-size-xs);
     font-weight: 500;
-    border: 1px solid rgba(99, 102, 241, 0.2);
+    border: 1px solid rgba(249, 115, 22, 0.2);
 }
 
 .project-description {

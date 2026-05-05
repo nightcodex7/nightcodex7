@@ -1,7 +1,3 @@
-<p align="center">
-  <img src="https://raw.githubusercontent.com/nightcodex7/nightcodex7/main/banner.png" alt="Tuhin Garai Banner"/>
-</p>
-
 <h1 align="center">Hi 👋, I'm Tuhin Garai</h1>
 <p align="center">
   <em><strong>Cloud • Security • Research • Open Source Enthusiast</strong></em>
@@ -25,24 +21,21 @@
 
 ---
 
-## 🧠 About Me
+## About Me
 
-- 🎓 MCA Student at **Jain University** (Major: Cloud Computing, Minor: AI/ML)
-- 💻 Focused on **Cybersecurity**, **Linux**, **Cloud-native Architecture**, and **DevOps**
-- 📚 Published researcher in **Serverless Monitoring Systems**
-- 🛠️ Building tools around NextDNS, AOSP, AWS, and container tech
+DevOps and Cloud Engineering enthusiast with hands-on experience building serverless and containerized systems on AWS. Skilled in CI/CD automation, infrastructure design, and system-level debugging, with practical exposure to Kubernetes, Linux internals, and large-scale testing across distributed environments.
 
 ---
 
-## 📜 Research Publication
+## Research Publication
 
-📄 **Build & Deploy a Cloud-Native Serverless Monitoring System**  
+**Build & Deploy a Cloud-Native Serverless Monitoring System**  
 _Published in IJIRSET, May 2025_  
 👉 [Read Full Paper](https://www.ijirset.com/upload/2025/may/300_Build.pdf)
 
 ---
 
-## 🚀 Projects
+## Projects
 
 🔐 **[warp-nextdns-wireguard](https://github.com/nightcodex7/warp-nextdns-wireguard) <--- (STABLE)**  
 Cloudflare WARP + NextDNS for secure DNS without relying on Cloudflare DNS.
@@ -74,10 +67,10 @@ _NIELIT Gorakhpur, Nov 2021_
 
 ---
 
-## 🧰 Tech Stack
+## Tech Stack
 
 <p align="center">
-  <img src="https://skillicons.dev/icons?i=aws,bash,linux,docker,kubernetes,python,androidstudio,git,vscode" alt="Tech Stack Icons"/>
+  <img src="https://skillicons.dev/icons?i=aws,bash,linux,docker,kubernetes,jenkins,ansible,terraform,python,git" alt="Tech Stack Icons"/>
 </p>
 
 ---
@@ -105,5 +98,5 @@ _NIELIT Gorakhpur, Nov 2021_
 ---
 
 <p align="center">
-  <em>© 2025 Tuhin Garai | Proudly built with 💻, ☁️, and ☕</em>
+  <em>© 2026 Tuhin Garai | Proudly built with 💻, ☁️, and ☕</em>
 </p>

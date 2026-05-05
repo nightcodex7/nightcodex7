@@ -77,13 +77,13 @@
         [data-theme="dark"] {
             --bg-primary: #0a0a0a;
             --text-primary: #ffffff;
-            --accent-primary: #6366f1;
+            --accent-primary: #f97316;
         }
 
         [data-theme="light"] {
             --bg-primary: #ffffff;
             --text-primary: #0f172a;
-            --accent-primary: #6366f1;
+            --accent-primary: #f97316;
         }
 
         body {
@@ -235,10 +235,7 @@
                 <h2 class="section-title text-left">About Me</h2>
                 <div class="about-text-content">
                     <p class="about-bio">
-                        I'm a MCA student at Jain University with a major in Storage & Cloud Technology and a minor in
-                        AI & ML.
-                        My research focuses on serverless monitoring systems, and I'm devoted to building secure,
-                        automated cloud infrastructure.
+                        DevOps and Cloud Engineering enthusiast with hands-on experience building serverless and containerized systems on AWS. Skilled in CI/CD automation, infrastructure design, and system-level debugging, with practical exposure to Kubernetes, Linux internals, and large-scale testing across distributed environments.
                     </p>
                 </div>
                 <!-- </div> -->
@@ -246,59 +243,68 @@
 
             <!-- Tech Stack Section -->
             <section id="tech-stack" class="section">
-                <!-- <div class="container-fluid"> -->
-                <h2 class="section-title text-left">Tech Stack</h2>
-                <div class="tech-grid">
-                    <div class="tech-item">
-                        <i class="fab fa-aws"></i>
-                        <span>AWS</span>
+                <h2 class="section-title text-left">Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3 class="skill-category-title">Languages & Scripting</h3>
+                        <div class="tech-grid" style="margin-top: var(--spacing-md);">
+                            <div class="tech-item">
+                                <i class="fas fa-terminal"></i>
+                                <span>Bash</span>
+                            </div>
+                            <div class="tech-item">
+                                <i class="fab fa-python"></i>
+                                <span>Python</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="tech-item">
-                        <i class="fab fa-linux"></i>
-                        <span>Linux</span>
+                    <div class="skill-category">
+                        <h3 class="skill-category-title">DevOps & Cloud</h3>
+                        <div class="tech-grid" style="margin-top: var(--spacing-md);">
+                            <div class="tech-item">
+                                <i class="fab fa-docker"></i>
+                                <span>Docker</span>
+                            </div>
+                            <div class="tech-item">
+                                <i class="fas fa-cubes"></i>
+                                <span>Kubernetes</span>
+                            </div>
+                            <div class="tech-item">
+                                <i class="fab fa-jenkins"></i>
+                                <span>Jenkins</span>
+                            </div>
+                            <div class="tech-item">
+                                <i class="fas fa-cogs"></i>
+                                <span>Ansible</span>
+                            </div>
+                            <div class="tech-item" title="EC2, Lambda, API Gateway, S3, IAM, CloudWatch, CloudTrail">
+                                <i class="fab fa-aws"></i>
+                                <span>AWS</span>
+                            </div>
+                            <div class="tech-item">
+                                <i class="fas fa-infinity"></i>
+                                <span>CI/CD</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="tech-item">
-                        <i class="fab fa-docker"></i>
-                        <span>Docker</span>
-                    </div>
-                    <div class="tech-item">
-                        <i class="fab fa-jenkins"></i>
-                        <span>Jenkins</span>
-                    </div>
-                    <div class="tech-item">
-                        <i class="fas fa-cubes"></i>
-                        <span>Kubernetes</span>
-                    </div>
-                    <div class="tech-item">
-                        <i class="fas fa-cogs"></i>
-                        <span>Ansible</span>
-                    </div>
-                    <div class="tech-item">
-                        <i class="fab fa-python"></i>
-                        <span>Python</span>
-                    </div>
-                    <div class="tech-item">
-                        <i class="fab fa-git-alt"></i>
-                        <span>Git</span>
-                    </div>
-                    <div class="tech-item">
-                        <i class="fab fa-github"></i>
-                        <span>GitHub</span>
-                    </div>
-                    <div class="tech-item">
-                        <i class="fas fa-database"></i>
-                        <span>MySQL</span>
-                    </div>
-                    <div class="tech-item">
-                        <i class="fab fa-windows"></i>
-                        <span>Windows Server</span>
-                    </div>
-                    <div class="tech-item">
-                        <i class="fas fa-file-excel"></i>
-                        <span>MS Excel</span>
+                    <div class="skill-category">
+                        <h3 class="skill-category-title">Tools & Platforms</h3>
+                        <div class="tech-grid" style="margin-top: var(--spacing-md);">
+                            <div class="tech-item">
+                                <i class="fab fa-linux"></i>
+                                <span>Linux</span>
+                            </div>
+                            <div class="tech-item">
+                                <i class="fab fa-git-alt"></i>
+                                <span>Git</span>
+                            </div>
+                            <div class="tech-item">
+                                <i class="fab fa-github"></i>
+                                <span>GitHub</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <!-- </div> -->
             </section>
 
             <!-- Projects Section -->
@@ -442,33 +448,37 @@
                                 <i class="fas fa-cloud"></i>
                                 Serverless EC2 Dashboard
                             </a>
+                            <a href="https://medium.com/@nightcode_x/from-insecure-docker-pipelines-to-devsecops-securing-ci-cd-with-jenkins-docker-scout-c179e8e754bf"
+                                target="_blank" rel="noopener noreferrer" class="article-link">
+                                <i class="fas fa-user-shield"></i>
+                                Securing CI/CD with Jenkins & Docker Scout
+                            </a>
                         </div>
                     </div>
                 </div>
                 <!-- </div> -->
             </section>
 
-            <!-- Work Experience Section -->
+            <!-- Voluntary Experience Section -->
             <section id="experience" class="section">
-                <!-- <div class="container-fluid"> -->
-                <h2 class="section-title text-left">Work Experience</h2>
+                <h2 class="section-title text-left">Voluntary Experience</h2>
                 <div class="timeline">
                     <div class="timeline-item">
                         <div class="timeline-marker"></div>
                         <div class="timeline-content">
                             <div class="timeline-header">
-                                <h3 class="timeline-title">Cloud Computing Intern</h3>
-                                <span class="timeline-period">June–July 2025</span>
+                                <h3 class="timeline-title">Custom ROM Community Open Source Contributions</h3>
+                                <span class="timeline-period">04/2025 – Present</span>
                             </div>
-                            <span class="timeline-company">Tamizhan Skills</span>
-                            <p class="timeline-description">
-                                Deployed AWS-based serverless contact form, simulated real-world deployment scenarios.
-                            </p>
-                            <a href="https://github.com/nightcodex7/riseinternprojects" target="_blank"
-                                rel="noopener noreferrer" class="timeline-link">
-                                <i class="fab fa-github"></i>
-                                Work Repository
-                            </a>
+                            <span class="timeline-company">Nothing Phone 2 (Pong) Community</span>
+                            <div class="timeline-description">
+                                <ul>
+                                    <li>Tested and validated multiple custom Android ROMs including crDroid, LineageOS, AOSPA (Paranoid Android), VoltageOS, AxionOS, HalogenOS, MistOS, etc</li>
+                                    <li>Identified system-level bugs, performance bottlenecks, and stability issues across builds</li>
+                                    <li>Captured and analyzed diagnostic logs (logcat, dmesg) to support debugging and root cause analysis</li>
+                                    <li>Collaborated with developers to improve ROM stability, device compatibility, and feature reliability</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
 
@@ -476,17 +486,23 @@
                         <div class="timeline-marker"></div>
                         <div class="timeline-content">
                             <div class="timeline-header">
-                                <h3 class="timeline-title">AI & Cloud Tech Intern</h3>
-                                <span class="timeline-period">June–July 2025</span>
+                                <h3 class="timeline-title">Multi-Device Custom ROM Community Open Source Contributions</h3>
+                                <span class="timeline-period">06/2017 – 03/2025</span>
                             </div>
-                            <span class="timeline-company">Edunet Foundation (IBM SkillBuild)</span>
-                            <p class="timeline-description">
-                                Worked on AI and cloud technology projects under IBM SkillBuild program.
-                            </p>
+                            <span class="timeline-company">Custom ROM Tester (Community)</span>
+                            <div class="timeline-description">
+                                <ul>
+                                    <li>Performed cross-device ROM testing on Redmi 3S (land), Poco F4 (munch), Xiaomi Pad 6 (pipa), Nothing Phone 1 (spacewar)</li>
+                                    <li>Validated ROMs including crDroid, LineageOS (CyanogenMod), AOSPA, Resurrection Remix, Pixel Experience, Bliss ROM, HydrogenOS, etc</li>
+                                    <li>Worked with GApps/microG environments and root solutions (Magisk, KernelSU, SuperSU)</li>
+                                    <li>Tested system-level modifications using LSPosed / Xposed Framework</li>
+                                    <li>Executed flashing, recovery, and restoration via fastboot, TWRP, OrangeFox, and EDL mode</li>
+                                    <li>Assisted in debugging experimental builds and improving cross-device ROM stability</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <!-- </div> -->
             </section>
 
             <!-- Education Section -->
@@ -579,7 +595,7 @@
       "@type": "Person",
       "name": "Tuhin Garai",
       "jobTitle": "DevOps Engineer",
-      "description": "Motivated DevOps and Cloud enthusiast with hands-on experience in Docker-based containerization and Jenkins-driven CI/CD pipelines for automated deployments. Experienced in AWS infrastructure, Linux administration, Git workflows, and infrastructure automation to build scalable, reliable, and high-availability environments focused on performance and security.",
+      "description": "DevOps and Cloud Engineering enthusiast with hands-on experience building serverless and containerized systems on AWS. Skilled in CI/CD automation, infrastructure design, and system-level debugging, with practical exposure to Kubernetes, Linux internals, and large-scale testing across distributed environments.",
       "url": "https://nightcode.co.in",
       "image": "https://nightcode.co.in/assets/favicon.svg",
       "sameAs": [
