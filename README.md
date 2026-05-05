@@ -27,6 +27,14 @@ DevOps and Cloud Engineering enthusiast with hands-on experience building server
 
 ---
 
+## Tech Stack
+
+<p align="center">
+  <img src="https://skillicons.dev/icons?i=aws,bash,linux,docker,kubernetes,jenkins,ansible,terraform,python,git" alt="Tech Stack Icons"/>
+</p>
+
+---
+
 ## Research Publication
 
 **Build & Deploy a Cloud-Native Serverless Monitoring System**  
@@ -37,54 +45,32 @@ _Published in IJIRSET, May 2025_
 
 ## Projects
 
-🔐 **[warp-nextdns-wireguard](https://github.com/nightcodex7/warp-nextdns-wireguard) <--- (STABLE)**  
-Cloudflare WARP + NextDNS for secure DNS without relying on Cloudflare DNS.
-
-🧹 **[BravePurifier](https://github.com/nightcodex7/BravePurifier) <--- (WORK IN PROGRESS)**  
-Shell script to fully debloat Brave on Linux.
-
-📱 **[NetworkSwitcher](https://github.com/nightcodex7/NetworkSwitcher) <--- (BETA -- HIGHLY UNSTABLE) **  
-Android app to toggle network modes like 5G Only or 4G Only. Material Design 3 UI.
+- **[Securing CI/CD with Jenkins & Docker Scout](https://medium.com/@nightcode_x/from-insecure-docker-pipelines-to-devsecops-securing-ci-cd-with-jenkins-docker-scout-c179e8e754bf)**
+- **[Serverless EC2 Monitor & Control Dashboard](https://medium.com/@nightcode_x/build-a-serverless-ec2-monitor-control-dashboard-with-aws-lambda-api-gateway-and-s3-f9dcad97943d)**
 
 ---
 
-## ✍️ Medium Articles
+## Android Systems Engineering & Custom ROM Contributions 
 
-🛡️ [Disable Firefox Telemetry + Burp Suite X Integration](https://medium.com/@nightcode_x/how-to-disable-firefox-telemetry-data-collection-for-maximum-privacy-and-burp-suite-x-bb879bf1f18a)  
-🖥️ [Build a Serverless EC2 Control Panel](https://medium.com/@nightcode_x/build-a-serverless-ec2-monitor-control-dashboard-with-aws-lambda-api-gateway-and-s3-f9dcad97943d)
+**Platforms:** XDA Developers, Telegram
 
----
-
-## 📜 Certifications
-
-🎓 **Intro to Industry 4.0 and IIoT**  
-_NPTEL (IIT Kharagpur), Oct 2022_  
-[View](https://archive.nptel.ac.in/noc/Ecertificate/?q=NPTEL22CS95S6466111610071562) — `NPTEL22CS95S64661116`
-
-🎓 **Ethical Hacking**  
-_NIELIT Gorakhpur, Nov 2021_  
-`Credential ID: NIELIT/GKP/339/5080`
-
----
-
-## Tech Stack
-
-<p align="center">
-  <img src="https://skillicons.dev/icons?i=aws,bash,linux,docker,kubernetes,jenkins,ansible,terraform,python,git" alt="Tech Stack Icons"/>
-</p>
-
----
-
-## 📈 GitHub Stats
-
-<p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=nightcodex7&show_icons=true&theme=radical&hide_border=true" />
-  <br/>
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=nightcodex7&theme=radical&hide_border=true" />
-</p>
-<p align="center">
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=nightcodex7&layout=compact&theme=radical&hide_border=true" />
-</p>
+- 🛠️ **Community Participation:** Contributed to Android custom ROM ecosystems through active participation in **XDA Developers forums and Telegram-based development communities**.
+- **ROM Testing:** Tested and validated multiple custom ROMs including: **crDroid, LineageOS, AOSPA, Resurrection Remix, Pixel Experience, Bliss ROM, HydrogenOS, VoltageOS, AxionOS, HalogenOS, MistOS**.
+- 📱 **Device Coverage:** Performed cross-device ROM testing on:
+  - Redmi 3S *(land)*
+  - Poco F4 *(munch)*
+  - Xiaomi Pad 6 *(pipa)*
+  - Nothing Phone 1 *(spacewar)*
+  - Nothing Phone 2 *(pong)*
+- 🐞 **Debugging:** 
+  - Identified **system-level bugs, performance bottlenecks, and stability issues** across builds.
+  - Captured and analyzed diagnostic logs using `logcat` and `dmesg`.
+  - Contributed to debugging and root cause analysis for community builds.
+- ⚙️ **Environments & Tools:**
+  - Worked with **GApps / microG** and root solutions: **Magisk, KernelSU, SuperSU**.
+  - Tested system-level modifications using **LSPosed / Xposed Framework**.
+  - Executed advanced recovery workflows via `fastboot`, **TWRP / OrangeFox**, and **EDL mode**.
+- 🤝 **Collaboration:** Collaborated with developers via XDA threads and Telegram channels to improve ROM stability, device compatibility, and feature reliability.
 
 ---
 
