@@ -1,11 +1,11 @@
 {
-  "name": "Tuhin Garai - Cloud Computing & Cybersecurity Portfolio",
+  "name": "Tuhin Garai - DevOps Portfolio",
   "short_name": "Tuhin Garai",
-  "description": "Cloud Computing & Cybersecurity Enthusiast | Researcher | Linux Enthusiast | Open Source",
+  "description": "DevOps/Cloud Engineer | Linux Enthusiast | Open Source Contributor",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0a0a0a",
-  "theme_color": "#6366f1",
+  "theme_color": "#f97316",
   "orientation": "portrait-primary",
   "icons": [
     {
@@ -32,4 +32,4 @@
   "categories": ["technology", "education", "business"],
   "lang": "en",
   "dir": "ltr"
-} 
+}

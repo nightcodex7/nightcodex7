@@ -12,13 +12,13 @@
   <a href="https://x.com/nightcode_x" target="_blank">
     <img src="https://img.shields.io/badge/Twitter-1DA1F2?style=flat&logo=twitter&logoColor=white" alt="Twitter/X">
   </a>
-  <!-- <a href="https://nightcode.co.in" target="_blank">
+  <!-- <a href="https://tuhingarai.in" target="_blank">
     <img src="https://img.shields.io/badge/Website-000000?style=flat&logo=google-chrome&logoColor=white" alt="Website">
   </a> -->
   <img src="https://komarev.com/ghpvc/?username=nightcodex7&style=flat&color=blue" alt="GitHub Visitor Counter"/>
 </p>
 <p align="center">
-  <strong> Portfolio: <a href="https://nightcode.co.in">nightcode.co.in</a></strong>
+  <strong> Portfolio: <a href="https://tuhingarai.in">tuhingarai.in</a></strong>
 </p>
 
 ---
@@ -82,7 +82,7 @@ _Published in IJIRSET, May 2025_
 - 🐦 [Twitter](https://x.com/nightcode_x)
 - 📖 [Medium](https://medium.com/@nightcode_x)
 - 💻 [GitHub](https://github.com/nightcodex7)
-- 🌐 [Portfolio](https://nightcode.co.in)
+- 🌐 [Portfolio](https://tuhingarai.in)
 
 ---
 

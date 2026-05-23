@@ -1,108 +1,35 @@
-/* Responsive Design - Mobile First Approach */
+/* Clean, Deduplicated Responsive Styles - Mobile First */
 
-/* Extra Small Devices (phones, 576px and down) */
-@media (max-width: 575.98px) {
-    html {
-        scroll-padding-top: 80px;
-    }
-
-    .container {
-        padding: 0 var(--spacing-sm);
-        max-width: 100%;
-        overflow-x: hidden;
-    }
-
-    /* Ensure navigation elements don't overflow on very small screens */
-    .nav-container {
-        padding: var(--spacing-sm);
-        gap: var(--spacing-xs);
-    }
-
-    .nav-social {
-        gap: 0.25rem;
-    }
-
-    .social-link {
-        padding: var(--spacing-xs);
-        font-size: var(--font-size-base);
-    }
-
-    /* Mobile back-to-top button positioning */
-    .back-to-top {
-        bottom: 20px;
-        right: 20px;
-        width: 45px;
-        height: 45px;
-        font-size: var(--font-size-base);
-    }
-
-    .hero-content {
-        grid-template-columns: 1fr;
-        gap: var(--spacing-2xl);
-        text-align: center;
-        padding-top: var(--spacing-lg);
-        min-height: calc(80vh - 4rem);
-        justify-content: center;
-    }
-
-    .hero-visual {
-        order: -1;
-    }
-
-    .hero-title {
-        font-size: var(--font-size-3xl);
-        line-height: 1.1;
-        animation: fadeInUp 0.8s ease-out;
-    }
-
-    .hero-subtitle {
-        font-size: var(--font-size-lg);
-        animation: fadeInUp 0.8s ease-out 0.2s both;
-    }
-
-    .hero-description {
-        font-size: var(--font-size-base);
-        animation: fadeInUp 0.8s ease-out 0.4s both;
-    }
-
-    .hero-actions {
-        justify-content: center;
-        animation: fadeInUp 0.8s ease-out 0.6s both;
-    }
-
-    .hero-avatar {
-        width: 200px;
-        height: 200px;
-        animation: fadeInUp 0.8s ease-out 0.1s both, float 6s ease-in-out infinite 1s;
-    }
-
-    /* Mobile navigation menu fixes */
-    .nav-menu {
-        position: fixed;
-        top: 70px;
-        left: -100%;
-        width: 100%;
-        height: calc(100vh - 70px);
-        background: var(--nav-bg);
+/* =========================================
+   Mobile Viewports (Under 992px)
+   ========================================= */
+@media (max-width: 991.98px) {
+    /* Main Layout Stack */
+    .portfolio-container {
         flex-direction: column;
-        justify-content: flex-start;
-        align-items: center;
-        padding-top: var(--spacing-2xl);
-        transition: left var(--transition-normal);
-        backdrop-filter: blur(10px);
-        -webkit-overflow-scrolling: touch;
-        overscroll-behavior: contain;
-        z-index: 1002;
-        /* Ensure proper stacking above navbar */
     }
 
-    .nav-container {
-        justify-content: space-between;
-        align-items: center;
+    .sidebar {
+        width: 100%;
+        border-bottom: 1px solid var(--border-color);
+        padding: var(--spacing-xl) var(--spacing-md);
+    }
+
+    .content-area {
+        width: 100%;
+        padding: var(--spacing-xl) var(--spacing-md);
+    }
+
+    /* Mobile Sticky Navigation drawer */
+    .nav-toggle {
+        display: flex; /* Show Hamburger */
+        order: 1;
     }
 
     .nav-social {
         order: 2;
+        gap: 0.5rem;
+        margin-right: var(--spacing-lg);
     }
 
     .theme-toggle {
@@ -112,19 +39,59 @@
         margin-left: auto;
     }
 
-    .nav-toggle {
-        display: flex;
-        order: 1;
+    .nav-menu {
+        position: absolute;
+        top: calc(100% + 5px); /* Position floating just below navbar */
+        left: var(--spacing-lg);
+        width: 250px;
+        height: auto;
+        background: var(--bg-secondary);
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius-md);
+        box-shadow: 0 10px 30px var(--shadow-color);
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: stretch;
+        padding: var(--spacing-sm) 0;
+        visibility: hidden;
+        opacity: 0;
+        transform: translateY(-10px) scale(0.95);
+        transform-origin: top left;
+        transition: opacity var(--transition-fast) ease, transform var(--transition-fast) ease, visibility var(--transition-fast) ease;
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        z-index: 1002;
     }
 
     .nav-menu.active {
-        left: 0;
+        visibility: visible;
+        opacity: 1;
+        transform: translateY(0) scale(1);
     }
 
-    .nav-toggle {
+    .nav-menu .nav-link {
+        padding: var(--spacing-md) var(--spacing-lg);
+        width: 100%;
+        text-align: left;
+        border-bottom: none;
+        font-family: var(--font-mono);
+        font-size: var(--font-size-sm);
         display: flex;
+        align-items: center;
+        justify-content: space-between;
     }
 
+    .nav-menu .nav-link::after {
+        display: none;
+    }
+
+    .nav-menu .nav-link:hover,
+    .nav-menu .nav-link.active {
+        background: rgba(249, 115, 22, 0.1);
+        color: var(--accent-primary);
+    }
+
+    /* Active nav-toggle animation */
     .nav-toggle.active span:nth-child(1) {
         transform: rotate(45deg) translate(5px, 5px);
     }
@@ -137,56 +104,30 @@
         transform: rotate(-45deg) translate(7px, -6px);
     }
 
+    /* Grid Adjustments for Mobile */
     .about-content {
         grid-template-columns: 1fr;
         gap: var(--spacing-2xl);
     }
 
     .tech-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: var(--spacing-md);
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     }
 
-    .tech-item {
-        padding: var(--spacing-lg);
-    }
-
-    .tech-item i {
-        font-size: 2rem;
-    }
-
-    .skills-grid {
-        grid-template-columns: 1fr;
-        gap: var(--spacing-xl);
-    }
-
-    .projects-grid {
-        grid-template-columns: 1fr;
-        gap: var(--spacing-xl);
-    }
-
-    .research-grid {
-        grid-template-columns: 1fr;
-        gap: var(--spacing-xl);
-    }
-
-    .education-grid {
-        grid-template-columns: 1fr;
-        gap: var(--spacing-xl);
-    }
-
+    .skills-grid,
+    .projects-grid,
+    .research-grid,
+    .education-grid,
     .certifications-grid {
         grid-template-columns: 1fr;
-        gap: var(--spacing-xl);
-    }
-
-    .timeline {
-        margin-top: var(--spacing-xl);
     }
 
     .timeline-item {
-        padding-left: 40px;
-        margin-bottom: var(--spacing-xl);
+        padding-left: var(--spacing-2xl);
+    }
+
+    .timeline::before {
+        left: 15px;
     }
 
     .timeline-marker {
@@ -198,90 +139,18 @@
     .timeline-content {
         padding: var(--spacing-lg);
     }
-
-    /* .support-buttons {
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .support-btn {
-        width: 100%;
-        max-width: 300px;
-        justify-content: center;
-    } */
-
-    .section {
-        padding: var(--spacing-2xl) 0;
-        will-change: transform;
-    }
-
-    .section-title {
-        font-size: var(--font-size-3xl);
-        margin-bottom: var(--spacing-2xl);
-        animation: fadeInUp 0.6s ease-out;
-    }
-
-    /* Additional mobile navigation fixes */
-    .nav-menu .nav-link {
-        padding: var(--spacing-md) var(--spacing-lg);
-        width: 100%;
-        text-align: center;
-        border-bottom: 1px solid var(--border-color);
-    }
-
-    .nav-menu .nav-link:last-child {
-        border-bottom: none;
-    }
-
-    /* Fix potential overflow issues */
-    .hero-actions .btn {
-        width: 100%;
-        max-width: 200px;
-        justify-content: center;
-    }
-
-    /* .support-buttons .support-btn {
-        width: 100%;
-        max-width: 300px;
-        justify-content: center;
-    } */
 }
 
-/* Very Small Devices (under 400px) */
+/* =========================================
+   Very Small Screens (Phones under 400px)
+   ========================================= */
 @media (max-width: 399.98px) {
     .container {
-        padding: 0 var(--spacing-xs);
-    }
-
-    .hero-content {
-        min-height: calc(80vh - 3rem);
-        padding-top: var(--spacing-md);
-    }
-
-    .hero-title {
-        font-size: var(--font-size-2xl);
-        animation: fadeInUp 0.6s ease-out;
-    }
-
-    .hero-subtitle {
-        font-size: var(--font-size-base);
-        animation: fadeInUp 0.6s ease-out 0.1s both;
-    }
-
-    .hero-description {
-        font-size: var(--font-size-sm);
-        animation: fadeInUp 0.6s ease-out 0.2s both;
-    }
-
-    .hero-avatar {
-        width: 150px;
-        height: 150px;
-        animation: fadeInUp 0.6s ease-out 0.05s both, float 6s ease-in-out infinite 0.8s;
+        padding: 0 var(--spacing-sm);
     }
 
     .section {
         padding: var(--spacing-xl) 0;
-        will-change: transform;
     }
 
     .project-card,
@@ -289,35 +158,20 @@
     .education-card,
     .certification-card {
         padding: var(--spacing-lg);
-        will-change: transform;
     }
 
-    /* Very small screen navigation optimizations */
     .nav-menu {
         top: 55px;
-        /* Further reduced for very small screens */
         height: calc(100vh - 55px);
     }
 
     .nav-container {
         padding: var(--spacing-xs);
-        gap: var(--spacing-xs);
         min-height: 55px;
-        /* Match the mobile menu top position */
     }
 
     .navbar {
         min-height: 55px;
-        /* Ensure navbar height matches mobile menu */
-    }
-
-    .nav-toggle {
-        min-width: 40px;
-        min-height: 40px;
-    }
-
-    .nav-social {
-        gap: 0.25rem;
     }
 
     .social-link {
@@ -325,10 +179,9 @@
         font-size: var(--font-size-sm);
     }
 
-    .theme-toggle {
+    .theme-toggle, .nav-toggle {
         min-width: 40px;
         min-height: 40px;
-        font-size: var(--font-size-base);
     }
 
     .back-to-top {
@@ -338,512 +191,46 @@
         height: 40px;
         font-size: var(--font-size-sm);
     }
-}
-
-/* Small Devices (landscape phones, 576px and up) */
-@media (min-width: 576px) and (max-width: 767.98px) {
-    html {
-        scroll-padding-top: 80px;
-    }
-
-    .hero-content {
-        grid-template-columns: 1fr;
-        gap: var(--spacing-2xl);
-        text-align: center;
-        min-height: calc(80vh - 4rem);
-        justify-content: center;
-    }
-
-    .hero-visual {
-        order: -1;
-        animation: fadeInUp 0.8s ease-out 0.1s both;
-    }
-
-    .hero-title {
-        font-size: var(--font-size-4xl);
-        animation: fadeInUp 0.8s ease-out;
-    }
-
-    .hero-subtitle {
-        animation: fadeInUp 0.8s ease-out 0.2s both;
-    }
-
-    .hero-description {
-        animation: fadeInUp 0.8s ease-out 0.4s both;
-    }
-
-    .hero-actions {
-        animation: fadeInUp 0.8s ease-out 0.6s both;
-    }
-
-    .about-content {
-        grid-template-columns: 1fr;
-        gap: var(--spacing-2xl);
-    }
 
     .tech-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-
-    .skills-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .projects-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .research-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .education-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .certifications-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .nav-menu {
-        position: fixed;
-        top: 70px;
-        left: -100%;
-        width: 100%;
-        height: calc(100vh - 70px);
-        background: var(--nav-bg);
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: center;
-        padding-top: var(--spacing-2xl);
-        transition: left var(--transition-normal);
-        backdrop-filter: blur(10px);
-        display: flex;
-        /* Ensure it's flex so it can be shown when active */
-    }
-
-    .nav-menu.overflow-hidden {
-        /* On mobile, we handle visibility via 'active' class on .nav-menu, 
-           but the JS adds overflow-hidden to indicate mobile mode. 
-           We shouldn't hide it with display:none here because it needs to slide in.
-        */
-        display: flex;
-    }
-
-    .nav-menu.active {
-        left: 0;
-    }
-
-    .nav-toggle {
-        display: flex;
-    }
-
-    .nav-toggle.active span:nth-child(1) {
-        transform: rotate(45deg) translate(5px, 5px);
-    }
-
-    .nav-toggle.active span:nth-child(2) {
-        opacity: 0;
-    }
-
-    .nav-toggle.active span:nth-child(3) {
-        transform: rotate(-45deg) translate(7px, -6px);
-    }
-
-    .nav-container {
-        justify-content: space-between;
-    }
-
-    .nav-social {
-        order: 2;
-    }
-
-    .nav-toggle {
-        display: flex;
-        order: 1;
-    }
-}
-
-/* Medium Devices (tablets, 768px and up) */
-@media (min-width: 768px) and (max-width: 991.98px) {
-    html {
-        scroll-padding-top: 80px;
-    }
-
-    .hero-content {
-        grid-template-columns: auto 1fr;
-        gap: 4rem;
-        text-align: left;
-    }
-
-    .hero-title {
-        font-size: var(--font-size-4xl);
-    }
-
-    .about-content {
-        grid-template-columns: 1fr;
-        gap: var(--spacing-2xl);
-    }
-
-    .tech-grid {
-        grid-template-columns: repeat(4, 1fr);
-    }
-
-    .skills-grid {
         grid-template-columns: repeat(2, 1fr);
-    }
-
-    .projects-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .research-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .education-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .certifications-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .nav-menu {
-        display: flex;
-        margin-right: auto;
-        gap: var(--spacing-sm);
-        flex-wrap: nowrap;
-        justify-content: flex-start;
-    }
-
-    .nav-menu.overflow-hidden {
-        display: none;
-    }
-
-    .nav-link {
-        font-size: var(--font-size-sm);
-        padding: var(--spacing-xs) var(--spacing-sm);
-    }
-
-    .nav-toggle.overflow-visible {
-        display: none !important;
-    }
-
-    .nav-toggle {
-        display: none !important;
-    }
-
-    .nav-menu.overflow-hidden {
-        display: flex !important;
-    }
-
-    .nav-menu {
-        display: flex !important;
-        flex-direction: row;
-        position: static;
-        width: auto;
-        height: auto;
-        background: transparent;
-        padding-top: 0;
-        top: 0;
-        backdrop-filter: none;
-    }
-
-    .nav-container {
-        justify-content: space-between;
-        padding: var(--spacing-sm) var(--spacing-md);
-        flex-wrap: nowrap;
-        gap: var(--spacing-sm);
-        align-items: center;
-    }
-
-    .nav-separator {
-        display: none;
-    }
-
-    .theme-toggle {
-        position: static;
-        transform: none;
-        margin-left: var(--spacing-sm);
-        align-self: center;
-        order: 3;
-    }
-
-    .nav-social {
-        gap: 0.5rem;
-        margin-right: var(--spacing-2xl);
-        order: 2;
-    }
-
-    .nav-toggle {
-        order: 1;
-    }
-
-    .social-link {
-        font-size: var(--font-size-base);
-        padding: var(--spacing-xs);
-    }
-}
-
-/* Large Devices (desktops, 992px and up) */
-@media (min-width: 992px) and (max-width: 1199.98px) {
-    .hero-content {
-        grid-template-columns: auto 1fr;
-        gap: 5rem;
-        text-align: left;
-    }
-
-    .about-content {
-        grid-template-columns: 2fr 1fr;
-        gap: var(--spacing-3xl);
-    }
-
-    .tech-grid {
-        grid-template-columns: repeat(4, 1fr);
-    }
-
-    .skills-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .projects-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .research-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .education-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .certifications-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .nav-menu {
-        display: flex;
-        margin-right: auto;
-        gap: var(--spacing-lg);
-        flex-wrap: nowrap;
-        justify-content: flex-start;
-    }
-
-    .nav-menu.overflow-hidden {
-        display: none;
-    }
-
-    .nav-link {
-        font-size: var(--font-size-base);
-        padding: var(--spacing-xs) var(--spacing-sm);
-    }
-
-    .nav-toggle.overflow-visible {
-        display: none !important;
-    }
-
-    .nav-toggle {
-        display: none !important;
-    }
-
-    .nav-menu.overflow-hidden {
-        display: flex !important;
-    }
-
-    .nav-menu {
-        display: flex !important;
-        flex-direction: row;
-        position: static;
-        width: auto;
-        height: auto;
-        background: transparent;
-        padding-top: 0;
-        top: 0;
-        backdrop-filter: none;
-    }
-
-    .nav-container {
-        justify-content: space-between;
-        padding: var(--spacing-md) var(--spacing-lg);
-        flex-wrap: nowrap;
-        gap: var(--spacing-sm);
-    }
-
-    .theme-toggle {
-        position: static;
-        transform: none;
-    }
-}
-
-/* Extra Large Devices (large desktops, 1200px and up) */
-@media (min-width: 1200px) {
-    .hero-content {
-        grid-template-columns: auto 1fr;
-        gap: 5rem;
-        text-align: left;
-    }
-
-    .about-content {
-        grid-template-columns: 2fr 1fr;
-        gap: var(--spacing-3xl);
-    }
-
-    .tech-grid {
-        grid-template-columns: repeat(4, 1fr);
-    }
-
-    .skills-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .projects-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .research-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .education-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .certifications-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .nav-menu {
-        display: flex;
-        margin-right: auto;
-        gap: var(--spacing-xl);
-        flex-wrap: nowrap;
-        justify-content: flex-start;
-    }
-
-    .nav-menu.overflow-hidden {
-        display: none;
-    }
-
-    .nav-link {
-        font-size: var(--font-size-base);
-        padding: var(--spacing-xs) var(--spacing-sm);
-    }
-
-    .nav-toggle.overflow-visible {
-        display: none !important;
-    }
-
-    .nav-toggle {
-        display: none !important;
-    }
-
-    .nav-menu.overflow-hidden {
-        display: flex !important;
-    }
-
-    .nav-menu {
-        display: flex !important;
-        flex-direction: row;
-        position: static;
-        width: auto;
-        height: auto;
-        background: transparent;
-        padding-top: 0;
-        top: 0;
-        backdrop-filter: none;
-    }
-
-    .nav-container {
-        justify-content: space-between;
-        padding: var(--spacing-md) var(--spacing-lg);
-        flex-wrap: nowrap;
-        gap: var(--spacing-sm);
-    }
-}
-
-/* Ultra Wide Screens (1400px and up) */
-@media (min-width: 1400px) {
-    .container {
-        max-width: 1320px;
-    }
-
-    .hero-content {
-        gap: var(--spacing-3xl);
-    }
-
-    .about-content {
-        gap: var(--spacing-3xl);
-    }
-
-    .theme-toggle {
-        position: absolute;
-        right: var(--spacing-lg);
-        top: 50%;
-        transform: translateY(-50%);
-    }
-}
-
-/* Ultra-wide monitors (≥1440px) */
-@media (min-width: 1440px) {
-    .container {
-        max-width: 1280px;
-        margin: 0 auto;
-    }
-
-    .hero-content {
-        max-width: 1280px;
-        margin: 0 auto;
-    }
-
-    .hero-description {
-        font-size: 1.125rem;
-        line-height: 1.75;
-        color: #b0b8d1;
-    }
-
-    .theme-toggle {
-        position: absolute;
-        right: var(--spacing-lg);
-        top: 50%;
-        transform: translateY(-50%);
-    }
-
-    .nav-menu {
-        gap: var(--spacing-xl);
-        max-width: 800px;
-    }
-
-    .nav-container {
-        max-width: 1400px;
-    }
-}
-
-/* Landscape Orientation Adjustments */
-@media (orientation: landscape) and (max-height: 600px) {
-    .hero {
-        min-height: 100vh;
-        padding: var(--spacing-2xl) 0;
-    }
-
-    .hero-content {
-        gap: var(--spacing-xl);
     }
 }
 
 /* =========================================
-   Desktop Split Layout (Overwrites)
+   Medium Viewports (Tablets 576px to 991px)
+   ========================================= */
+@media (min-width: 576px) and (max-width: 991.98px) {
+    .tech-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .tech-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .skills-grid,
+    .projects-grid,
+    .research-grid,
+    .education-grid,
+    .certifications-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* =========================================
+   Desktop Desktop Viewports (992px and up)
    ========================================= */
 @media (min-width: 992px) {
-
-    /* Layout Container */
+    /* Split Layout Containers */
     .portfolio-container {
         flex-direction: row;
         align-items: stretch;
     }
 
-    /* Fixed Sidebar */
+    /* Fixed Left Sidebar */
     .sidebar {
         width: 320px;
         height: 100vh;
@@ -855,7 +242,6 @@
         border-right: 1px solid var(--border-color);
         overflow-y: auto;
         padding: var(--spacing-2xl) var(--spacing-lg);
-        background: var(--bg-secondary);
         z-index: 1002;
     }
 
@@ -892,7 +278,7 @@
         justify-content: center;
     }
 
-    /* Main Content Area */
+    /* Right Main Content Area */
     .content-area {
         margin-left: 320px;
         width: calc(100% - 320px);
@@ -900,128 +286,112 @@
         min-height: 100vh;
     }
 
-    /* Adjust Navbar Position */
+    /* Navbar positioning on Desktop */
     .navbar {
         width: calc(100% - 320px);
         left: 320px;
-        background: rgba(10, 10, 10, 0.85);
+        background: var(--nav-bg);
         backdrop-filter: blur(12px);
     }
 
-    /* Ensure content starts below navbar */
-    .hero {
-        margin-top: 4rem;
-        min-height: 70vh;
-        border-radius: var(--radius-xl);
+    .nav-toggle {
+        display: none !important;
     }
 
-    /* Reset section padding for desktop feel */
-    .content-area .section {
-        padding: var(--spacing-3xl) 0;
+    .nav-menu {
+        display: flex !important;
+        flex-direction: row;
+        position: static;
+        width: auto;
+        height: auto;
+        background: transparent;
+        padding-top: 0;
+        top: 0;
+        backdrop-filter: none;
+        gap: var(--spacing-lg);
+    }
+
+    .nav-link {
+        font-size: var(--font-size-base);
+        padding: var(--spacing-xs) var(--spacing-sm);
+    }
+
+    .theme-toggle {
+        position: static;
+        transform: none;
+        margin-left: var(--spacing-sm);
+    }
+
+    /* Desktop Multi-column grids */
+    .about-content {
+        grid-template-columns: 2fr 1fr;
+        gap: var(--spacing-3xl);
+    }
+
+    .tech-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .skills-grid,
+    .projects-grid,
+    .research-grid,
+    .education-grid,
+    .certifications-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
+/* Larger Desktop Adjustments */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1140px;
+    }
 
+    .nav-menu {
+        gap: var(--spacing-xl);
+    }
+}
 
+@media (min-width: 1400px) {
+    .container {
+        max-width: 1320px;
+    }
+}
 
-/* High DPI Displays */
-@media (-webkit-min-device-pixel-ratio: 2),
-(min-resolution: 192dpi) {
+/* =========================================
+   Utility, Display & Print Preferences
+   ========================================= */
+
+/* High DPI Displays Avatar rendering */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
     .avatar-img {
         image-rendering: -webkit-optimize-contrast;
         image-rendering: crisp-edges;
     }
 }
 
-/* Narrow screen navigation overflow prevention */
-/* Remove conflicting media query that was causing theme toggle overlap */
-
 /* Reduced Motion Preferences */
 @media (prefers-reduced-motion: reduce) {
-
-    *,
-    *::before,
-    *::after {
-        animation-duration: 0.01ms !important;
+    * {
+        animation-delay: 0s !important;
+        animation-duration: 0s !important;
         animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
+        transition-duration: 0s !important;
         scroll-behavior: auto !important;
     }
-
-    .hero-avatar {
-        animation: none;
-    }
-
-    .btn::before,
-    .support-btn::before {
+    
+    .btn::before {
         display: none;
     }
-
-    /* Disable scroll animations for accessibility */
-    .hero-title,
-    .hero-subtitle,
-    .hero-description,
-    .hero-actions,
-    .section-title {
-        animation: none !important;
-    }
 }
 
-/* Dark Mode System Preference */
-@media (prefers-color-scheme: dark) {
-    :root {
-        --bg-primary: #0a0a0a;
-        --bg-secondary: #1a1a1a;
-        --bg-tertiary: #2a2a2a;
-        --text-primary: #ffffff;
-        --text-secondary: #b0b0b0;
-        --text-muted: #808080;
-        --border-color: #333333;
-        --shadow-color: rgba(0, 0, 0, 0.3);
-        --card-bg: #1a1a1a;
-        --nav-bg: rgba(10, 10, 10, 0.95);
-        --nav-border: rgba(255, 255, 255, 0.1);
-    }
-}
-
-@media (prefers-color-scheme: light) {
-    :root {
-        --bg-primary: #ffffff;
-        --bg-secondary: #f8fafc;
-        --bg-tertiary: #f1f5f9;
-        --text-primary: #0f172a;
-        --text-secondary: #475569;
-        --text-muted: #64748b;
-        --border-color: #e2e8f0;
-        --shadow-color: rgba(0, 0, 0, 0.1);
-        --card-bg: #ffffff;
-        --nav-bg: rgba(255, 255, 255, 0.95);
-        --nav-border: rgba(0, 0, 0, 0.1);
-    }
-}
-
-/* Print Styles */
+/* Print Viewport Styling */
 @media print {
     .navbar,
     .nav-toggle,
     .theme-toggle,
-    .back-to-top,
-    /* .support-section {
+    .back-to-top {
         display: none !important;
-    } */
-
-    .hero {
-        min-height: auto;
-        padding: var(--spacing-2xl) 0;
-    }
-
-    .hero-content {
-        grid-template-columns: 1fr;
-        text-align: left;
-    }
-
-    .hero-avatar {
-        display: none;
     }
 
     .section {
@@ -1052,139 +422,5 @@
         border: 1px solid #ccc !important;
         background: white !important;
         color: black !important;
-    }
-}
-
-/* Focus Styles for Accessibility */
-@media (prefers-reduced-motion: no-preference) {
-
-
-    .btn:focus,
-    .social-link:focus,
-    .theme-toggle:focus,
-    .project-link:focus,
-    .research-link:focus,
-    .timeline-link:focus,
-    .education-link:focus,
-    .certification-link:focus {
-        outline: 2px solid var(--accent-primary);
-        outline-offset: 2px;
-    }
-}
-
-/* Touch Device Optimizations */
-@media (hover: none) and (pointer: coarse) {
-    html {
-        scroll-padding-top: 80px;
-    }
-
-    .nav-link:hover::after,
-    .nav-link.active::after {
-        width: 0;
-    }
-
-    .nav-link:active::after {
-        width: 100%;
-    }
-
-    .btn:hover,
-    .social-link:hover,
-    .project-card:hover,
-    .research-card:hover,
-    .education-card:hover,
-    .certification-card:hover,
-    .skill-category:hover,
-    .tech-item:hover,
-    .timeline-content:hover {
-        transform: none;
-    }
-
-    .btn:active,
-    .social-link:active,
-    .project-card:active,
-    .research-card:active,
-    .education-card:active,
-    .certification-card:active,
-    .skill-category:active,
-    .tech-item:active,
-    .timeline-content:active {
-        transform: scale(0.98);
-    }
-
-    /* Improved mobile scroll performance */
-    .hero-content,
-    .section,
-    .container {
-        will-change: auto;
-    }
-
-    /* Better touch scrolling with slower behavior */
-    .nav-menu {
-        -webkit-overflow-scrolling: touch;
-        overscroll-behavior: contain;
-    }
-
-    /* Optimize animations for mobile */
-    .hero-avatar {
-        animation: fadeInUp 0.6s ease-out 0.1s both, float 4s ease-in-out infinite 1s;
-    }
-
-    /* Additional mobile scroll optimizations */
-    .hero-content,
-    .section,
-    .project-card,
-    .research-card,
-    .education-card,
-    .certification-card {
-        transition: transform 0.3s ease-out;
-    }
-
-    /* Disable transform animations on project cards for better mobile performance */
-    .project-card {
-        transform: none !important;
-        will-change: auto;
-    }
-
-    .project-card:hover {
-        transform: none !important;
-    }
-
-    .project-card:active {
-        transform: scale(0.98) !important;
-    }
-
-    /* Slower scroll momentum */
-    body {
-        -webkit-overflow-scrolling: touch;
-    }
-
-    /* Prevent scroll issues with project cards */
-    .projects-grid {
-        transform: translateZ(0);
-        backface-visibility: hidden;
-    }
-
-    .project-card {
-        transform: translateZ(0);
-        backface-visibility: hidden;
-        -webkit-transform: translateZ(0);
-        -webkit-backface-visibility: hidden;
-    }
-}
-
-/* Container Query Support (Future) */
-@supports (container-type: inline-size) {
-    /* .container { */
-    /* container-type: inline-size; */
-    /* } */
-
-    @container (max-width: 600px) {
-        .hero-content {
-            grid-template-columns: 1fr;
-        }
-
-        .about-content {
-            grid-template-columns: 1fr;
-        }
     }
 }

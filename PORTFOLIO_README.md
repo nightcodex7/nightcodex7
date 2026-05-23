@@ -19,7 +19,7 @@ A modern, responsive portfolio website showcasing Tuhin Garai's expertise in Clo
 - **Icons**: Font Awesome 6.4.0
 - **Fonts**: Inter (Google Fonts)
 - **Deployment**: GitHub Pages with GitHub Actions
-- **Domain**: Custom domain (nightcode.co.in)
+- **Domain**: Custom domain (tuhingarai.in)
 
 ## File Structure
 
@@ -106,7 +106,7 @@ The website is automatically deployed to GitHub Pages when changes are pushed to
 
 1. Push changes to the main branch
 2. GitHub Actions will automatically build and deploy
-3. The site will be available at https://nightcode.co.in
+3. The site will be available at https://tuhingarai.in
 
 ### Local Development
 

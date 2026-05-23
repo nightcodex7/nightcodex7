@@ -6,65 +6,147 @@ function safeExecute(fn, name) {
         fn();
     } catch (error) {
         console.error(`Error in ${name}:`, error);
-        // Continue execution even if one function fails
     }
 }
 
+// Global state variables for consolidated scrolling
+let scrollTicking = false;
+let navbarElement = null;
+let navLinksElements = [];
+let backToTopButton = null;
+let progressBarElement = null;
+let lastScrollTop = 0;
+
 document.addEventListener('DOMContentLoaded', function () {
-    // Initialize all functionality with error handling
+    // Cache common DOM elements
+    navbarElement = document.getElementById('navbar');
+    navLinksElements = document.querySelectorAll('.nav-link');
+    progressBarElement = document.querySelector('.progress-bar');
+    
+    // Initialize functionalities
     safeExecute(initThemeToggle, 'Theme Toggle');
     safeExecute(initNavigation, 'Navigation');
-    safeExecute(initScrollEffects, 'Scroll Effects');
     safeExecute(initAnimations, 'Animations');
     safeExecute(initBackToTop, 'Back to Top');
     safeExecute(initProgressBar, 'Progress Bar');
     safeExecute(initLazyLoading, 'Lazy Loading');
     safeExecute(initAccessibility, 'Accessibility');
     safeExecute(initVisitorCounter, 'Visitor Counter');
+    safeExecute(registerServiceWorker, 'Service Worker');
 
-    // Performance monitoring
-    if ('performance' in window) {
-        window.addEventListener('load', function () {
-            setTimeout(function () {
-                const perfData = performance.getEntriesByType('navigation')[0];
-                if (perfData) {
-                    console.log('Page Load Performance:', {
-                        'DOM Content Loaded': perfData.domContentLoadedEventEnd - perfData.domContentLoadedEventStart + 'ms',
-                        'Load Complete': perfData.loadEventEnd - perfData.loadEventStart + 'ms',
-                        'Total Load Time': perfData.loadEventEnd - perfData.fetchStart + 'ms'
-                    });
-                }
-            }, 0);
-        });
-    }
+    // Attach single optimized passive scroll listener
+    window.addEventListener('scroll', onScrollTick, { passive: true });
+    
+    // Initial layout check
+    onScrollTick();
 });
 
-// Visitor Counter Functionality
+// Single tick scroll handler
+function onScrollTick() {
+    if (!scrollTicking) {
+        window.requestAnimationFrame(updateScrollElements);
+        scrollTicking = true;
+    }
+}
+
+// Optimized layout calculations update
+function updateScrollElements() {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const windowHeight = window.innerHeight;
+    const documentHeight = document.documentElement.scrollHeight;
+    
+    // 1. Navbar styling changes
+    if (navbarElement) {
+        if (scrollTop > 50) {
+            navbarElement.classList.add('scrolled');
+        } else {
+            navbarElement.classList.remove('scrolled');
+        }
+        
+        // Hide/Show navbar on scroll down/up
+        if (scrollTop > lastScrollTop && scrollTop > 100) {
+            navbarElement.style.transform = 'translateY(-100%)';
+        } else {
+            navbarElement.style.transform = 'translateY(0)';
+        }
+    }
+    
+    // 2. Active nav link highlight
+    const scrollPos = scrollTop + 100;
+    navLinksElements.forEach(link => {
+        const targetId = link.getAttribute('href');
+        if (targetId.startsWith('#')) {
+            const targetSection = document.querySelector(targetId);
+            if (targetSection) {
+                const sectionTop = targetSection.offsetTop;
+                const sectionBottom = sectionTop + targetSection.offsetHeight;
+                
+                if (scrollPos >= sectionTop && scrollPos < sectionBottom) {
+                    navLinksElements.forEach(l => l.classList.remove('active'));
+                    link.classList.add('active');
+                }
+            }
+        }
+    });
+
+    // 3. Back to Top Button position & visibility
+    if (backToTopButton) {
+        const footerHeight = 120;
+        if (scrollTop > 300) {
+            backToTopButton.classList.add('show');
+            const distanceFromBottom = documentHeight - (scrollTop + windowHeight);
+            
+            if (distanceFromBottom < footerHeight) {
+                const buttonHeight = 50;
+                const buttonMargin = 30;
+                const newBottom = Math.max(buttonMargin, footerHeight - distanceFromBottom + buttonHeight + buttonMargin);
+                backToTopButton.style.bottom = newBottom + 'px';
+            } else {
+                backToTopButton.style.bottom = '30px';
+            }
+        } else {
+            backToTopButton.classList.remove('show');
+            backToTopButton.style.bottom = '30px';
+        }
+    }
+
+    // 4. Reading Progress Bar update
+    if (progressBarElement) {
+        const docHeight = documentHeight - windowHeight;
+        const scrollPercent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        progressBarElement.style.width = scrollPercent + '%';
+    }
+
+    lastScrollTop = scrollTop;
+    scrollTicking = false;
+}
+
+// Visitor Counter (nightcode.co.in preserved)
 function initVisitorCounter() {
     const pageId = window.location.hostname + window.location.pathname;
     const countElement = document.getElementById('visitor-count');
-
     if (!countElement) return;
 
     fetch(`https://backend.nightcode.co.in/api/v1/visitor/count?pageId=${encodeURIComponent(pageId)}`)
         .then(response => response.json())
         .then(data => {
-            countElement.textContent = `${data.count} Views`;
+            if (data && typeof data.count !== 'undefined') {
+                countElement.textContent = `${data.count} Views`;
+            }
         })
         .catch(error => {
             console.error('Error fetching visitor count:', error);
-            countElement.textContent = 'Error';
+            countElement.textContent = '-- Views';
         });
 }
 
-// Theme Toggle Functionality
+// Theme Toggle Management
 function initThemeToggle() {
     const themeToggle = document.getElementById('theme-toggle');
     const body = document.body;
     const moonIcon = '<i class="fas fa-moon"></i>';
     const sunIcon = '<i class="fas fa-sun"></i>';
 
-    // Check for saved theme preference or default to dark
     const savedTheme = localStorage.getItem('theme') || 'dark';
     body.setAttribute('data-theme', savedTheme);
     updateThemeIcon(savedTheme);
@@ -77,12 +159,6 @@ function initThemeToggle() {
             body.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
             updateThemeIcon(newTheme);
-
-            // Add transition effect
-            body.style.transition = 'background-color 0.3s ease, color 0.3s ease';
-            setTimeout(() => {
-                body.style.transition = '';
-            }, 300);
         });
     }
 
@@ -94,81 +170,75 @@ function initThemeToggle() {
     function updateProfileAvatar(theme) {
         const avatarImg = document.querySelector('.avatar-img');
         if (avatarImg) {
-            if (theme === 'light') {
-                avatarImg.src = 'assets/tuhin_portfolio_pic_light.jpg';
-            } else {
-                avatarImg.src = 'assets/tuhin_portfolio_pic_dark.jpg';
-            }
+            avatarImg.src = theme === 'light' 
+                ? 'assets/tuhin_portfolio_pic_light.jpg' 
+                : 'assets/tuhin_portfolio_pic_dark.jpg';
         }
     }
 }
 
-// Navigation Functionality
+// Navigation & Hamburger Menu Toggle
 function initNavigation() {
     const navToggle = document.getElementById('nav-toggle');
     const navMenu = document.getElementById('nav-menu');
     const navLinks = document.querySelectorAll('.nav-link');
 
-    // Navigation handling
     function handleNavigation() {
-        const isMobile = window.innerWidth < 992; // Match CSS media query breakpoint
-
+        const isMobile = window.innerWidth < 992;
         if (isMobile) {
             navMenu.classList.add('overflow-hidden');
             navToggle.classList.add('overflow-visible');
         } else {
             navMenu.classList.remove('overflow-hidden');
             navToggle.classList.remove('overflow-visible');
-
-            // Ensure menu is closed when switching to desktop
             navMenu.classList.remove('active');
             navToggle.classList.remove('active');
+            navToggle.setAttribute('aria-expanded', 'false');
         }
     }
 
-    // Initial check
     handleNavigation();
-
-    // Resize listener
     window.addEventListener('resize', debounce(handleNavigation, 250));
 
-    // Mobile menu toggle
-    navToggle.addEventListener('click', function () {
-        navMenu.classList.toggle('active');
-        navToggle.classList.toggle('active');
-    });
+    if (navToggle && navMenu) {
+        navToggle.addEventListener('click', function () {
+            const isActive = navMenu.classList.toggle('active');
+            navToggle.classList.toggle('active');
+            navToggle.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+        });
+    }
 
-    // Close mobile menu when clicking on a link
     navLinks.forEach(link => {
         link.addEventListener('click', function (e) {
-            e.preventDefault();
-            const targetId = link.getAttribute('href').substring(1);
-            const targetElement = document.getElementById(targetId);
+            const targetHref = link.getAttribute('href');
+            if (targetHref.startsWith('#')) {
+                e.preventDefault();
+                const targetId = targetHref.substring(1);
+                const targetElement = document.getElementById(targetId);
 
-            if (targetElement) {
-                // Custom smooth scroll for mobile devices
-                const isMobile = window.innerWidth <= 768;
-                const scrollDuration = isMobile ? 1500 : 800; // Slower on mobile
+                if (targetElement) {
+                    const isMobile = window.innerWidth <= 768;
+                    const scrollDuration = isMobile ? 1200 : 800;
+                    smoothScrollTo(targetElement, scrollDuration);
+                }
 
-                smoothScrollTo(targetElement, scrollDuration);
+                navMenu.classList.remove('active');
+                navToggle.classList.remove('active');
+                navToggle.setAttribute('aria-expanded', 'false');
             }
-
-            navMenu.classList.remove('active');
-            navToggle.classList.remove('active');
         });
     });
 
-    // Close mobile menu when clicking outside
     document.addEventListener('click', function (event) {
-        if (!navToggle.contains(event.target) && !navMenu.contains(event.target)) {
+        if (navToggle && navMenu && !navToggle.contains(event.target) && !navMenu.contains(event.target)) {
             navMenu.classList.remove('active');
             navToggle.classList.remove('active');
+            navToggle.setAttribute('aria-expanded', 'false');
         }
     });
 
-    // Custom smooth scroll function
     function smoothScrollTo(targetElement, duration) {
-        const targetPosition = targetElement.offsetTop - 80; // Account for fixed navbar
+        const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - 80;
         const startPosition = window.pageYOffset;
         const distance = targetPosition - startPosition;
         let startTime = null;
@@ -181,7 +251,6 @@ function initNavigation() {
             if (timeElapsed < duration) requestAnimationFrame(animation);
         }
 
-        // Easing function for smooth animation
         function ease(t, b, c, d) {
             t /= d / 2;
             if (t < 1) return c / 2 * t * t + b;
@@ -191,57 +260,9 @@ function initNavigation() {
 
         requestAnimationFrame(animation);
     }
-
-    // Active navigation highlighting
-    window.addEventListener('scroll', function () {
-        const scrollPos = window.scrollY + 100;
-
-        navLinks.forEach(link => {
-            const targetId = link.getAttribute('href');
-            const targetSection = document.querySelector(targetId);
-
-            if (targetSection) {
-                const sectionTop = targetSection.offsetTop;
-                const sectionBottom = sectionTop + targetSection.offsetHeight;
-
-                if (scrollPos >= sectionTop && scrollPos < sectionBottom) {
-                    navLinks.forEach(l => l.classList.remove('active'));
-                    link.classList.add('active');
-                }
-            }
-        });
-    });
 }
 
-// Scroll Effects
-function initScrollEffects() {
-    const navbar = document.getElementById('navbar');
-    let lastScrollTop = 0;
-
-    window.addEventListener('scroll', function () {
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-        // Navbar background on scroll
-        if (scrollTop > 50) {
-            navbar.style.background = 'var(--nav-bg)';
-            navbar.style.backdropFilter = 'blur(10px)';
-        } else {
-            navbar.style.background = 'transparent';
-            navbar.style.backdropFilter = 'none';
-        }
-
-        // Hide/show navbar on scroll (optional)
-        if (scrollTop > lastScrollTop && scrollTop > 100) {
-            navbar.style.transform = 'translateY(-100%)';
-        } else {
-            navbar.style.transform = 'translateY(0)';
-        }
-
-        lastScrollTop = scrollTop;
-    });
-}
-
-// Animations
+// Fade in animations
 function initAnimations() {
     const observerOptions = {
         threshold: 0.1,
@@ -257,83 +278,35 @@ function initAnimations() {
         });
     }, observerOptions);
 
-    // Observe all sections and cards
-    const animatedElements = document.querySelectorAll('.section, .project-card, .research-card, .education-card, .certification-card, .skill-category, .tech-item');
-    animatedElements.forEach(el => {
-        observer.observe(el);
-    });
-
-    // Parallax effect for hero section
-    window.addEventListener('scroll', function () {
-        const scrolled = window.pageYOffset;
-        const hero = document.querySelector('.hero');
-        const heroContent = document.querySelector('.hero-content');
-
-        if (hero && heroContent) {
-            const rate = scrolled * -0.5;
-            heroContent.style.transform = `translateY(${rate}px)`;
-        }
-    });
+    const animatedElements = document.querySelectorAll(
+        '.section, .project-card, .research-card, .education-card, .certification-card, .skill-category, .tech-item'
+    );
+    animatedElements.forEach(el => observer.observe(el));
 }
 
-// Back to Top Button
+// Back to Top Button creation & click registration
 function initBackToTop() {
-    const backToTop = document.createElement('button');
-    backToTop.className = 'back-to-top';
-    backToTop.innerHTML = '<i class="fas fa-arrow-up"></i>';
-    backToTop.setAttribute('aria-label', 'Back to top');
-    document.body.appendChild(backToTop);
+    backToTopButton = document.createElement('button');
+    backToTopButton.className = 'back-to-top';
+    backToTopButton.innerHTML = '<i class="fas fa-arrow-up"></i>';
+    backToTopButton.setAttribute('aria-label', 'Back to top');
+    document.body.appendChild(backToTopButton);
 
-    window.addEventListener('scroll', function () {
-        const scrollTop = window.pageYOffset;
-        const windowHeight = window.innerHeight;
-        const documentHeight = document.documentElement.scrollHeight;
-        const footerHeight = 120; // Increased to account for footer padding and button height
-
-        // Show button when scrolled down more than 300px
-        if (scrollTop > 300) {
-            backToTop.classList.add('show');
-
-            // Check if we're near the footer
-            const distanceFromBottom = documentHeight - (scrollTop + windowHeight);
-
-            if (distanceFromBottom < footerHeight) {
-                // Near footer - adjust position to stay above footer
-                const buttonHeight = 50; // Height of the button
-                const buttonMargin = 30; // Bottom margin of the button
-                const newBottom = Math.max(buttonMargin, footerHeight - distanceFromBottom + buttonHeight + buttonMargin);
-                backToTop.style.bottom = newBottom + 'px';
-            } else {
-                // Not near footer - reset to normal position
-                backToTop.style.bottom = '30px';
-            }
-        } else {
-            backToTop.classList.remove('show');
-            backToTop.style.bottom = '30px'; // Reset position when hidden
-        }
-    });
-
-    backToTop.addEventListener('click', function () {
+    backToTopButton.addEventListener('click', function () {
         const isMobile = window.innerWidth <= 768;
-        const scrollDuration = isMobile ? 1500 : 800; // Slower on mobile
-
-        smoothScrollToTop(scrollDuration);
-    });
-
-    // Custom smooth scroll to top function
-    function smoothScrollToTop(duration) {
-        const startPosition = window.pageYOffset;
+        const scrollDuration = isMobile ? 1200 : 800;
+        
+        let startPosition = window.pageYOffset;
         let startTime = null;
 
         function animation(currentTime) {
             if (startTime === null) startTime = currentTime;
             const timeElapsed = currentTime - startTime;
-            const run = ease(timeElapsed, startPosition, -startPosition, duration);
+            const run = ease(timeElapsed, startPosition, -startPosition, scrollDuration);
             window.scrollTo(0, run);
-            if (timeElapsed < duration) requestAnimationFrame(animation);
+            if (timeElapsed < scrollDuration) requestAnimationFrame(animation);
         }
 
-        // Easing function for smooth animation
         function ease(t, b, c, d) {
             t /= d / 2;
             if (t < 1) return c / 2 * t * t + b;
@@ -342,27 +315,22 @@ function initBackToTop() {
         }
 
         requestAnimationFrame(animation);
-    }
+    });
 }
 
 // Progress Bar
 function initProgressBar() {
-    const progressBar = document.createElement('div');
-    progressBar.className = 'progress-bar';
-    document.body.appendChild(progressBar);
-
-    window.addEventListener('scroll', function () {
-        const scrollTop = window.pageYOffset;
-        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-        const scrollPercent = (scrollTop / docHeight) * 100;
-        progressBar.style.width = scrollPercent + '%';
-    });
+    if (!progressBarElement) {
+        const bar = document.createElement('div');
+        bar.className = 'progress-bar';
+        document.body.appendChild(bar);
+        progressBarElement = bar;
+    }
 }
 
-// Lazy Loading
+// Lazy Loading images
 function initLazyLoading() {
     const images = document.querySelectorAll('img[data-src]');
-
     const imageObserver = new IntersectionObserver(function (entries) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -377,64 +345,158 @@ function initLazyLoading() {
     images.forEach(img => imageObserver.observe(img));
 }
 
-// Accessibility Features
+// Accessibility features
 function initAccessibility() {
-    // Keyboard navigation
     document.addEventListener('keydown', function (e) {
-        // Escape key to close mobile menu
+        // Escape closes navigation drawer
         if (e.key === 'Escape') {
             const navMenu = document.getElementById('nav-menu');
             const navToggle = document.getElementById('nav-toggle');
-            navMenu.classList.remove('active');
-            navToggle.classList.remove('active');
+            if (navMenu && navMenu.classList.contains('active')) {
+                navMenu.classList.remove('active');
+                navToggle.classList.remove('active');
+                navToggle.setAttribute('aria-expanded', 'false');
+                navToggle.focus();
+            }
         }
 
-        // Space/Enter key for buttons
+        // Trigger clicks with space/enter for accessibility
         if (e.key === ' ' || e.key === 'Enter') {
-            if (e.target.classList.contains('btn') || e.target.classList.contains('theme-toggle')) {
+            if (e.target.classList.contains('btn') || e.target.classList.contains('theme-toggle') || e.target.classList.contains('nav-toggle')) {
                 e.preventDefault();
                 e.target.click();
             }
         }
     });
 
-    // Focus management for mobile menu
+    // Mobile navigation focus trapping
     const navToggle = document.getElementById('nav-toggle');
     const navMenu = document.getElementById('nav-menu');
 
-    navToggle.addEventListener('click', function () {
-        if (navMenu.classList.contains('active')) {
-            // Focus first nav link when menu opens
-            const firstNavLink = navMenu.querySelector('.nav-link');
-            if (firstNavLink) {
-                setTimeout(() => firstNavLink.focus(), 100);
-            }
-        }
-    });
-
-    // Trap focus in mobile menu
-    navMenu.addEventListener('keydown', function (e) {
-        if (e.key === 'Tab') {
-            const navLinks = navMenu.querySelectorAll('.nav-link');
-            const firstLink = navLinks[0];
-            const lastLink = navLinks[navLinks.length - 1];
-
-            if (e.shiftKey) {
-                if (document.activeElement === firstLink) {
-                    e.preventDefault();
-                    lastLink.focus();
-                }
-            } else {
-                if (document.activeElement === lastLink) {
-                    e.preventDefault();
-                    firstLink.focus();
+    if (navToggle && navMenu) {
+        navToggle.addEventListener('click', function () {
+            if (navMenu.classList.contains('active')) {
+                const firstLink = navMenu.querySelector('.nav-link');
+                if (firstLink) {
+                    setTimeout(() => firstLink.focus(), 100);
                 }
             }
-        }
-    });
+        });
+
+        navMenu.addEventListener('keydown', function (e) {
+            if (e.key === 'Tab') {
+                const navLinks = navMenu.querySelectorAll('.nav-link');
+                if (navLinks.length > 0) {
+                    const firstLink = navLinks[0];
+                    const lastLink = navLinks[navLinks.length - 1];
+
+                    if (e.shiftKey) {
+                        if (document.activeElement === firstLink) {
+                            e.preventDefault();
+                            lastLink.focus();
+                        }
+                    } else {
+                        if (document.activeElement === lastLink) {
+                            e.preventDefault();
+                            firstLink.focus();
+                        }
+                    }
+                }
+            }
+        });
+    }
 }
 
-// Utility Functions
+// Clipboard copying utility (Clipboard API only, cleaned)
+function copyToClipboard(text) {
+    if (navigator.clipboard) {
+        navigator.clipboard.writeText(text).then(function () {
+            showNotification('Copied to clipboard!', 'success');
+        }).catch(function () {
+            showNotification('Failed to copy to clipboard', 'error');
+        });
+    } else {
+        showNotification('Clipboard API not supported', 'error');
+    }
+}
+
+// Dashboard-style Notifications
+function showNotification(message, type = 'info') {
+    const notification = document.createElement('div');
+    notification.className = `notification notification-${type}`;
+    notification.textContent = message;
+
+    notification.style.cssText = `
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        padding: 12px 20px;
+        border-radius: 4px;
+        color: white;
+        font-family: var(--font-mono, monospace);
+        font-size: var(--font-size-sm, 14px);
+        font-weight: 500;
+        z-index: 10000;
+        transform: translateY(150%);
+        transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        background: ${type === 'success' ? 'var(--status-active, #16a34a)' : type === 'error' ? 'var(--status-error, #dc2626)' : 'var(--accent-primary, #f97316)'};
+        border-left: 4px solid rgba(255,255,255,0.4);
+    `;
+
+    document.body.appendChild(notification);
+
+    setTimeout(() => {
+        notification.style.transform = 'translateY(0)';
+    }, 50);
+
+    setTimeout(() => {
+        notification.style.transform = 'translateY(150%)';
+        setTimeout(() => {
+            if (notification.parentNode) {
+                document.body.removeChild(notification);
+            }
+        }, 300);
+    }, 3000);
+}
+
+// Service Worker Registration
+function registerServiceWorker() {
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function () {
+            navigator.serviceWorker.register('/sw.js')
+                .then(function (registration) {
+                    console.log('ServiceWorker registered');
+
+                    // Detect updates to the service worker
+                    registration.onupdatefound = () => {
+                        const installingWorker = registration.installing;
+                        if (installingWorker == null) return;
+                        installingWorker.onstatechange = () => {
+                            if (installingWorker.state === 'installed') {
+                                if (navigator.serviceWorker.controller) {
+                                    console.log('New content available, triggering controller claim update...');
+                                }
+                            }
+                        };
+                    };
+                })
+                .catch(function (error) {
+                    console.error('ServiceWorker registration failed:', error);
+                });
+        });
+
+        // Automatically reload page when a new service worker takes control
+        let refreshing = false;
+        navigator.serviceWorker.addEventListener('controllerchange', () => {
+            if (!refreshing) {
+                refreshing = true;
+                window.location.reload();
+            }
+        });
+    }
+}
+
+// Debounce helper
 function debounce(func, wait) {
     let timeout;
     return function executedFunction(...args) {
@@ -446,184 +508,3 @@ function debounce(func, wait) {
         timeout = setTimeout(later, wait);
     };
 }
-
-function throttle(func, limit) {
-    let inThrottle;
-    return function () {
-        const args = arguments;
-        const context = this;
-        if (!inThrottle) {
-            func.apply(context, args);
-            inThrottle = true;
-            setTimeout(() => inThrottle = false, limit);
-        }
-    };
-}
-
-// Error Handling
-window.addEventListener('error', function (e) {
-    console.error('JavaScript Error:', e.error);
-    // You can add error reporting here
-});
-
-// Performance Monitoring
-window.addEventListener('load', function () {
-    // Log page load time
-    const loadTime = performance.now();
-    console.log(`Page loaded in ${loadTime.toFixed(2)}ms`);
-
-    // Check if images are loaded
-    const images = document.querySelectorAll('img');
-    let loadedImages = 0;
-
-    images.forEach(img => {
-        if (img.complete) {
-            loadedImages++;
-        } else {
-            img.addEventListener('load', function () {
-                loadedImages++;
-                if (loadedImages === images.length) {
-                    console.log('All images loaded');
-                }
-            });
-        }
-    });
-});
-
-// Service Worker Registration (for PWA support)
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', function () {
-        navigator.serviceWorker.register('/sw.js')
-            .then(function (registration) {
-                console.log('SW registered: ', registration);
-            })
-            .catch(function (registrationError) {
-                console.log('SW registration failed: ', registrationError);
-            });
-    });
-}
-
-// Copy to Clipboard Functionality
-function copyToClipboard(text) {
-    if (navigator.clipboard) {
-        navigator.clipboard.writeText(text).then(function () {
-            showNotification('Copied to clipboard!', 'success');
-        }).catch(function () {
-            showNotification('Failed to copy to clipboard', 'error');
-        });
-    } else {
-        // Fallback for older browsers
-        const textArea = document.createElement('textarea');
-        textArea.value = text;
-        document.body.appendChild(textArea);
-        textArea.select();
-        try {
-            document.execCommand('copy');
-            showNotification('Copied to clipboard!', 'success');
-        } catch (err) {
-            showNotification('Failed to copy to clipboard', 'error');
-        }
-        document.body.removeChild(textArea);
-    }
-}
-
-// Notification System
-function showNotification(message, type = 'info') {
-    const notification = document.createElement('div');
-    notification.className = `notification notification-${type}`;
-    notification.textContent = message;
-
-    // Add styles
-    notification.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        padding: 12px 20px;
-        border-radius: 8px;
-        color: white;
-        font-weight: 500;
-        z-index: 10000;
-        transform: translateX(100%);
-        transition: transform 0.3s ease;
-        background: ${type === 'success' ? '#10b981' : type === 'error' ? '#ef4444' : '#6366f1'};
-    `;
-
-    document.body.appendChild(notification);
-
-    // Animate in
-    setTimeout(() => {
-        notification.style.transform = 'translateX(0)';
-    }, 100);
-
-    // Remove after 3 seconds
-    setTimeout(() => {
-        notification.style.transform = 'translateX(100%)';
-        setTimeout(() => {
-            document.body.removeChild(notification);
-        }, 300);
-    }, 3000);
-}
-
-// Performance optimization functions
-function optimizeImages() {
-    const images = document.querySelectorAll('img');
-    images.forEach(img => {
-        // Add loading="lazy" to images below the fold
-        if (!img.hasAttribute('loading')) {
-            img.setAttribute('loading', 'lazy');
-        }
-
-        // Add error handling
-        img.addEventListener('error', function () {
-            this.style.display = 'none';
-            console.warn('Failed to load image:', this.src);
-        });
-    });
-}
-
-function optimizeFonts() {
-    // Preload critical fonts
-    if ('fonts' in document) {
-        document.fonts.ready.then(function () {
-            console.log('Fonts loaded successfully');
-        });
-    }
-}
-
-function optimizeAnimations() {
-    // Use requestAnimationFrame for smooth animations
-    let ticking = false;
-
-    function updateAnimations() {
-        // Update any animations here
-        ticking = false;
-    }
-
-    function requestTick() {
-        if (!ticking) {
-            requestAnimationFrame(updateAnimations);
-            ticking = true;
-        }
-    }
-
-    // Throttle scroll events
-    window.addEventListener('scroll', function () {
-        requestTick();
-    }, { passive: true });
-}
-
-// Initialize optimizations
-document.addEventListener('DOMContentLoaded', function () {
-    safeExecute(optimizeImages, 'Image Optimization');
-    safeExecute(optimizeFonts, 'Font Optimization');
-    safeExecute(optimizeAnimations, 'Animation Optimization');
-});
-
-// Export functions for global use
-window.portfolioUtils = {
-    copyToClipboard,
-    showNotification,
-    optimizeImages,
-    optimizeFonts,
-    optimizeAnimations
-}; 
