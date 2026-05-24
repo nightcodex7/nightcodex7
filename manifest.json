@@ -1,7 +1,7 @@
 {
   "name": "Tuhin Garai - DevOps Portfolio",
   "short_name": "Tuhin Garai",
-  "description": "DevOps/Cloud Engineer | Linux Enthusiast | Open Source Contributor",
+  "description": "DevOps/Cloud Engineer | DevSecOps & Linux Enthusiast | Open Source Contributor",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0a0a0a",
@@ -29,7 +29,11 @@
       "type": "image/svg+xml"
     }
   ],
-  "categories": ["technology", "education", "business"],
+  "categories": [
+    "technology",
+    "education",
+    "business"
+  ],
   "lang": "en",
   "dir": "ltr"
 }

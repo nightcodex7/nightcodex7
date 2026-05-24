@@ -463,9 +463,36 @@ function showNotification(message, type = 'info') {
 function registerServiceWorker() {
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', function () {
-            navigator.serviceWorker.register('/sw.js')
+            // Find footer version from "Env: Production-v1.6"
+            const statusBarItems = document.querySelectorAll('.status-bar-footer .status-bar-item');
+            let version = '1.0.5';
+            statusBarItems.forEach(item => {
+                if (item.textContent.includes('Env:')) {
+                    const strongEl = item.querySelector('strong');
+                    if (strongEl) {
+                        const text = strongEl.textContent.trim();
+                        const match = text.match(/v?(\d+\.\d+(?:\.\d+)?)/i);
+                        if (match) {
+                            version = match[1];
+                        } else {
+                            version = text.replace(/[^0-9.]/g, '');
+                        }
+                    }
+                }
+            });
+            if (!version) {
+                version = '1.0.0';
+            }
+
+            // Sync the app-version meta tag content
+            const versionMeta = document.querySelector('meta[name="app-version"]');
+            if (versionMeta) {
+                versionMeta.setAttribute('content', version);
+            }
+            
+            navigator.serviceWorker.register('/sw.js?v=' + version)
                 .then(function (registration) {
-                    console.log('ServiceWorker registered');
+                    console.log('ServiceWorker registered with version:', version);
 
                     // Detect updates to the service worker
                     registration.onupdatefound = () => {

@@ -134,6 +134,12 @@ body {
     gap: var(--spacing-xs);
     overflow-x: auto;
     white-space: nowrap;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.arch-flow-container::-webkit-scrollbar {
+    display: none;
 }
 
 .arch-flow-title {

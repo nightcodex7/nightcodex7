@@ -1,4 +1,5 @@
-const CACHE_NAME = 'tuhingarai-portfolio-v1.0.3';
+const VERSION = new URL(self.location.href).searchParams.get('v') || '1.0.5';
+const CACHE_NAME = `tuhingarai-portfolio-v${VERSION}`;
 const urlsToCache = [
   '/',
   '/index.html',
@@ -19,13 +20,25 @@ const urlsToCache = [
   'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'
 ];
 
-// Install event (forces immediately taking control)
+// Install event (forces immediately taking control and bypasses browser HTTP cache)
 self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME)
-      .then(cache => {
-        console.log('Opened cache');
-        return cache.addAll(urlsToCache);
+      .then(async cache => {
+        console.log('Opened cache:', CACHE_NAME);
+        for (const url of urlsToCache) {
+          try {
+            // Append cache bust parameter to force network reload
+            const separator = url.includes('?') ? '&' : '?';
+            const requestUrl = (url.startsWith('/') || url.startsWith('http')) ? `${url}${separator}cb=${VERSION}` : url;
+            const response = await fetch(new Request(requestUrl, { cache: 'reload' }));
+            if (response && response.status === 200) {
+              await cache.put(url, response);
+            }
+          } catch (error) {
+            console.error('Failed to cache resource during install:', url, error);
+          }
+        }
       })
       .then(() => self.skipWaiting())
   );

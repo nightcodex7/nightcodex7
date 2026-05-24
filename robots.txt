@@ -4,6 +4,6 @@ Allow: /
 # Sitemap
 Sitemap: https://tuhingarai.in/sitemap.xml
 
-# Disallow admin or private areas (if any)
+# Disallow example
 Disallow: /admin/
 Disallow: /private/ 
