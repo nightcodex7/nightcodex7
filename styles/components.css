@@ -271,6 +271,20 @@
     text-align: justify;
 }
 
+.project-description ul {
+    margin: 0;
+    padding-left: var(--spacing-lg);
+    list-style-type: disc;
+}
+
+.project-description li {
+    margin-bottom: var(--spacing-xs);
+}
+
+.project-description li:last-child {
+    margin-bottom: 0;
+}
+
 .project-links {
     display: flex;
     gap: var(--spacing-md);

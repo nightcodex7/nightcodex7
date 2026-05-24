@@ -380,6 +380,45 @@
                 <div class="projects-grid">
                     <div class="project-card tech-category-cloud">
                         <div class="project-header">
+                            <h3 class="project-title">Zero Downtime Application Deployment using Kubernetes & AWS</h3>
+                            <div class="project-tech">
+                                <span class="tech-tag">Kubernetes</span>
+                                <span class="tech-tag">Amazon EKS</span>
+                                <span class="tech-tag">AWS</span>
+                                <span class="tech-tag">Prometheus</span>
+                                <span class="tech-tag">Grafana</span>
+                            </div>
+                        </div>
+                        <div class="project-description">
+                            <ul>
+                                <li>Designed and implemented a highly available cloud-native deployment architecture using Amazon EKS and AWS services.</li>
+                                <li>Implemented Kubernetes rolling updates, readiness probes, and liveness probes to achieve zero-downtime deployments and self-healing recovery.</li>
+                                <li>Configured Horizontal Pod Autoscaler (HPA) to dynamically scale workloads based on CPU utilization during high traffic conditions.</li>
+                                <li>Implemented warm standby disaster recovery architecture using Route 53 health checks and multi-region failover.</li>
+                                <li>Integrated monitoring and observability tools including Prometheus, Grafana, and CloudWatch for tracking system health and scaling behavior.</li>
+                            </ul>
+                        </div>
+                        <div class="arch-flow-container">
+                            <span class="arch-flow-title">Flow:</span>
+                            <span class="arch-node">Route 53</span>
+                            <span class="arch-arrow">➔</span>
+                            <span class="arch-node">EKS / ALB</span>
+                            <span class="arch-arrow">➔</span>
+                            <span class="arch-node">Pods (HPA)</span>
+                            <span class="arch-arrow">➔</span>
+                            <span class="arch-node">Prometheus</span>
+                        </div>
+                        <div class="project-links" style="margin-top: var(--spacing-md);">
+                            <a href="assets/Zero_Downtime%20Application_Deployment_Kubernetes_AWS.pdf"
+                                target="_blank" rel="noopener noreferrer" class="project-link">
+                                <i class="fas fa-file-pdf"></i>
+                                View Documentation
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="project-card tech-category-cloud">
+                        <div class="project-header">
                             <h3 class="project-title">Serverless EC2 Monitor & Control Dashboard</h3>
                             <div class="project-tech">
                                 <span class="tech-tag">AWS Lambda</span>
