@@ -153,10 +153,3 @@ body {
     color: var(--accent-secondary);
     font-weight: bold;
 }
-
-/* Highlighted category borders for cards */
-.tech-category-compute { border-top: 3px solid var(--status-info) !important; }
-.tech-category-cicd { border-top: 3px solid var(--status-active) !important; }
-.tech-category-cloud { border-top: 3px solid var(--accent-primary) !important; }
-.tech-category-scripting { border-top: 3px solid var(--text-muted) !important; }
-.tech-category-monitoring { border-top: 3px solid #8b5cf6 !important; } /* purple */
