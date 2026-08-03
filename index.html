@@ -40,7 +40,7 @@
     <meta name="author" content="Tuhin Garai">
     <meta name="robots" content="index, follow, max-image-preview:large">
     <meta name="theme-color" content="#0f172a">
-    <meta name="app-version" content="1.0.5">
+    <meta name="app-version" content="1.9">
     <meta name="application-name" content="Tuhin Garai Portfolio">
 
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -243,6 +243,10 @@
         "Python",
         "Bash",
         "Shell Scripting",
+        "POSIX Shell",
+        "OpenWrt",
+        "Linux Networking",
+        "nftables",
 
         "Containerization",
         "Incident Response",
@@ -554,6 +558,48 @@
                 <span class="section-label">// Deployments</span>
                 <h2 class="section-title text-left">Projects</h2>
                 <div class="projects-grid">
+                    <div class="project-card tech-category-compute">
+                        <div class="project-header">
+                            <h3 class="project-title">uCI Client Manager — OpenWrt Network Management Suite</h3>
+                            <div class="project-status stable">
+                                <span class="status-dot active"></span>Active
+                            </div>
+                            <div class="project-tech">
+                                <span class="tech-tag">OpenWrt</span>
+                                <span class="tech-tag">POSIX Shell</span>
+                                <span class="tech-tag">JavaScript (ES6)</span>
+                                <span class="tech-tag">nftables (fw4)</span>
+                                <span class="tech-tag">conntrack</span>
+                                <span class="tech-tag">ubus / RPCD</span>
+                                <span class="tech-tag">UCI</span>
+                                <span class="tech-tag">Linux Networking</span>
+                            </div>
+                        </div>
+                        <p class="project-description" style="margin-bottom: var(--spacing-sm); font-weight: 500; color: var(--text-primary);">
+                            Lightweight, daemonless enterprise client management app for OpenWrt routers built with POSIX Shell, JSON-RPC, and Vanilla JS.
+                        </p>
+                        <p class="project-description">
+                            A high-performance, zero-daemon LuCI application for OpenWrt routers. Features real-time client traffic monitoring, kernel-level nftables bandwidth speed limiting, Wi-Fi MAC filtering, and internet access control—designed with zero persistent memory overhead for resource-constrained hardware.
+                        </p>
+                        <div class="arch-flow-container">
+                            <span class="arch-flow-title">Flow:</span>
+                            <span class="arch-node">LuCI / JS UI</span>
+                            <span class="arch-arrow">➔</span>
+                            <span class="arch-node">ubus (RPCD)</span>
+                            <span class="arch-arrow">➔</span>
+                            <span class="arch-node">POSIX Shell</span>
+                            <span class="arch-arrow">➔</span>
+                            <span class="arch-node">nftables / conntrack</span>
+                        </div>
+                        <div class="project-links" style="margin-top: var(--spacing-md);">
+                            <a href="https://github.com/nightcodex7/luci-app-client-manager" target="_blank"
+                                rel="noopener noreferrer" class="project-link">
+                                <i class="fab fa-github"></i>
+                                GitHub Repository
+                            </a>
+                        </div>
+                    </div>
+
                     <div class="project-card tech-category-cloud">
                         <div class="project-header">
                             <h3 class="project-title">Zero Downtime Application Deployment using Kubernetes & AWS</h3>
@@ -967,7 +1013,7 @@
                         </div>
                         <div class="status-bar-item">
                             <i class="fas fa-network-wired"></i>
-                            <span>Env: <strong>Production-v1.8</strong></span>
+                            <span>Env: <strong>Production-v1.9</strong></span>
                         </div>
                         <div class="status-bar-item">
                             <i class="fas fa-clock"></i>
