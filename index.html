@@ -4,13 +4,13 @@
 <head>
 
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TQ42NQXFFS"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EF464Q2P3D"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
 
-      gtag('config', 'G-TQ42NQXFFS');
+        gtag('config', 'G-EF464Q2P3D');
     </script>
 
     <!-- Google Tag Manager -->
@@ -27,7 +27,7 @@
                 dl = l != 'dataLayer' ? '&l=' + l : '';
             j.async = true;
             j.src =
-                'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+                '/analytics/?id=' + i + dl;
             f.parentNode.insertBefore(j, f);
         })(window, document, 'script', 'dataLayer', 'GTM-NWBNMKMR');
     </script>
@@ -360,7 +360,7 @@
 <body data-theme="dark">
     <!-- Google Tag Manager (noscript) -->
     <noscript>
-        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NWBNMKMR" height="0" width="0"
+        <iframe src="/analytics/ns.html?id=GTM-NWBNMKMR" height="0" width="0"
             style="display:none;visibility:hidden"></iframe>
     </noscript>
     <!-- End Google Tag Manager (noscript) -->
@@ -585,11 +585,16 @@
                                 <span class="tech-tag">Linux Networking</span>
                             </div>
                         </div>
-                        <p class="project-description" style="margin-bottom: var(--spacing-sm); font-weight: 500; color: var(--text-primary);">
-                            Lightweight, daemonless enterprise client management app for OpenWrt routers built with POSIX Shell, JSON-RPC, and Vanilla JS.
+                        <p class="project-description"
+                            style="margin-bottom: var(--spacing-sm); font-weight: 500; color: var(--text-primary);">
+                            Lightweight, daemonless enterprise client management app for OpenWrt routers built with
+                            POSIX Shell, JSON-RPC, and Vanilla JS.
                         </p>
                         <p class="project-description">
-                            A high-performance, zero-daemon LuCI application for OpenWrt routers. Features real-time client traffic monitoring, kernel-level nftables bandwidth speed limiting, Wi-Fi MAC filtering, and internet access control—designed with zero persistent memory overhead for resource-constrained hardware.
+                            A high-performance, zero-daemon LuCI application for OpenWrt routers. Features real-time
+                            client traffic monitoring, kernel-level nftables bandwidth speed limiting, Wi-Fi MAC
+                            filtering, and internet access control—designed with zero persistent memory overhead for
+                            resource-constrained hardware.
                         </p>
                         <div class="arch-flow-container">
                             <span class="arch-flow-title">Flow:</span>
@@ -1013,8 +1018,8 @@
             <footer class="footer">
                 <div class="container">
                     <p class="footer-text" style="margin-bottom: var(--spacing-md);">
-                        Proudly built with <i class="fas fa-code"></i>, <i
-                            class="fas fa-cloud"></i>, and <i class="fas fa-coffee"></i>
+                        Proudly built with <i class="fas fa-code"></i>, <i class="fas fa-cloud"></i>, and <i
+                            class="fas fa-coffee"></i>
                     </p>
                     <div class="status-bar-footer">
                         <div class="status-bar-item">
