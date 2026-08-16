@@ -32,6 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
     safeExecute(initLazyLoading, 'Lazy Loading');
     safeExecute(initAccessibility, 'Accessibility');
     safeExecute(initVisitorCounter, 'Visitor Counter');
+    safeExecute(initPhoneMask, 'Phone Masking');
     safeExecute(registerServiceWorker, 'Service Worker');
 
     // Attach single optimized passive scroll listener
@@ -534,4 +535,58 @@ function debounce(func, wait) {
         clearTimeout(timeout);
         timeout = setTimeout(later, wait);
     };
+}
+
+// Phone Masking & Toggle Logic
+function initPhoneMask() {
+    const phoneLink = document.getElementById('phone-number-link');
+    const eyeToggleBtn = document.getElementById('phone-toggle-eye');
+    const eyeIcon = document.getElementById('phone-eye-icon');
+
+    if (!phoneLink || !eyeToggleBtn || !eyeIcon) return;
+
+    // Dynamically construct phone parts so plain text number is absent from static HTML source
+    const p1 = "98457";
+    const p2 = "79355";
+    const fullNumber = `+91 ${p1}${p2}`;
+    const maskedNumber = `+91 ••••••••••`;
+    const whatsappUrl = `https://wa.me/91${p1}${p2}`;
+
+    let isRevealed = false;
+
+    function togglePhone(show) {
+        if (typeof show === 'boolean') {
+            isRevealed = show;
+        } else {
+            isRevealed = !isRevealed;
+        }
+
+        if (isRevealed) {
+            phoneLink.textContent = fullNumber;
+            phoneLink.href = whatsappUrl;
+            phoneLink.target = "_blank";
+            eyeIcon.className = "fas fa-eye-slash";
+            eyeToggleBtn.title = "Hide Mobile Number";
+        } else {
+            phoneLink.textContent = maskedNumber;
+            phoneLink.href = "#";
+            phoneLink.removeAttribute("target");
+            eyeIcon.className = "fas fa-eye";
+            eyeToggleBtn.title = "Show Mobile Number";
+        }
+    }
+
+    eyeToggleBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        togglePhone();
+    });
+
+    phoneLink.addEventListener('click', function (e) {
+        if (!isRevealed) {
+            e.preventDefault();
+            togglePhone(true);
+            window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+        }
+    });
 }

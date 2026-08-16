@@ -122,10 +122,45 @@ section[id] {
     justify-content: center; /* Center on mobile */
 }
 
-.contact-item i {
+.contact-item > i {
     color: var(--accent-primary);
     min-width: 20px;
+    font-size: 1.1rem;
     text-align: center;
+}
+
+.phone-eye-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 2px 4px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-sm);
+    transition: color var(--transition-fast);
+    outline: none !important;
+    margin-left: 4px;
+}
+
+.phone-eye-btn i {
+    font-size: 0.75rem !important;
+    min-width: auto !important;
+    color: var(--text-secondary);
+}
+
+.phone-eye-btn:hover i {
+    color: var(--accent-primary);
+}
+
+.phone-number-link {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.phone-number-link:hover {
+    text-decoration: underline;
 }
 
 #visitor-count {
