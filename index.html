@@ -40,7 +40,7 @@
     <meta name="author" content="Tuhin Garai">
     <meta name="robots" content="index, follow, max-image-preview:large">
     <meta name="theme-color" content="#0f172a">
-    <meta name="app-version" content="1.9">
+    <meta name="app-version" content="2.0">
     <meta name="application-name" content="Tuhin Garai Portfolio">
 
     <meta name="mobile-web-app-capable" content="yes">
@@ -361,6 +361,7 @@
         <div class="nav-container">
             <div class="nav-menu" id="nav-menu">
                 <a href="#home" class="nav-link">Home</a>
+                <a href="#apps" class="nav-link">Apps</a>
                 <a href="#about" class="nav-link">About</a>
                 <a href="#tech-stack" class="nav-link">Tech Stack</a>
                 <a href="#projects" class="nav-link">Projects</a>
@@ -385,7 +386,7 @@
     </nav>
 
     <!-- Main Content -->
-    <main class="portfolio-container">
+    <main class="portfolio-container" id="home">
         <!-- Left Sidebar -->
         <aside class="sidebar" id="sidebar">
             <div class="sidebar-wrapper">
@@ -443,13 +444,81 @@
                 <div class="sidebar-actions">
                     <a href="assets/Resume_Tuhin.pdf" target="_blank" class="btn btn-primary btn-block">Download
                         Resume</a>
-                    <a href="#projects" class="btn btn-secondary btn-block">View Projects</a>
+                    <a href="#apps" class="btn btn-secondary btn-block"><i class="fas fa-mobile-alt"></i> Featured Apps</a>
                 </div>
             </div>
         </aside>
 
         <!-- Right Content Area -->
         <div class="content-area">
+            <!-- Featured Apps Section (Visible Above Fold) -->
+            <section id="apps" class="section apps-section">
+                <span class="section-label">// Mobile & Router Applications</span>
+                <h2 class="section-title text-left">Featured Apps</h2>
+
+                <div class="featured-app-card">
+                    <div class="featured-app-badge">
+                        <span class="status-dot active"></span> Active
+                    </div>
+                    <div class="featured-app-content">
+                        <div class="featured-app-info">
+                            <div class="app-icon-header">
+                                <div class="app-avatar-icon">
+                                    <i class="fas fa-mobile-alt"></i>
+                                </div>
+                                <div>
+                                    <h3 class="app-title">Yet Another LuCI App</h3>
+                                    <p class="app-subtitle">Flutter Companion App for OpenWrt Routers</p>
+                                </div>
+                            </div>
+                            <div class="project-tech" style="margin-top: var(--spacing-xs);">
+                                <span class="tech-tag">Flutter</span>
+                                <span class="tech-tag">Dart</span>
+                                <span class="tech-tag">OpenWrt</span>
+                                <span class="tech-tag">ubus-rpc</span>
+                                <span class="tech-tag">Android / iOS</span>
+                                <span class="tech-tag">NextDNS</span>
+                            </div>
+                            <p class="app-description">
+                                Cross-platform mobile app for OpenWrt router administration. Features dynamic CPU/RAM real-time charts, client lease tracking, NextDNS daemon activation control, SquashFS storage monitoring, and custom <code class="inline-code">ubus-rpc</code> daemonless backend.
+                            </p>
+                            <div class="arch-flow-container">
+                                <span class="arch-flow-title">Architecture:</span>
+                                <span class="arch-node">Flutter UI</span>
+                                <span class="arch-arrow">➔</span>
+                                <span class="arch-node">ubus-rpc</span>
+                                <span class="arch-arrow">➔</span>
+                                <span class="arch-node">rpcd / POSIX</span>
+                                <span class="arch-arrow">➔</span>
+                                <span class="arch-node">OpenWrt Kernel</span>
+                            </div>
+                            <div class="app-actions">
+                                <a href="https://nightcode.co.in/yet-another-luci-app-openwrt.html" target="_blank"
+                                    rel="noopener noreferrer" class="btn btn-primary btn-sm">
+                                    <i class="fas fa-globe"></i>
+                                    Official Website
+                                </a>
+                                <a href="https://github.com/nightcodex7/yet-another-luci-app" target="_blank"
+                                    rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+                                    <i class="fab fa-github"></i>
+                                    GitHub
+                                </a>
+                                <a href="https://github.com/nightcodex7/yet-another-luci-app/releases" target="_blank"
+                                    rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+                                    <i class="fas fa-download"></i>
+                                    Releases / APK
+                                </a>
+                            </div>
+                        </div>
+                        <div class="featured-app-media">
+                            <div class="app-image-wrapper">
+                                <img src="assets/yala_dashboard_light.jpeg" alt="Yet Another LuCI App Dashboard Screenshot" class="app-preview-img" loading="eager">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <!-- About Section -->
             <section id="about" class="section">
                 <span class="section-label">// System Overview</span>
@@ -559,6 +628,53 @@
                 <span class="section-label">// Deployments</span>
                 <h2 class="section-title text-left">Projects</h2>
                 <div class="projects-grid">
+                    <div class="project-card tech-category-compute">
+                        <div class="project-header">
+                            <h3 class="project-title">Yet Another LuCI App — Flutter OpenWrt Router Manager</h3>
+                            <div class="project-status stable">
+                                <span class="status-dot active"></span>Active
+                            </div>
+                            <div class="project-tech">
+                                <span class="tech-tag">Flutter</span>
+                                <span class="tech-tag">Dart</span>
+                                <span class="tech-tag">OpenWrt</span>
+                                <span class="tech-tag">ubus-rpc</span>
+                                <span class="tech-tag">rpcd</span>
+                                <span class="tech-tag">NextDNS</span>
+                                <span class="tech-tag">Android / iOS</span>
+                            </div>
+                        </div>
+                        <p class="project-description"
+                            style="margin-bottom: var(--spacing-sm); font-weight: 500; color: var(--text-primary);">
+                            Cross-platform mobile application for OpenWrt router monitoring and management built with Flutter and Dart.
+                        </p>
+                        <p class="project-description">
+                            Empowers users to manage OpenWrt routers natively on Android and iOS. Delivers real-time CPU & RAM chart visualizations, DHCP lease & client monitoring, NextDNS daemon toggling, and SquashFS storage health metrics via lightweight ubus-rpc without needing the LuCI web interface.
+                        </p>
+                        <div class="arch-flow-container">
+                            <span class="arch-flow-title">Flow:</span>
+                            <span class="arch-node">Flutter Mobile</span>
+                            <span class="arch-arrow">➔</span>
+                            <span class="arch-node">ubus-rpc</span>
+                            <span class="arch-arrow">➔</span>
+                            <span class="arch-node">rpcd</span>
+                            <span class="arch-arrow">➔</span>
+                            <span class="arch-node">OpenWrt OS</span>
+                        </div>
+                        <div class="project-links" style="margin-top: var(--spacing-md); flex-wrap: wrap;">
+                            <a href="https://nightcode.co.in/yet-another-luci-app-openwrt.html" target="_blank"
+                                rel="noopener noreferrer" class="project-link">
+                                <i class="fas fa-globe"></i>
+                                Official Website
+                            </a>
+                            <a href="https://github.com/nightcodex7/yet-another-luci-app" target="_blank"
+                                rel="noopener noreferrer" class="project-link">
+                                <i class="fab fa-github"></i>
+                                GitHub Repository
+                            </a>
+                        </div>
+                    </div>
+
                     <div class="project-card tech-category-compute">
                         <div class="project-header">
                             <h3 class="project-title">uCI Client Manager — OpenWrt Network Management Suite</h3>
@@ -1019,7 +1135,7 @@
                         </div>
                         <div class="status-bar-item">
                             <i class="fas fa-network-wired"></i>
-                            <span>Env: <strong>Production-v1.9</strong></span>
+                            <span>Env: <strong>Production-v2.0</strong></span>
                         </div>
                         <div class="status-bar-item">
                             <i class="fas fa-clock"></i>
